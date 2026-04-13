@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "634427102282",
+    "project_id": "lizquet-app",
+    "storage_bucket": "lizquet-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634427102282:android:e673b3e612a1502e5f82b3",
+        "android_client_info": {
+          "package_name": "com.example.lizquet_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634427102282-8egndo1ndo7s7i34dq146vd0dcdl1amk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEH3OClNwIC4SLwIVQ9nu4Uhw7eD0VO0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634427102282-8egndo1ndo7s7i34dq146vd0dcdl1amk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
