@@ -18,13 +18,13 @@ class FolderDetailScreen extends ConsumerWidget {
     final decksAsync = ref.watch(userDecksProvider);
 
     return foldersAsync.when(
-      loading: () => const Scaffold(
-        backgroundColor: Color(0xFF1A1D28),
-        body: Center(
+      loading: () => Scaffold(
+        backgroundColor: context.colors.bg,
+        body: const Center(
             child: CircularProgressIndicator(color: AppTheme.primary)),
       ),
       error: (e, _) => Scaffold(
-        backgroundColor: const Color(0xFF1A1D28),
+        backgroundColor: context.colors.bg,
         body: Center(child: Text('Lỗi: $e')),
       ),
       data: (folders) {
@@ -32,37 +32,37 @@ class FolderDetailScreen extends ConsumerWidget {
             folders.where((f) => f.id == folderId).firstOrNull;
         if (folder == null) {
           return Scaffold(
-            backgroundColor: const Color(0xFF1A1D28),
+            backgroundColor: context.colors.bg,
             appBar: AppBar(
-              backgroundColor: const Color(0xFF1A1D28),
+              backgroundColor: context.colors.bg,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                icon: Icon(Icons.arrow_back, color: context.colors.textPrimary),
                 onPressed: () => context.pop(),
               ),
             ),
-            body: const Center(
+            body: Center(
               child: Text('Không tìm thấy thư mục',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(color: context.colors.textPrimary)),
             ),
           );
         }
 
         return Scaffold(
-          backgroundColor: const Color(0xFF1A1D28),
+          backgroundColor: context.colors.bg,
           appBar: AppBar(
-            backgroundColor: const Color(0xFF1A1D28),
+            backgroundColor: context.colors.bg,
             elevation: 0,
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
+              icon: Icon(Icons.arrow_back, color: context.colors.textPrimary),
               onPressed: () => context.pop(),
             ),
             title: Text(folder.title,
-                style: const TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold)),
+                style: TextStyle(
+                    color: context.colors.textPrimary, fontWeight: FontWeight.bold)),
             actions: [
               PopupMenuButton<String>(
-                icon: const Icon(Icons.more_vert, color: Colors.white),
-                color: const Color(0xFF2A2D3E),
+                icon: Icon(Icons.more_vert, color: context.colors.textPrimary),
+                color: context.colors.card,
                 itemBuilder: (_) => [
                   const PopupMenuItem(
                     value: 'delete',
@@ -88,7 +88,7 @@ class FolderDetailScreen extends ConsumerWidget {
                     color: AppTheme.primary)),
             error: (e, _) => Center(
                 child: Text('Lỗi: $e',
-                    style: const TextStyle(color: Colors.white))),
+                    style: TextStyle(color: context.colors.textPrimary))),
             data: (allDecks) {
               final folderDecks = allDecks
                   .where((d) => folder.deckIds.contains(d.id))
@@ -105,7 +105,7 @@ class FolderDetailScreen extends ConsumerWidget {
                           width: 52,
                           height: 52,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF2A2D3E),
+                            color: context.colors.card,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: const Icon(Icons.folder_outlined,
@@ -117,14 +117,14 @@ class FolderDetailScreen extends ConsumerWidget {
                           children: [
                             Text(
                               '${folderDecks.length} học phần',
-                              style: const TextStyle(
-                                  color: Colors.white,
+                              style: TextStyle(
+                                  color: context.colors.textPrimary,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600),
                             ),
                             Text('Thư mục',
                                 style: TextStyle(
-                                    color: Colors.grey[400],
+                                    color: context.colors.textSecondary,
                                     fontSize: 13)),
                           ],
                         ),
@@ -158,7 +158,7 @@ class FolderDetailScreen extends ConsumerWidget {
                     ),
                   ),
 
-                  const Divider(color: Color(0xFF2A2D3E), height: 1),
+                  Divider(color: context.colors.card, height: 1),
 
                   // Danh sách deck
                   Expanded(
@@ -169,18 +169,18 @@ class FolderDetailScreen extends ConsumerWidget {
                         MainAxisAlignment.center,
                         children: [
                           Icon(Icons.style_outlined,
-                              size: 64, color: Colors.grey[700]),
+                              size: 64, color: context.colors.textTertiary),
                           const SizedBox(height: 16),
                           Text('Chưa có học phần nào',
                               style: TextStyle(
-                                  color: Colors.grey[400],
+                                  color: context.colors.textSecondary,
                                   fontSize: 16)),
                           const SizedBox(height: 8),
                           Text(
                             'Nhấn Thêm để thêm học phần vào thư mục',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.grey[600],
+                                color: context.colors.textTertiary,
                                 fontSize: 13),
                           ),
                         ],
@@ -218,7 +218,7 @@ class FolderDetailScreen extends ConsumerWidget {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1A1D28),
+      backgroundColor: context.colors.bg,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -234,9 +234,9 @@ class FolderDetailScreen extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: const Color(0xFF2A2D3E),
-        title: const Text('Xoá thư mục',
-            style: TextStyle(color: Colors.white)),
+        backgroundColor: context.colors.card,
+        title: Text('Xoá thư mục',
+            style: TextStyle(color: context.colors.textPrimary)),
         content: const Text(
             'Thư mục sẽ bị xoá nhưng các học phần bên trong vẫn còn.',
             style: TextStyle(color: Colors.white70)),
@@ -282,7 +282,7 @@ class _FolderDeckItem extends ConsumerWidget {
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: const Color(0xFF2A2D3E),
+          color: context.colors.card,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -303,8 +303,8 @@ class _FolderDeckItem extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(deck.title,
-                      style: const TextStyle(
-                          color: Colors.white,
+                      style: TextStyle(
+                          color: context.colors.textPrimary,
                           fontWeight: FontWeight.w600,
                           fontSize: 15),
                       maxLines: 1,
@@ -312,14 +312,14 @@ class _FolderDeckItem extends ConsumerWidget {
                   const SizedBox(height: 4),
                   Text('${deck.cardCount} thẻ',
                       style: TextStyle(
-                          color: Colors.grey[500], fontSize: 13)),
+                          color: context.colors.textSecondary, fontSize: 13)),
                 ],
               ),
             ),
             // ✅ Dùng ref trực tiếp từ ConsumerWidget
             IconButton(
               icon: Icon(Icons.remove_circle_outline,
-                  color: Colors.grey[600], size: 20),
+                  color: context.colors.textTertiary, size: 20),
               onPressed: () {
                 ref
                     .read(folderNotifierProvider.notifier)
@@ -361,14 +361,14 @@ class _AddDeckSheet extends ConsumerWidget {
               height: 4,
               margin: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                color: Colors.grey[600],
+                color: context.colors.textTertiary,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
           ),
-          const Text('Thêm học phần vào thư mục',
+          Text('Thêm học phần vào thư mục',
               style: TextStyle(
-                  color: Colors.white,
+                  color: context.colors.textPrimary,
                   fontSize: 17,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 16),
@@ -378,7 +378,7 @@ class _AddDeckSheet extends ConsumerWidget {
                 padding: const EdgeInsets.all(24),
                 child: Text(
                   'Tất cả học phần đã có trong thư mục',
-                  style: TextStyle(color: Colors.grey[400]),
+                  style: TextStyle(color: context.colors.textSecondary),
                 ),
               ),
             )
@@ -407,7 +407,7 @@ class _AddDeckSheet extends ConsumerWidget {
                       margin: const EdgeInsets.only(bottom: 8),
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF2A2D3E),
+                        color: context.colors.card,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Row(
@@ -417,14 +417,14 @@ class _AddDeckSheet extends ConsumerWidget {
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(deck.title,
-                                style: const TextStyle(
-                                    color: Colors.white,
+                                style: TextStyle(
+                                    color: context.colors.textPrimary,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500)),
                           ),
                           Text('${deck.cardCount} thẻ',
                               style: TextStyle(
-                                  color: Colors.grey[500],
+                                  color: context.colors.textSecondary,
                                   fontSize: 12)),
                           const SizedBox(width: 8),
                           const Icon(Icons.add_circle_outline,

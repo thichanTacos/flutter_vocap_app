@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../shared/widgets/app_bottom_nav.dart';
 import '../../../auth/providers/auth_provider.dart';
 import '../../../deck/providers/deck_provider.dart';
-import '../widgets/profile_avatar.dart';
+import '../../providers/streak_provider.dart';
 import '../widgets/profile_menu_item.dart';
 import '../widgets/profile_achievement.dart';
 import '../widgets/profile_streak_calendar.dart';
@@ -18,8 +19,9 @@ class ProfileScreen extends ConsumerWidget {
     final user = authState.valueOrNull;
     final decksAsync = ref.watch(userDecksProvider);
     final decks = decksAsync.valueOrNull ?? [];
-    final totalCards =
-        decks.fold<int>(0, (sum, d) => sum + d.cardCount);
+    final totalCards = decks.fold<int>(0, (sum, d) => sum + d.cardCount);
+    final streak =
+        ref.watch(userStreakProvider).valueOrNull ?? const StreakModel();
 
     final email = user?.email ?? '';
     final displayName = user?.displayName ??
@@ -27,153 +29,142 @@ class ProfileScreen extends ConsumerWidget {
     final initial = displayName[0].toUpperCase();
 
     return Scaffold(
-      backgroundColor: AppTheme.lightBg,
+      backgroundColor: context.colors.bg,
+      bottomNavigationBar: const AppBottomNav(activeTab: BottomNavTab.profile),
+      appBar: AppBar(
+        backgroundColor: context.colors.bg,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_rounded, color: context.colors.textPrimary),
+          onPressed: () => context.pop(),
+        ),
+        title: Text(
+          'Hồ sơ',
+          style: TextStyle(
+            color: context.colors.textPrimary,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: _VipButton(onTap: () {}),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Hero gradient header
-            Container(
-              decoration: const BoxDecoration(
-                gradient: AppTheme.tealGradient,
-              ),
-              child: SafeArea(
-                bottom: false,
-                child: Column(
-                  children: [
-                    // AppBar row
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 4, vertical: 4),
-                      child: Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.arrow_back_rounded,
-                                color: Colors.white),
-                            onPressed: () => context.pop(),
-                          ),
-                          const Spacer(),
-                          IconButton(
-                            icon: const Icon(Icons.settings_outlined,
-                                color: Colors.white),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Avatar
-                    ProfileAvatar(
-                      initial: initial,
-                      displayName: displayName,
-                      email: email,
-                    ),
-                    const SizedBox(height: 24),
-                    // Stats row
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          _StatChip(
-                              value: '${decks.length}', label: 'Bộ thẻ'),
-                          _divider(),
-                          _StatChip(
-                              value: '$totalCards', label: 'Tổng thẻ'),
-                          _divider(),
-                          const _StatChip(value: '🔥 7', label: 'Ngày'),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                  ],
-                ),
-              ),
+            const SizedBox(height: 16),
+
+            // ── Avatar + Name ──────────────────────────────
+            _AvatarSection(
+              initial: initial,
+              displayName: displayName,
+              totalDecks: decks.length,
+              totalCards: totalCards,
+              streakDays: streak.currentStreak,
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 28),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Menu items
-                  _SectionTitle('Cài đặt'),
-                  const SizedBox(height: 8),
+                  // ── Menu items ─────────────────────────
                   ProfileMenuItem(
-                    icon: Icons.person_outline_rounded,
-                    label: 'Thông tin cá nhân',
-                    color: AppTheme.primary,
-                    onTap: () {},
+                    icon: Icons.settings_rounded,
+                    label: 'Cài đặt của bạn',
+                    color: AppTheme.blue,
+                    onTap: () => context.push('/settings'),
                   ),
                   ProfileMenuItem(
-                    icon: Icons.notifications_outlined,
-                    label: 'Thông báo',
-                    badge: 4,
+                    icon: Icons.notifications_rounded,
+                    label: 'Hoạt động',
                     color: AppTheme.secondary,
                     onTap: () {},
                   ),
-                  ProfileMenuItem(
-                    icon: Icons.palette_outlined,
-                    label: 'Giao diện',
-                    color: AppTheme.purple,
-                    onTap: () {},
-                  ),
-                  ProfileMenuItem(
-                    icon: Icons.help_outline_rounded,
-                    label: 'Trợ giúp',
-                    color: AppTheme.blue,
-                    onTap: () {},
-                  ),
 
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 28),
 
-                  // Thành tựu
+                  // ── Thành tựu header ───────────────────
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _SectionTitle('Thành tựu'),
+                      Text(
+                        'Thành tựu',
+                        style: TextStyle(
+                          color: context.colors.textPrimary,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       TextButton(
                         onPressed: () {},
-                        child: const Text('Xem tất cả',
-                            style: TextStyle(
-                                color: AppTheme.primary, fontSize: 14)),
+                        style: TextButton.styleFrom(
+                          foregroundColor: AppTheme.primary,
+                        ),
+                        child: const Text(
+                          'Xem tất cả',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 8),
-                  const ProfileAchievement(streakWeeks: 2),
+
+                  // ── Achievement card ───────────────────
+                  ProfileAchievement(
+                    currentStreak: streak.currentStreak,
+                    longestStreak: streak.longestStreak,
+                  ),
 
                   const SizedBox(height: 16),
 
-                  // Streak calendar
-                  _SectionTitle('Lịch học'),
+                  // ── Lịch học ──────────────────────────
+                  Text(
+                    'Lịch học',
+                    style: TextStyle(
+                      color: context.colors.textPrimary,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   const SizedBox(height: 8),
-                  const ProfileStreakCalendar(),
+                  ProfileStreakCalendar(streak: streak),
 
                   const SizedBox(height: 28),
 
-                  // Đăng xuất
+                  // ── Đăng xuất ─────────────────────────
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
-                      onPressed: () {
-                        ref
-                            .read(authNotifierProvider.notifier)
-                            .signOut();
-                      },
+                      onPressed: () =>
+                          ref.read(authNotifierProvider.notifier).signOut(),
                       icon: const Icon(Icons.logout_rounded),
-                      label: const Text('Đăng xuất',
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)),
+                      label: const Text(
+                        'Đăng xuất',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red.shade50,
                         foregroundColor: Colors.red.shade500,
                         elevation: 0,
-                        padding:
-                            const EdgeInsets.symmetric(vertical: 14),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14)),
+                          borderRadius: BorderRadius.circular(14),
+                        ),
                       ),
                     ),
                   ),
@@ -187,48 +178,177 @@ class ProfileScreen extends ConsumerWidget {
       ),
     );
   }
-
-  Widget _divider() => Container(
-        width: 1,
-        height: 36,
-        color: Colors.white.withValues(alpha: 0.3),
-      );
 }
 
-class _StatChip extends StatelessWidget {
-  final String value;
-  final String label;
-  const _StatChip({required this.value, required this.label});
+// ── Avatar Section ─────────────────────────────────────────────────────────────
+class _AvatarSection extends StatelessWidget {
+  final String initial;
+  final String displayName;
+  final int totalDecks;
+  final int totalCards;
+  final int streakDays;
+
+  const _AvatarSection({
+    required this.initial,
+    required this.displayName,
+    required this.totalDecks,
+    required this.totalCards,
+    required this.streakDays,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(value,
-            style: const TextStyle(
+        // Avatar circle with gradient ring
+        Container(
+          width: 88,
+          height: 88,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: AppTheme.tealGradient,
+            boxShadow: [
+              BoxShadow(
+                color: AppTheme.secondary.withValues(alpha: 0.35),
+                blurRadius: 20,
+                offset: const Offset(0, 6),
+              ),
+            ],
+          ),
+          child: Center(
+            child: Text(
+              initial,
+              style: const TextStyle(
                 color: Colors.white,
-                fontSize: 22,
-                fontWeight: FontWeight.bold)),
-        const SizedBox(height: 2),
-        Text(label,
-            style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.8),
-                fontSize: 13)),
+                fontSize: 38,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 12),
+
+        Text(
+          displayName,
+          style: TextStyle(
+            color: context.colors.textPrimary,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+
+        const SizedBox(height: 16),
+
+        // Stats row
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _StatPill(
+              value: '$totalDecks',
+              label: 'Bộ thẻ',
+              gradient: AppTheme.tealGradient,
+            ),
+            const SizedBox(width: 10),
+            _StatPill(
+              value: '$totalCards',
+              label: 'Thẻ từ',
+              gradient: AppTheme.primaryGradient,
+            ),
+            const SizedBox(width: 10),
+            _StatPill(
+              value: streakDays > 0 ? '🔥$streakDays' : '—',
+              label: 'Ngày',
+              gradient: AppTheme.yellowGradient,
+            ),
+          ],
+        ),
       ],
     );
   }
 }
 
-class _SectionTitle extends StatelessWidget {
-  final String text;
-  const _SectionTitle(this.text);
+class _StatPill extends StatelessWidget {
+  final String value;
+  final String label;
+  final LinearGradient gradient;
+
+  const _StatPill({
+    required this.value,
+    required this.label,
+    required this.gradient,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,
-        style: const TextStyle(
-            color: AppTheme.textDark,
-            fontSize: 18,
-            fontWeight: FontWeight.bold));
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        gradient: gradient,
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: [
+          BoxShadow(
+            color: gradient.colors.first.withValues(alpha: 0.25),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Text(
+            value,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            style: TextStyle(
+              color: Colors.white.withValues(alpha: 0.85),
+              fontSize: 11,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ── VIP Button ─────────────────────────────────────────────────────────────────
+class _VipButton extends StatelessWidget {
+  final VoidCallback onTap;
+  const _VipButton({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          gradient: AppTheme.yellowGradient,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: AppTheme.accent.withValues(alpha: 0.4),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: const Text(
+          'Dùng thử miễn phí',
+          style: TextStyle(
+            color: Color(0xFF7C3E00),
+            fontWeight: FontWeight.bold,
+            fontSize: 13,
+          ),
+        ),
+      ),
+    );
   }
 }

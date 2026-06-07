@@ -35,26 +35,26 @@ class _CreateFolderScreenState extends ConsumerState<CreateFolderScreen> {
     final isLoading = ref.watch(folderNotifierProvider).isLoading;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF1A1D28),
+      backgroundColor: context.colors.bg,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1A1D28),
+        backgroundColor: context.colors.bg,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white),
+          icon: Icon(Icons.close, color: context.colors.textPrimary),
           onPressed: () => context.pop(),
         ),
-        title: const Text('Tạo thư mục',
+        title: Text('Tạo thư mục',
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+                color: context.colors.textPrimary, fontWeight: FontWeight.bold)),
         actions: [
           IconButton(
             icon: isLoading
-                ? const SizedBox(
+                ? SizedBox(
                 width: 20,
                 height: 20,
                 child: CircularProgressIndicator(
-                    color: Colors.white, strokeWidth: 2))
-                : const Icon(Icons.check, color: Colors.white),
+                    color: context.colors.textPrimary, strokeWidth: 2))
+                : Icon(Icons.check, color: context.colors.textPrimary),
             onPressed: isLoading ? null : _create,
           ),
         ],
@@ -67,12 +67,12 @@ class _CreateFolderScreenState extends ConsumerState<CreateFolderScreen> {
             TextField(
               controller: _titleController,
               autofocus: true,
-              style: const TextStyle(color: Colors.white, fontSize: 18),
+              style: TextStyle(color: context.colors.textPrimary, fontSize: 18),
               decoration: InputDecoration(
                 hintText: 'Tên thư mục',
-                hintStyle: TextStyle(color: Colors.grey[500]),
+                hintStyle: TextStyle(color: context.colors.textSecondary),
                 filled: true,
-                fillColor: const Color(0xFF2A2D3E),
+                fillColor: context.colors.card,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -89,7 +89,7 @@ class _CreateFolderScreenState extends ConsumerState<CreateFolderScreen> {
             const SizedBox(height: 12),
             Text(
               'Thư mục giúp bạn sắp xếp các học phần liên quan vào cùng một nơi.',
-              style: TextStyle(color: Colors.grey[500], fontSize: 13),
+              style: TextStyle(color: context.colors.textSecondary, fontSize: 13),
             ),
             const SizedBox(height: 32),
             AppInkWell(

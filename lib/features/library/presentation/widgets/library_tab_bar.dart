@@ -44,7 +44,7 @@ class LibraryTabBar extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: isSelected
                       ? color.withValues(alpha: 0.12)
-                      : AppTheme.surfaceColor,
+                      : context.colors.surface,
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                     color: isSelected ? color : Colors.transparent,
@@ -54,7 +54,7 @@ class LibraryTabBar extends StatelessWidget {
                 child: Text(
                   label,
                   style: TextStyle(
-                    color: isSelected ? color : AppTheme.textMedium,
+                    color: isSelected ? color : context.colors.textSecondary,
                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                     fontSize: 14,
                   ),

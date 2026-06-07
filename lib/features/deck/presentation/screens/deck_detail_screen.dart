@@ -16,13 +16,13 @@ class DeckDetailScreen extends ConsumerWidget {
     final cardsAsync = ref.watch(deckCardsProvider(deckId));
 
     return Scaffold(
-      backgroundColor: AppTheme.lightBg,
+      backgroundColor: context.colors.bg,
       body: cardsAsync.when(
         loading: () => const Center(
             child: CircularProgressIndicator(color: AppTheme.primary)),
         error: (e, _) => Center(
             child: Text('Lỗi: $e',
-                style: const TextStyle(color: AppTheme.textDark))),
+                style: TextStyle(color: context.colors.textPrimary))),
         data: (cards) => _buildBody(context, ref, cards),
       ),
     );
@@ -49,10 +49,10 @@ class DeckDetailScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Chọn chế độ học',
                 style: TextStyle(
-                  color: AppTheme.textDark,
+                  color: context.colors.textPrimary,
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
                 ),
@@ -89,6 +89,14 @@ class DeckDetailScreen extends ConsumerWidget {
                 subtitle: 'Trò chơi ghép cặp',
                 onTap: () => context.push('/deck/$deckId/match'),
               ),
+              const SizedBox(height: 10),
+              _StudyModeButton(
+                icon: Icons.sports_esports_rounded,
+                gradient: AppTheme.greenGradient,
+                label: 'Flappy Bird',
+                subtitle: 'Bay qua từ vựng',
+                onTap: () => context.push('/deck/$deckId/flappy'),
+              ),
             ],
           ),
         ),
@@ -103,8 +111,8 @@ class DeckDetailScreen extends ConsumerWidget {
             children: [
               Text(
                 'Thuật ngữ (${cards.length})',
-                style: const TextStyle(
-                    color: AppTheme.textDark,
+                style: TextStyle(
+                    color: context.colors.textPrimary,
                     fontSize: 17,
                     fontWeight: FontWeight.bold),
               ),
@@ -154,7 +162,7 @@ class DeckDetailScreen extends ConsumerWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: AppTheme.cardBg,
+      backgroundColor: context.colors.card,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -167,7 +175,7 @@ class DeckDetailScreen extends ConsumerWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: AppTheme.cardBg,
+      backgroundColor: context.colors.card,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -181,19 +189,19 @@ class DeckDetailScreen extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: AppTheme.cardBg,
+        backgroundColor: context.colors.card,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text('Xoá thẻ',
+        title: Text('Xoá thẻ',
             style: TextStyle(
-                color: AppTheme.textDark, fontWeight: FontWeight.bold)),
+                color: context.colors.textPrimary, fontWeight: FontWeight.bold)),
         content: Text('Xoá thẻ "${card.term}"?',
-            style: const TextStyle(color: AppTheme.textMedium)),
+            style: TextStyle(color: context.colors.textSecondary)),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('Huỷ',
-                  style: TextStyle(color: AppTheme.textMedium))),
+              child: Text('Huỷ',
+                  style: TextStyle(color: context.colors.textSecondary))),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(ctx);
@@ -259,7 +267,7 @@ class _HeroHeader extends StatelessWidget {
                       ),
                       PopupMenuButton<String>(
                         icon: const Icon(Icons.more_vert, color: Colors.white),
-                        color: AppTheme.cardBg,
+                        color: context.colors.card,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
                         itemBuilder: (_) => [
@@ -376,13 +384,13 @@ class _FlashcardCarouselState extends State<_FlashcardCarousel> {
         height: 180,
         margin: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
-          color: AppTheme.surfaceColor,
+          color: context.colors.surface,
           borderRadius: BorderRadius.circular(20),
         ),
-        child: const Center(
+        child: Center(
           child: Text('Chưa có thẻ nào',
               style:
-                  TextStyle(color: AppTheme.textMedium, fontSize: 16)),
+                  TextStyle(color: context.colors.textSecondary, fontSize: 16)),
         ),
       );
     }
@@ -412,7 +420,7 @@ class _FlashcardCarouselState extends State<_FlashcardCarousel> {
               decoration: BoxDecoration(
                 color: i == _currentPage % 5
                     ? AppTheme.primary
-                    : AppTheme.dividerColor,
+                    : context.colors.divider,
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
@@ -484,10 +492,10 @@ class _FlipCardState extends State<_FlipCard>
                 ..rotateY(angle),
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppTheme.cardBg,
+                  color: context.colors.card,
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                      color: AppTheme.dividerColor, width: 1),
+                      color: context.colors.divider, width: 1),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.08),
@@ -510,8 +518,8 @@ class _FlipCardState extends State<_FlipCard>
                                 ? widget.card.term
                                 : widget.card.definition,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: AppTheme.textDark,
+                            style: TextStyle(
+                              color: context.colors.textPrimary,
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
                             ),
@@ -522,7 +530,7 @@ class _FlipCardState extends State<_FlipCard>
                         bottom: 10,
                         right: 12,
                         child: Icon(Icons.touch_app_rounded,
-                            color: AppTheme.textLight, size: 18),
+                            color: context.colors.textTertiary, size: 18),
                       ),
                       Positioned(
                         bottom: 10,
@@ -531,8 +539,8 @@ class _FlipCardState extends State<_FlipCard>
                           isFrontVisible
                               ? 'Nhấn để xem nghĩa'
                               : 'Nhấn để lật lại',
-                          style: const TextStyle(
-                              color: AppTheme.textLight, fontSize: 11),
+                          style: TextStyle(
+                              color: context.colors.textTertiary, fontSize: 11),
                         ),
                       ),
                     ],
@@ -571,7 +579,7 @@ class _StudyModeButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
-          color: AppTheme.cardBg,
+          color: context.colors.card,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
@@ -605,19 +613,19 @@ class _StudyModeButton extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(label,
-                      style: const TextStyle(
-                          color: AppTheme.textDark,
+                      style: TextStyle(
+                          color: context.colors.textPrimary,
                           fontSize: 15,
                           fontWeight: FontWeight.w700)),
                   const SizedBox(height: 2),
                   Text(subtitle,
-                      style: const TextStyle(
-                          color: AppTheme.textMedium, fontSize: 12)),
+                      style: TextStyle(
+                          color: context.colors.textSecondary, fontSize: 12)),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right_rounded,
-                color: AppTheme.textLight, size: 22),
+            Icon(Icons.chevron_right_rounded,
+                color: context.colors.textTertiary, size: 22),
           ],
         ),
       ),
@@ -644,7 +652,7 @@ class _CardListItem extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       decoration: BoxDecoration(
-        color: AppTheme.cardBg,
+        color: context.colors.card,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
@@ -679,8 +687,8 @@ class _CardListItem extends StatelessWidget {
                     flex: 2,
                     child: Text(
                       card.term,
-                      style: const TextStyle(
-                          color: AppTheme.textDark,
+                      style: TextStyle(
+                          color: context.colors.textPrimary,
                           fontWeight: FontWeight.w700,
                           fontSize: 14),
                     ),
@@ -688,14 +696,14 @@ class _CardListItem extends StatelessWidget {
                   Container(
                       width: 1,
                       height: 40,
-                      color: AppTheme.dividerColor,
+                      color: context.colors.divider,
                       margin: const EdgeInsets.symmetric(horizontal: 12)),
                   Expanded(
                     flex: 3,
                     child: Text(
                       card.definition,
-                      style: const TextStyle(
-                          color: AppTheme.textMedium, fontSize: 14),
+                      style: TextStyle(
+                          color: context.colors.textSecondary, fontSize: 14),
                     ),
                   ),
                 ],
@@ -703,9 +711,9 @@ class _CardListItem extends StatelessWidget {
             ),
           ),
           PopupMenuButton<String>(
-            icon: const Icon(Icons.more_vert,
-                color: AppTheme.textLight, size: 20),
-            color: AppTheme.cardBg,
+            icon: Icon(Icons.more_vert,
+                color: context.colors.textTertiary, size: 20),
+            color: context.colors.card,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12)),
             itemBuilder: (_) => const [
@@ -815,22 +823,22 @@ class _CardFormSheetState extends ConsumerState<_CardFormSheet> {
                 height: 4,
                 margin: const EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
-                  color: AppTheme.dividerColor,
+                  color: context.colors.divider,
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
             ),
             Text(
               _isEditing ? 'Sửa thẻ' : 'Thêm thẻ mới',
-              style: const TextStyle(
-                  color: AppTheme.textDark,
+              style: TextStyle(
+                  color: context.colors.textPrimary,
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             TextFormField(
               controller: _termController,
-              style: const TextStyle(color: AppTheme.textDark),
+              style: TextStyle(color: context.colors.textPrimary),
               decoration: const InputDecoration(
                 labelText: 'Thuật ngữ',
                 prefixIcon: Icon(Icons.text_fields_rounded,
@@ -843,7 +851,7 @@ class _CardFormSheetState extends ConsumerState<_CardFormSheet> {
             TextFormField(
               controller: _defController,
               maxLines: 2,
-              style: const TextStyle(color: AppTheme.textDark),
+              style: TextStyle(color: context.colors.textPrimary),
               decoration: const InputDecoration(
                 labelText: 'Định nghĩa',
                 prefixIcon: Icon(Icons.notes_rounded,

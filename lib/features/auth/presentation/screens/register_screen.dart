@@ -57,7 +57,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     });
 
     return Scaffold(
-      backgroundColor: AppTheme.lightBg,
+      backgroundColor: context.colors.bg,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -145,7 +145,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                            color: AppTheme.textMedium,
+                            color: context.colors.textSecondary,
                           ),
                           onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                         ),
@@ -187,9 +187,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
+                          Text(
                             'Đã có tài khoản?',
-                            style: TextStyle(color: AppTheme.textMedium),
+                            style: TextStyle(color: context.colors.textSecondary),
                           ),
                           TextButton(
                             onPressed: () => context.go('/login'),

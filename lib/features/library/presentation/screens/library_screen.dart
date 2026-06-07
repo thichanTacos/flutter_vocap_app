@@ -52,14 +52,14 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back_rounded,
-                          color: AppTheme.textDark),
+                      icon: Icon(Icons.arrow_back_rounded,
+                          color: context.colors.textPrimary),
                       onPressed: () => context.pop(),
                     ),
-                    const Text(
+                    Text(
                       'Thư viện',
                       style: TextStyle(
-                        color: AppTheme.textDark,
+                        color: context.colors.textPrimary,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),

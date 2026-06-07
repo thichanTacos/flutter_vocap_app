@@ -32,7 +32,7 @@ class DeckCardWidget extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: AppTheme.cardBg,
+            color: context.colors.card,
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
@@ -60,8 +60,8 @@ class DeckCardWidget extends StatelessWidget {
                   children: [
                     Text(
                       deck.title,
-                      style: const TextStyle(
-                        color: AppTheme.textDark,
+                      style: TextStyle(
+                        color: context.colors.textPrimary,
                         fontWeight: FontWeight.w700,
                         fontSize: 15,
                       ),
@@ -71,8 +71,8 @@ class DeckCardWidget extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       '${deck.cardCount} thẻ${deck.description.isNotEmpty ? ' · ${deck.description}' : ''}',
-                      style: const TextStyle(
-                          color: AppTheme.textMedium, fontSize: 13),
+                      style: TextStyle(
+                          color: context.colors.textSecondary, fontSize: 13),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -80,22 +80,22 @@ class DeckCardWidget extends StatelessWidget {
                 ),
               ),
               PopupMenuButton<String>(
-                icon: const Icon(Icons.more_vert,
-                    color: AppTheme.textLight, size: 22),
-                color: AppTheme.cardBg,
+                icon: Icon(Icons.more_vert,
+                    color: context.colors.textTertiary, size: 22),
+                color: context.colors.card,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
-                itemBuilder: (_) => const [
+                itemBuilder: (_) => [
                   PopupMenuItem(
                     value: 'edit',
                     child: Row(children: [
-                      Icon(Icons.edit_outlined, color: AppTheme.textDark),
-                      SizedBox(width: 8),
+                      Icon(Icons.edit_outlined, color: context.colors.textPrimary),
+                      const SizedBox(width: 8),
                       Text('Chỉnh sửa',
-                          style: TextStyle(color: AppTheme.textDark)),
+                          style: TextStyle(color: context.colors.textPrimary)),
                     ]),
                   ),
-                  PopupMenuItem(
+                  const PopupMenuItem(
                     value: 'delete',
                     child: Row(children: [
                       Icon(Icons.delete_outline, color: Colors.red),

@@ -120,7 +120,7 @@ class _CreateEditDeckScreenState extends ConsumerState<CreateEditDeckScreen> {
     final isLoading = ref.watch(deckNotifierProvider).isLoading;
 
     return Scaffold(
-      backgroundColor: AppTheme.lightBg,
+      backgroundColor: context.colors.bg,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.close_rounded),
@@ -162,7 +162,7 @@ class _CreateEditDeckScreenState extends ConsumerState<CreateEditDeckScreen> {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: AppTheme.cardBg,
+              color: context.colors.card,
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
@@ -177,8 +177,8 @@ class _CreateEditDeckScreenState extends ConsumerState<CreateEditDeckScreen> {
               children: [
                 TextField(
                   controller: _titleController,
-                  style: const TextStyle(
-                      color: AppTheme.textDark,
+                  style: TextStyle(
+                      color: context.colors.textPrimary,
                       fontSize: 18,
                       fontWeight: FontWeight.w600),
                   decoration: const InputDecoration(
@@ -187,7 +187,7 @@ class _CreateEditDeckScreenState extends ConsumerState<CreateEditDeckScreen> {
                     contentPadding: EdgeInsets.zero,
                   ),
                 ),
-                const Divider(color: AppTheme.dividerColor, height: 20),
+                Divider(color: context.colors.divider, height: 20),
                 GestureDetector(
                   onTap: _showDescDialog,
                   child: Text(
@@ -196,8 +196,8 @@ class _CreateEditDeckScreenState extends ConsumerState<CreateEditDeckScreen> {
                         : _descController.text,
                     style: TextStyle(
                       color: _descController.text.isEmpty
-                          ? AppTheme.textLight
-                          : AppTheme.textMedium,
+                          ? context.colors.textTertiary
+                          : context.colors.textSecondary,
                       fontSize: 14,
                     ),
                   ),
@@ -223,7 +223,7 @@ class _CreateEditDeckScreenState extends ConsumerState<CreateEditDeckScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 16),
               decoration: BoxDecoration(
-                color: AppTheme.cardBg,
+                color: context.colors.card,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                     color: AppTheme.primary.withValues(alpha: 0.4),

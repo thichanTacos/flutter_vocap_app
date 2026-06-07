@@ -25,7 +25,7 @@ class RecentDeckItem extends ConsumerWidget {
         child: Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: AppTheme.cardBg,
+            color: context.colors.card,
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
@@ -55,8 +55,8 @@ class RecentDeckItem extends ConsumerWidget {
                   children: [
                     Text(
                       deck.title,
-                      style: const TextStyle(
-                        color: AppTheme.textDark,
+                      style: TextStyle(
+                        color: context.colors.textPrimary,
                         fontWeight: FontWeight.w700,
                         fontSize: 15,
                       ),
@@ -66,27 +66,27 @@ class RecentDeckItem extends ConsumerWidget {
                     const SizedBox(height: 4),
                     Text(
                       '${deck.cardCount} thẻ',
-                      style: const TextStyle(
-                          color: AppTheme.textMedium, fontSize: 13),
+                      style: TextStyle(
+                          color: context.colors.textSecondary, fontSize: 13),
                     ),
                   ],
                 ),
               ),
               // Menu
               PopupMenuButton<String>(
-                icon: const Icon(Icons.more_vert,
-                    color: AppTheme.textLight, size: 22),
-                color: AppTheme.cardBg,
+                icon: Icon(Icons.more_vert,
+                    color: context.colors.textTertiary, size: 22),
+                color: context.colors.card,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
                 itemBuilder: (_) => [
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: 'edit',
                     child: Row(children: [
-                      Icon(Icons.edit_outlined, color: AppTheme.textDark),
-                      SizedBox(width: 8),
+                      Icon(Icons.edit_outlined, color: context.colors.textPrimary),
+                      const SizedBox(width: 8),
                       Text('Chỉnh sửa',
-                          style: TextStyle(color: AppTheme.textDark)),
+                          style: TextStyle(color: context.colors.textPrimary)),
                     ]),
                   ),
                   const PopupMenuItem(
@@ -114,17 +114,17 @@ class RecentDeckItem extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: AppTheme.cardBg,
+        backgroundColor: context.colors.card,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text('Xoá bộ thẻ',
-            style: TextStyle(color: AppTheme.textDark, fontWeight: FontWeight.bold)),
-        content: const Text('Bạn có chắc muốn xoá bộ thẻ này?',
-            style: TextStyle(color: AppTheme.textMedium)),
+        title: Text('Xoá bộ thẻ',
+            style: TextStyle(color: context.colors.textPrimary, fontWeight: FontWeight.bold)),
+        content: Text('Bạn có chắc muốn xoá bộ thẻ này?',
+            style: TextStyle(color: context.colors.textSecondary)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Huỷ',
-                style: TextStyle(color: AppTheme.textMedium)),
+            child: Text('Huỷ',
+                style: TextStyle(color: context.colors.textSecondary)),
           ),
           ElevatedButton(
             onPressed: () {

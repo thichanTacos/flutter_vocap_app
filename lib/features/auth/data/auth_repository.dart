@@ -13,7 +13,8 @@ class AuthRepository {
   })  : _auth = auth ?? FirebaseAuth.instance,
         _firestore = firestore ?? FirebaseFirestore.instance;
 
-  Stream<User?> get authStateChanges => _auth.authStateChanges();
+  // userChanges() tự emit khi displayName thay đổi (authStateChanges không làm vậy)
+  Stream<User?> get authStateChanges => _auth.userChanges();
   User? get currentUser => _auth.currentUser;
 
   Future<UserModel> registerWithEmail({
@@ -59,6 +60,16 @@ class AuthRepository {
 
   Future<void> signOut() async {
     await _auth.signOut();
+  }
+
+  Future<void> updateDisplayName(String newName) async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+    await user.updateDisplayName(newName.trim());
+    await _firestore
+        .collection('users')
+        .doc(user.uid)
+        .update({'displayName': newName.trim()});
   }
 
   // Chuyển lỗi Firebase sang tiếng Việt

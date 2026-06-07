@@ -77,20 +77,20 @@ class _TestScreenState extends ConsumerState<TestScreen> {
     final cardsAsync = ref.watch(deckCardsProvider(widget.deckId));
 
     return cardsAsync.when(
-      loading: () => const Scaffold(
-        backgroundColor: AppTheme.lightBg,
-        body: Center(child: CircularProgressIndicator(color: AppTheme.primary)),
+      loading: () => Scaffold(
+        backgroundColor: context.colors.bg,
+        body: const Center(child: CircularProgressIndicator(color: AppTheme.primary)),
       ),
       error: (e, _) => Scaffold(
-        backgroundColor: AppTheme.lightBg,
+        backgroundColor: context.colors.bg,
         body: Center(child: Text('Lỗi: $e')),
       ),
       data: (cards) {
         if (cards.length < 4) {
           return Scaffold(
-            backgroundColor: AppTheme.lightBg,
+            backgroundColor: context.colors.bg,
             appBar: AppBar(
-              backgroundColor: AppTheme.lightBg,
+              backgroundColor: context.colors.bg,
               leading: IconButton(
                 icon: const Icon(Icons.close_rounded),
                 onPressed: () => context.pop(),
@@ -100,7 +100,7 @@ class _TestScreenState extends ConsumerState<TestScreen> {
               child: Text(
                 'Cần ít nhất 4 thẻ để kiểm tra\n(hiện có ${cards.length} thẻ)',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: AppTheme.textMedium, fontSize: 16),
+                style: TextStyle(color: context.colors.textSecondary, fontSize: 16),
               ),
             ),
           );
@@ -116,9 +116,9 @@ class _TestScreenState extends ConsumerState<TestScreen> {
         final question = _questions[_currentIndex];
 
         return Scaffold(
-          backgroundColor: AppTheme.lightBg,
+          backgroundColor: context.colors.bg,
           appBar: AppBar(
-            backgroundColor: AppTheme.lightBg,
+            backgroundColor: context.colors.bg,
             elevation: 0,
             leading: IconButton(
               icon: const Icon(Icons.close_rounded),
@@ -126,7 +126,7 @@ class _TestScreenState extends ConsumerState<TestScreen> {
             ),
             title: Text(
               '${_currentIndex + 1} / ${_questions.length}',
-              style: const TextStyle(color: AppTheme.textDark),
+              style: TextStyle(color: context.colors.textPrimary),
             ),
             centerTitle: true,
           ),
@@ -150,20 +150,20 @@ class _TestScreenState extends ConsumerState<TestScreen> {
                       Container(
                         padding: const EdgeInsets.all(24),
                         decoration: BoxDecoration(
-                          color: AppTheme.cardBg,
+                          color: context.colors.card,
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Column(
                           children: [
                             Text('Định nghĩa nào đúng với từ:',
                                 style: TextStyle(
-                                    color: AppTheme.textMedium, fontSize: 13)),
+                                    color: context.colors.textSecondary, fontSize: 13)),
                             const SizedBox(height: 12),
                             Text(
                               question.card.term,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: AppTheme.textDark,
+                              style: TextStyle(
+                                color: context.colors.textPrimary,
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -181,7 +181,7 @@ class _TestScreenState extends ConsumerState<TestScreen> {
                         final isCorrect = option == question.correctAnswer;
                         final isSelected = _selectedAnswer == index;
 
-                        Color bgColor = AppTheme.cardBg;
+                        Color bgColor = context.colors.card;
                         Color borderColor = Colors.transparent;
 
                         if (_answered) {
@@ -222,8 +222,8 @@ class _TestScreenState extends ConsumerState<TestScreen> {
                                   child: Center(
                                     child: Text(
                                       ['A', 'B', 'C', 'D'][index],
-                                      style: const TextStyle(
-                                          color: AppTheme.textDark,
+                                      style: TextStyle(
+                                          color: context.colors.textPrimary,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 13),
                                     ),
@@ -232,8 +232,8 @@ class _TestScreenState extends ConsumerState<TestScreen> {
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: Text(option,
-                                      style: const TextStyle(
-                                          color: AppTheme.textDark, fontSize: 15)),
+                                      style: TextStyle(
+                                          color: context.colors.textPrimary, fontSize: 15)),
                                 ),
                                 if (_answered)
                                   Icon(
@@ -391,7 +391,7 @@ class _ResultStat extends StatelessWidget {
                 fontSize: 28,
                 fontWeight: FontWeight.bold)),
         Text(label,
-            style: TextStyle(color: AppTheme.textMedium, fontSize: 13)),
+            style: TextStyle(color: context.colors.textSecondary, fontSize: 13)),
       ],
     );
   }

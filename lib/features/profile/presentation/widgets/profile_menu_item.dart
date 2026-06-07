@@ -23,7 +23,7 @@ class ProfileMenuItem extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: AppTheme.cardBg,
+        color: context.colors.card,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
@@ -45,8 +45,8 @@ class ProfileMenuItem extends StatelessWidget {
         ),
         title: Text(
           label,
-          style: const TextStyle(
-            color: AppTheme.textDark,
+          style: TextStyle(
+            color: context.colors.textPrimary,
             fontSize: 15,
             fontWeight: FontWeight.w500,
           ),
@@ -71,7 +71,7 @@ class ProfileMenuItem extends StatelessWidget {
                 ),
               ),
             const SizedBox(width: 4),
-            const Icon(Icons.chevron_right, color: AppTheme.textMedium, size: 20),
+            Icon(Icons.chevron_right, color: context.colors.textSecondary, size: 20),
           ],
         ),
         onTap: onTap,

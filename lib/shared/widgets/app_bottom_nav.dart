@@ -4,7 +4,7 @@ import '../../core/theme/app_theme.dart';
 import 'app_ink_well.dart';
 import 'create_bottom_sheet.dart';
 
-enum BottomNavTab { home, create, library, shop }
+enum BottomNavTab { home, create, library, profile }
 
 class AppBottomNav extends StatelessWidget {
   final BottomNavTab activeTab;
@@ -18,7 +18,7 @@ class AppBottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.cardBg,
+        color: context.colors.card,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.08),
@@ -59,11 +59,13 @@ class AppBottomNav extends StatelessWidget {
                 },
               ),
               _NavItem(
-                icon: Icons.store_rounded,
-                label: 'Shop',
-                isActive: activeTab == BottomNavTab.shop,
-                activeColor: const Color(0xFFFFB800),
-                onTap: () => context.push('/shop'),
+                icon: Icons.person_rounded,
+                label: 'Cá nhân',
+                isActive: activeTab == BottomNavTab.profile,
+                activeColor: AppTheme.blue,
+                onTap: () {
+                  if (activeTab != BottomNavTab.profile) context.push('/profile');
+                },
               ),
             ],
           ),
@@ -110,7 +112,7 @@ class _NavItem extends StatelessWidget {
             Icon(
               icon,
               size: 24,
-              color: isActive ? activeColor : AppTheme.textLight,
+              color: isActive ? activeColor : context.colors.textTertiary,
             ),
             if (isActive) ...[
               const SizedBox(width: 6),

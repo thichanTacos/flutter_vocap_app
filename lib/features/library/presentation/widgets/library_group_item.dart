@@ -19,7 +19,7 @@ class LibraryGroupItem extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: AppTheme.cardBg,
+            color: context.colors.card,
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
@@ -48,8 +48,8 @@ class LibraryGroupItem extends StatelessWidget {
                   children: [
                     Text(
                       group.name,
-                      style: const TextStyle(
-                        color: AppTheme.textDark,
+                      style: TextStyle(
+                        color: context.colors.textPrimary,
                         fontWeight: FontWeight.w700,
                         fontSize: 15,
                       ),
@@ -59,14 +59,14 @@ class LibraryGroupItem extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       '${group.memberIds.length} thành viên · Mã: ${group.inviteCode}',
-                      style: const TextStyle(
-                          color: AppTheme.textMedium, fontSize: 13),
+                      style: TextStyle(
+                          color: context.colors.textSecondary, fontSize: 13),
                     ),
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right_rounded,
-                  color: AppTheme.textLight, size: 22),
+              Icon(Icons.chevron_right_rounded,
+                  color: context.colors.textTertiary, size: 22),
             ],
           ),
         ),

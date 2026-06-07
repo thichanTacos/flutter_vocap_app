@@ -57,6 +57,15 @@ class AuthNotifier extends AsyncNotifier<void> {
       state = AsyncError(e, StackTrace.current);
     }
   }
+
+  Future<bool> updateDisplayName(String newName) async {
+    try {
+      await ref.read(authRepositoryProvider).updateDisplayName(newName);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 }
 
 final authNotifierProvider =

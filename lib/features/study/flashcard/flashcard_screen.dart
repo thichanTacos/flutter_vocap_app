@@ -85,16 +85,16 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
   Widget build(BuildContext context) {
     final cardsAsync = ref.watch(deckCardsProvider(widget.deckId));
     return cardsAsync.when(
-      loading: () => const Scaffold(
-        backgroundColor: AppTheme.lightBg,
-        body: Center(
+      loading: () => Scaffold(
+        backgroundColor: context.colors.bg,
+        body: const Center(
             child: CircularProgressIndicator(color: AppTheme.primary)),
       ),
       error: (e, _) => Scaffold(
-        backgroundColor: AppTheme.lightBg,
+        backgroundColor: context.colors.bg,
         body: Center(
             child: Text('Lỗi: $e',
-                style: const TextStyle(color: AppTheme.textDark))),
+                style: TextStyle(color: context.colors.textPrimary))),
       ),
       data: (cards) {
         if (!_initialized) {
@@ -117,13 +117,13 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             leading: IconButton(
-              icon: const Icon(Icons.close_rounded, color: AppTheme.textDark),
+              icon: Icon(Icons.close_rounded, color: context.colors.textPrimary),
               onPressed: () => context.pop(),
             ),
             title: Text(
               '${_currentIndex + 1} / ${_cards.length}',
-              style: const TextStyle(
-                  color: AppTheme.textDark,
+              style: TextStyle(
+                  color: context.colors.textPrimary,
                   fontSize: 16,
                   fontWeight: FontWeight.w600),
             ),
@@ -152,14 +152,14 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
                   decoration: BoxDecoration(
                     color: _isShuffled
                         ? AppTheme.primary.withValues(alpha: 0.1)
-                        : AppTheme.surfaceColor,
+                        : context.colors.surface,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Icon(
                     Icons.shuffle_rounded,
                     color: _isShuffled
                         ? AppTheme.primary
-                        : AppTheme.textMedium,
+                        : context.colors.textSecondary,
                     size: 20,
                   ),
                 ),
@@ -192,9 +192,9 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
                     _ActionButton(
                       icon: Icons.undo_rounded,
                       color: _currentIndex > 0
-                          ? AppTheme.textMedium
-                          : AppTheme.dividerColor,
-                      bgColor: AppTheme.surfaceColor,
+                          ? context.colors.textSecondary
+                          : context.colors.divider,
+                      bgColor: context.colors.surface,
                       onTap: _currentIndex > 0 ? _goBack : () {},
                     ),
                     const Spacer(),

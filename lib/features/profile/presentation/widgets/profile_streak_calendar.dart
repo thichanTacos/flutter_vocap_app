@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/theme/app_theme.dart';
+import '../../data/streak_model.dart';
 
 class ProfileStreakCalendar extends StatelessWidget {
-  const ProfileStreakCalendar({super.key});
+  final StreakModel streak;
+
+  const ProfileStreakCalendar({super.key, required this.streak});
 
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
     final startOfWeek = now.subtract(Duration(days: now.weekday % 7));
     final days = List.generate(7, (i) => startOfWeek.add(Duration(days: i)));
-    final dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    const dayLabels = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
 
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.cardBg,
+        color: context.colors.card,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -34,9 +37,9 @@ class ProfileStreakCalendar extends StatelessWidget {
                       child: Text(
                         d,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: AppTheme.textMedium,
-                          fontSize: 13,
+                        style: TextStyle(
+                          color: context.colors.textSecondary,
+                          fontSize: 12,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -46,59 +49,102 @@ class ProfileStreakCalendar extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: days.asMap().entries.map((entry) {
-              final day = entry.value;
-              final isToday = day.day == now.day &&
+            children: days.map((day) {
+              final isToday = day.year == now.year &&
                   day.month == now.month &&
-                  day.year == now.year;
-              final isPast = day.isBefore(now) && !isToday;
+                  day.day == now.day;
+              final isFuture = day.isAfter(now) && !isToday;
+              final studied = streak.studiedOn(day);
 
               return SizedBox(
                 width: 36,
                 height: 36,
-                child: isToday
-                    ? Container(
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [AppTheme.primary, Color(0xFFFF8C42)],
+                child: isFuture
+                    ? Center(
+                        child: Text(
+                          '${day.day}',
+                          style: TextStyle(
+                            color: context.colors.textTertiary,
+                            fontSize: 13,
                           ),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Center(
-                          child: Text('🔥', style: TextStyle(fontSize: 16)),
                         ),
                       )
-                    : isPast
+                    : studied
                         ? Container(
                             decoration: BoxDecoration(
-                              color: AppTheme.primary.withValues(alpha: 0.12),
+                              gradient: isToday
+                                  ? const LinearGradient(
+                                      colors: [
+                                        AppTheme.primary,
+                                        Color(0xFFFF8C42),
+                                      ],
+                                    )
+                                  : null,
+                              color: isToday
+                                  ? null
+                                  : AppTheme.primary.withValues(alpha: 0.15),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Center(
+                              child: Text('🔥', style: TextStyle(fontSize: 16)),
+                            ),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                              border: isToday
+                                  ? Border.all(
+                                      color: AppTheme.primary, width: 2)
+                                  : null,
                               shape: BoxShape.circle,
                             ),
                             child: Center(
                               child: Text(
                                 '${day.day}',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  color: AppTheme.primary,
+                                style: TextStyle(
+                                  color: isToday
+                                      ? AppTheme.primary
+                                      : context.colors.textSecondary,
                                   fontSize: 13,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: isToday
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
                                 ),
-                              ),
-                            ),
-                          )
-                        : Center(
-                            child: Text(
-                              '${day.day}',
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: AppTheme.textMedium,
-                                fontSize: 13,
                               ),
                             ),
                           ),
               );
             }).toList(),
           ),
+          if (streak.currentStreak > 0) ...[
+            const SizedBox(height: 12),
+            const Divider(height: 1),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('🔥', style: TextStyle(fontSize: 14)),
+                const SizedBox(width: 4),
+                Text(
+                  '${streak.currentStreak} ngày liên tiếp',
+                  style: const TextStyle(
+                    color: AppTheme.primary,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                if (streak.longestStreak > streak.currentStreak) ...[
+                  const SizedBox(width: 8),
+                  Text(
+                    '· Kỷ lục: ${streak.longestStreak} ngày',
+                    style: TextStyle(
+                      color: context.colors.textSecondary,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ],
         ],
       ),
     );

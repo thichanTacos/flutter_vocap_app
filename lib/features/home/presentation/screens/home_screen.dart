@@ -10,6 +10,7 @@ import '../widgets/home_header.dart';
 import '../widgets/recent_deck_item.dart';
 import '../widgets/section_title.dart';
 import '../../../../shared/widgets/app_bottom_nav.dart';
+import '../../../explore/presentation/widgets/home_explore_section.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -51,6 +52,7 @@ class HomeScreen extends ConsumerWidget {
                         const SectionTitle(title: 'Đang học'),
                         ContinueCarousel(decks: decks),
                       ],
+                      const HomeExploreSection(),
                       const SectionTitle(title: 'Gần đây'),
                       if (decks.isEmpty)
                         const HomeEmpty()

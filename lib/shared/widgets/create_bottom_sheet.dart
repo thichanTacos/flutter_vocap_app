@@ -9,7 +9,7 @@ class CreateBottomSheet extends StatelessWidget {
   static void show(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppTheme.cardBg,
+      backgroundColor: context.colors.card,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -30,15 +30,15 @@ class CreateBottomSheet extends StatelessWidget {
             height: 4,
             margin: const EdgeInsets.only(bottom: 20),
             decoration: BoxDecoration(
-              color: AppTheme.dividerColor,
+              color: context.colors.divider,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
 
-          const Text(
+          Text(
             'Tạo mới',
             style: TextStyle(
-              color: AppTheme.textDark,
+              color: context.colors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -108,9 +108,9 @@ class _CreateOption extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: AppTheme.surfaceColor,
+          color: context.colors.surface,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: AppTheme.dividerColor),
+          border: Border.all(color: context.colors.divider),
         ),
         child: Row(
           children: [
@@ -130,8 +130,8 @@ class _CreateOption extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
-                      color: AppTheme.textDark,
+                    style: TextStyle(
+                      color: context.colors.textPrimary,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
@@ -139,15 +139,15 @@ class _CreateOption extends StatelessWidget {
                   const SizedBox(height: 3),
                   Text(
                     subtitle,
-                    style: const TextStyle(
-                      color: AppTheme.textMedium,
+                    style: TextStyle(
+                      color: context.colors.textSecondary,
                       fontSize: 13,
                     ),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, color: AppTheme.textMedium),
+            Icon(Icons.chevron_right, color: context.colors.textSecondary),
           ],
         ),
       ),

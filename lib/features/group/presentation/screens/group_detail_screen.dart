@@ -88,19 +88,19 @@ class _GroupDetailScreenState extends ConsumerState<GroupDetailScreen>
               backgroundColor: Colors.transparent,
               elevation: 0,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back,
-                    color: AppTheme.textDark),
+                icon: Icon(Icons.arrow_back,
+                    color: context.colors.textPrimary),
                 onPressed: () => context.pop(),
               ),
-              title: const Text('Lớp',
+              title: Text('Lớp',
                   style: TextStyle(
-                      color: AppTheme.textDark,
+                      color: context.colors.textPrimary,
                       fontWeight: FontWeight.bold)),
               actions: [
                 PopupMenuButton<String>(
-                  icon: const Icon(Icons.more_vert,
-                      color: AppTheme.textDark),
-                  color: AppTheme.cardBg,
+                  icon: Icon(Icons.more_vert,
+                      color: context.colors.textPrimary),
+                  color: context.colors.card,
                   itemBuilder: (_) => [
                     const PopupMenuItem(
                       value: 'add_deck',
@@ -167,7 +167,7 @@ class _GroupDetailScreenState extends ConsumerState<GroupDetailScreen>
                 controller: _tabController,
                 indicatorColor: AppTheme.primary,
                 labelColor: AppTheme.primary,
-                unselectedLabelColor: AppTheme.textMedium,
+                unselectedLabelColor: context.colors.textSecondary,
                 labelStyle: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 14,
@@ -192,8 +192,8 @@ class _GroupDetailScreenState extends ConsumerState<GroupDetailScreen>
                         children: [
                           Text(
                             '${group.deckIds.length} học phần',
-                            style: const TextStyle(
-                                color: AppTheme.textMedium,
+                            style: TextStyle(
+                                color: context.colors.textSecondary,
                                 fontSize: 13),
                           ),
                           Container(
@@ -201,16 +201,16 @@ class _GroupDetailScreenState extends ConsumerState<GroupDetailScreen>
                                 horizontal: 8),
                             width: 4,
                             height: 4,
-                            decoration: const BoxDecoration(
-                              color: AppTheme.textLight,
+                            decoration: BoxDecoration(
+                              color: context.colors.textTertiary,
                               shape: BoxShape.circle,
                             ),
                           ),
                           Expanded(
                             child: Text(
                               group.name,
-                              style: const TextStyle(
-                                  color: AppTheme.textMedium,
+                              style: TextStyle(
+                                  color: context.colors.textSecondary,
                                   fontSize: 13),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -221,8 +221,8 @@ class _GroupDetailScreenState extends ConsumerState<GroupDetailScreen>
                       const SizedBox(height: 6),
                       Text(
                         group.name,
-                        style: const TextStyle(
-                          color: AppTheme.textDark,
+                        style: TextStyle(
+                          color: context.colors.textPrimary,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
@@ -233,8 +233,8 @@ class _GroupDetailScreenState extends ConsumerState<GroupDetailScreen>
                         const SizedBox(height: 4),
                         Text(
                           group.description,
-                          style: const TextStyle(
-                              color: AppTheme.textMedium,
+                          style: TextStyle(
+                              color: context.colors.textSecondary,
                               fontSize: 13),
                         ),
                       ],
@@ -276,7 +276,7 @@ class _GroupDetailScreenState extends ConsumerState<GroupDetailScreen>
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppTheme.cardBg,
+      backgroundColor: context.colors.card,
       shape: const RoundedRectangleBorder(
         borderRadius:
         BorderRadius.vertical(top: Radius.circular(20)),
@@ -458,16 +458,16 @@ class _DecksTab extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.style_outlined,
-                    size: 64, color: AppTheme.textLight),
+                    size: 64, color: context.colors.textTertiary),
                 const SizedBox(height: 12),
-                const Text('Chưa có học phần nào',
+                Text('Chưa có học phần nào',
                     style: TextStyle(
-                        color: AppTheme.textMedium,
+                        color: context.colors.textSecondary,
                         fontSize: 15)),
                 const SizedBox(height: 8),
-                const Text('Nhấn ··· để thêm học phần',
+                Text('Nhấn ··· để thêm học phần',
                     style: TextStyle(
-                        color: AppTheme.textLight,
+                        color: context.colors.textTertiary,
                         fontSize: 13)),
               ],
             ),
@@ -504,7 +504,7 @@ class _DeckItem extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: AppTheme.cardBg,
+            color: context.colors.card,
             borderRadius: BorderRadius.circular(14),
             boxShadow: [
               BoxShadow(
@@ -519,8 +519,8 @@ class _DeckItem extends StatelessWidget {
             children: [
               Text(
                 deck.title,
-                style: const TextStyle(
-                  color: AppTheme.textDark,
+                style: TextStyle(
+                  color: context.colors.textPrimary,
                   fontWeight: FontWeight.w700,
                   fontSize: 15,
                 ),
@@ -530,12 +530,12 @@ class _DeckItem extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 '${deck.cardCount} thuật ngữ',
-                style: const TextStyle(
-                    color: AppTheme.textMedium, fontSize: 13),
+                style: TextStyle(
+                    color: context.colors.textSecondary, fontSize: 13),
               ),
               const SizedBox(height: 10),
-              const Divider(
-                  color: AppTheme.dividerColor, height: 1),
+              Divider(
+                  color: context.colors.divider, height: 1),
               const SizedBox(height: 10),
               Row(
                 children: [
@@ -546,9 +546,9 @@ class _DeckItem extends StatelessWidget {
                         size: 14, color: color),
                   ),
                   const SizedBox(width: 8),
-                  const Text('Tác giả',
+                  Text('Tác giả',
                       style: TextStyle(
-                          color: AppTheme.textMedium,
+                          color: context.colors.textSecondary,
                           fontSize: 12)),
                 ],
               ),
@@ -584,14 +584,14 @@ class _AddDeckSheet extends ConsumerWidget {
               height: 4,
               margin: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                color: AppTheme.dividerColor,
+                color: context.colors.divider,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
           ),
-          const Text('Thêm học phần vào lớp',
+          Text('Thêm học phần vào lớp',
               style: TextStyle(
-                  color: AppTheme.textDark,
+                  color: context.colors.textPrimary,
                   fontSize: 17,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 16),
@@ -599,10 +599,10 @@ class _AddDeckSheet extends ConsumerWidget {
             Center(
               child: Padding(
                 padding: const EdgeInsets.all(24),
-                child: const Text(
+                child: Text(
                   'Tất cả học phần đã có trong lớp',
                   style:
-                  TextStyle(color: AppTheme.textMedium),
+                  TextStyle(color: context.colors.textSecondary),
                 ),
               ),
             )
@@ -633,7 +633,7 @@ class _AddDeckSheet extends ConsumerWidget {
                       margin: const EdgeInsets.only(bottom: 8),
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: AppTheme.surfaceColor,
+                        color: context.colors.surface,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Row(
@@ -647,15 +647,15 @@ class _AddDeckSheet extends ConsumerWidget {
                               CrossAxisAlignment.start,
                               children: [
                                 Text(deck.title,
-                                    style: const TextStyle(
-                                        color: AppTheme.textDark,
+                                    style: TextStyle(
+                                        color: context.colors.textPrimary,
                                         fontSize: 14,
                                         fontWeight:
                                         FontWeight.w500)),
                                 Text(
                                     '${deck.cardCount} thuật ngữ',
-                                    style: const TextStyle(
-                                        color: AppTheme.textMedium,
+                                    style: TextStyle(
+                                        color: context.colors.textSecondary,
                                         fontSize: 12)),
                               ],
                             ),
@@ -695,10 +695,10 @@ class _MembersTab extends ConsumerWidget {
       error: (e, _) =>
           Center(child: Text('Lỗi: $e')),
       data: (members) => members.isEmpty
-          ? const Center(
+          ? Center(
           child: Text('Không có thành viên',
               style:
-              TextStyle(color: AppTheme.textMedium)))
+              TextStyle(color: context.colors.textSecondary)))
           : ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: members.length,
@@ -729,7 +729,7 @@ class _MemberItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: AppTheme.cardBg,
+          color: context.colors.card,
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
@@ -770,8 +770,8 @@ class _MemberItem extends StatelessWidget {
                       Flexible(
                         child: Text(
                           user.displayName,
-                          style: const TextStyle(
-                            color: AppTheme.textDark,
+                          style: TextStyle(
+                            color: context.colors.textPrimary,
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
                           ),
@@ -802,8 +802,8 @@ class _MemberItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(user.email,
-                      style: const TextStyle(
-                          color: AppTheme.textMedium,
+                      style: TextStyle(
+                          color: context.colors.textSecondary,
                           fontSize: 13),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis),

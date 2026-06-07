@@ -11,15 +11,17 @@ import '../../features/study/flashcard/flashcard_screen.dart';
 import '../../features/study/learn/learn_screen.dart';
 import '../../features/study/test/test_screen.dart';
 import '../../features/study/match/match_screen.dart';
+import '../../features/study/flappy/flappy_screen.dart';
+import '../../features/explore/presentation/screens/explore_level_screen.dart';
+import '../../features/explore/presentation/screens/vocab_deck_screen.dart';
 import '../../features/profile/presentation/screens/profile_screen.dart';
 import '../../features/library/presentation/screens/library_screen.dart';
 import '../../features/folder/presentation/screens/create_folder_screen.dart';
 import '../../features/folder/presentation/screens/folder_detail_screen.dart';
 import '../../features/group/presentation/screens/create_group_screen.dart';
 import '../../features/group/presentation/screens/group_detail_screen.dart';
+import '../../features/settings/presentation/screens/settings_screen.dart';
 import '../../shared/models/deck_model.dart';
-import '../../features/shop/presentation/screens/shop_screen.dart';
-
 final appRouterProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authStateProvider);
 
@@ -34,11 +36,6 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
-      // Thêm vào routes
-      GoRoute(
-        path: '/shop',
-        builder: (_, __) => const ShopScreen(),
-      ),
       // Auth
       GoRoute(path: '/login',
           builder: (_, __) => const LoginScreen()),
@@ -52,6 +49,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       // Profile
       GoRoute(path: '/profile',
           builder: (_, __) => const ProfileScreen()),
+
+      // Settings
+      GoRoute(path: '/settings',
+          builder: (_, __) => const SettingsScreen()),
 
       // Library
       GoRoute(path: '/library',
@@ -91,6 +92,25 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: '/deck/:deckId/match',
         builder: (_, state) => MatchScreen(
             deckId: state.pathParameters['deckId']!),
+      ),
+      GoRoute(
+        path: '/deck/:deckId/flappy',
+        builder: (_, state) => FlappyScreen(
+            deckId: state.pathParameters['deckId']!),
+      ),
+
+      // Explore – vocabulary library by CEFR level
+      GoRoute(
+        path: '/explore/:level',
+        builder: (_, state) => ExploreLevelScreen(
+            level: state.pathParameters['level']!),
+      ),
+      GoRoute(
+        path: '/explore/:level/:deckIndex',
+        builder: (_, state) => VocabDeckScreen(
+          level: state.pathParameters['level']!,
+          deckIndex: int.parse(state.pathParameters['deckIndex']!),
+        ),
       ),
 
       // Folder

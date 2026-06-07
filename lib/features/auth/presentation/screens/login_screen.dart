@@ -69,7 +69,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     });
 
     return Scaffold(
-      backgroundColor: AppTheme.lightBg,
+      backgroundColor: context.colors.bg,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -128,18 +128,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const Gap(8),
-                      const Text(
+                      Text(
                         'Đăng nhập',
                         style: TextStyle(
-                          color: AppTheme.textDark,
+                          color: context.colors.textPrimary,
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       const Gap(4),
-                      const Text(
+                      Text(
                         'Chào mừng trở lại!',
-                        style: TextStyle(color: AppTheme.textMedium, fontSize: 14),
+                        style: TextStyle(color: context.colors.textSecondary, fontSize: 14),
                       ),
                       const Gap(28),
                       _buildTextField(
@@ -204,9 +204,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
+                          Text(
                             'Chưa có tài khoản?',
-                            style: TextStyle(color: AppTheme.textMedium),
+                            style: TextStyle(color: context.colors.textSecondary),
                           ),
                           TextButton(
                             onPressed: () => context.go('/register'),

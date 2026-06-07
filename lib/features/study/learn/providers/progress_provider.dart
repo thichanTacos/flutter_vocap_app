@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../shared/models/progress_model.dart';
 import '../../../auth/providers/auth_provider.dart';
+import '../../../profile/data/streak_repository.dart';
 import '../data/progress_repository.dart';
 
 final userProgressProvider =
@@ -40,6 +41,7 @@ class ProgressNotifier extends AsyncNotifier<void> {
       lastStudied: DateTime.now(),
     );
     await ref.read(progressRepositoryProvider).saveProgress(progress);
+    await ref.read(streakRepositoryProvider).recordStudyDay(user.uid);
   }
 }
 

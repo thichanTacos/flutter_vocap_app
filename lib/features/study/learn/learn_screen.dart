@@ -231,16 +231,16 @@ class _LearnScreenState extends ConsumerState<LearnScreen> {
     final cardsAsync = ref.watch(deckCardsProvider(widget.deckId));
 
     return cardsAsync.when(
-      loading: () => const Scaffold(
-        backgroundColor: AppTheme.lightBg,
+      loading: () => Scaffold(
+        backgroundColor: context.colors.bg,
         body:
-        Center(child: CircularProgressIndicator(color: AppTheme.primary)),
+        const Center(child: CircularProgressIndicator(color: AppTheme.primary)),
       ),
       error: (e, _) => Scaffold(
-        backgroundColor: AppTheme.lightBg,
+        backgroundColor: context.colors.bg,
         body: Center(
             child: Text('Lỗi: $e',
-                style: const TextStyle(color: AppTheme.textDark))),
+                style: TextStyle(color: context.colors.textPrimary))),
       ),
       data: (cards) {
         if (!_initialized) {
@@ -260,7 +260,7 @@ class _LearnScreenState extends ConsumerState<LearnScreen> {
         final card = _pendingCards[_indexInPhase];
 
         return Scaffold(
-          backgroundColor: AppTheme.lightBg,
+          backgroundColor: context.colors.bg,
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(Icons.close_rounded),
@@ -291,7 +291,7 @@ class _LearnScreenState extends ConsumerState<LearnScreen> {
                           value: _progressTotal == 0
                               ? 0
                               : _progressDone / _progressTotal,
-                          backgroundColor: AppTheme.dividerColor,
+                          backgroundColor: context.colors.divider,
                           valueColor:
                           const AlwaysStoppedAnimation<Color>(
                               AppTheme.green),
@@ -301,7 +301,7 @@ class _LearnScreenState extends ConsumerState<LearnScreen> {
                     ),
                     const SizedBox(width: 8),
                     _CircleBadge(
-                        value: _progressTotal, color: AppTheme.textLight),
+                        value: _progressTotal, color: context.colors.textTertiary),
                   ],
                 ),
               ),
@@ -315,7 +315,7 @@ class _LearnScreenState extends ConsumerState<LearnScreen> {
                       _phase == 0
                           ? Icons.quiz_outlined
                           : Icons.edit_outlined,
-                      color: AppTheme.textLight,
+                      color: context.colors.textTertiary,
                       size: 14,
                     ),
                     const SizedBox(width: 6),
@@ -323,8 +323,8 @@ class _LearnScreenState extends ConsumerState<LearnScreen> {
                       _phase == 0
                           ? 'Trắc nghiệm · còn ${_pendingCards.length} thẻ cần đúng'
                           : 'Điền từ · còn ${_pendingCards.length} thẻ cần đúng',
-                      style: const TextStyle(
-                          color: AppTheme.textLight, fontSize: 12),
+                      style: TextStyle(
+                          color: context.colors.textTertiary, fontSize: 12),
                     ),
                   ],
                 ),

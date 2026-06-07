@@ -146,17 +146,17 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
     final isLoading = ref.watch(groupNotifierProvider).isLoading;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF1A1D28),
+      backgroundColor: context.colors.bg,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1A1D28),
+        backgroundColor: context.colors.bg,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white),
+          icon: Icon(Icons.close, color: context.colors.textPrimary),
           onPressed: () => context.pop(),
         ),
-        title: const Text('Nhóm học',
+        title: Text('Nhóm học',
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+                color: context.colors.textPrimary, fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -166,7 +166,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
             // Tab Tạo / Tham gia
             Container(
               decoration: BoxDecoration(
-                color: const Color(0xFF2A2D3E),
+                color: context.colors.card,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
@@ -189,7 +189,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                               style: TextStyle(
                                 color: !_showJoin
                                     ? Colors.white
-                                    : Colors.grey[400],
+                                    : context.colors.textSecondary,
                                 fontWeight: FontWeight.w600,
                               )),
                         ),
@@ -214,7 +214,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                               style: TextStyle(
                                 color: _showJoin
                                     ? Colors.white
-                                    : Colors.grey[400],
+                                    : context.colors.textSecondary,
                                 fontWeight: FontWeight.w600,
                               )),
                         ),
@@ -231,14 +231,14 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
               TextField(
                 controller: _nameController,
                 autofocus: true,
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: context.colors.textPrimary),
                 decoration: _inputDeco('Tên nhóm *', Icons.group_outlined),
               ),
               const SizedBox(height: 14),
               TextField(
                 controller: _descController,
                 maxLines: 3,
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: context.colors.textPrimary),
                 decoration:
                 _inputDeco('Mô tả nhóm', Icons.description_outlined),
               ),
@@ -272,8 +272,8 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
               // Form tham gia nhóm
               TextField(
                 controller: _inviteController,
-                style: const TextStyle(
-                    color: Colors.white,
+                style: TextStyle(
+                    color: context.colors.textPrimary,
                     fontSize: 20,
                     letterSpacing: 4,
                     fontWeight: FontWeight.bold),
@@ -283,11 +283,11 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                 decoration: InputDecoration(
                   hintText: 'XXXXXX',
                   hintStyle: TextStyle(
-                      color: Colors.grey[600],
+                      color: context.colors.textTertiary,
                       fontSize: 20,
                       letterSpacing: 4),
                   filled: true,
-                  fillColor: const Color(0xFF2A2D3E),
+                  fillColor: context.colors.card,
                   counterText: '',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -304,7 +304,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
               Text(
                 'Nhập mã gồm 6 ký tự do người tạo nhóm cung cấp',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey[500], fontSize: 13),
+                style: TextStyle(color: context.colors.textSecondary, fontSize: 13),
               ),
               const SizedBox(height: 24),
               AppInkWell(

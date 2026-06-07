@@ -29,20 +29,20 @@ class HomeEmpty extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
+          Text(
             'Chưa có bộ thẻ nào!',
             style: TextStyle(
-              color: AppTheme.textDark,
+              color: context.colors.textPrimary,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             'Nhấn nút Tạo bên dưới để bắt đầu\nhành trình học tập của bạn 🚀',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: AppTheme.textMedium,
+              color: context.colors.textSecondary,
               fontSize: 14,
               height: 1.6,
             ),

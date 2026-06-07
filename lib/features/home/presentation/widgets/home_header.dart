@@ -33,8 +33,8 @@ class HomeHeader extends ConsumerWidget {
                   children: [
                     Text(
                       _getGreeting(),
-                      style: const TextStyle(
-                        color: AppTheme.textMedium,
+                      style: TextStyle(
+                        color: context.colors.textSecondary,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
@@ -42,8 +42,8 @@ class HomeHeader extends ConsumerWidget {
                     const SizedBox(height: 2),
                     Text(
                       displayName,
-                      style: const TextStyle(
-                        color: AppTheme.textDark,
+                      style: TextStyle(
+                        color: context.colors.textPrimary,
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
@@ -89,7 +89,7 @@ class HomeHeader extends ConsumerWidget {
             child: Container(
               height: 46,
               decoration: BoxDecoration(
-                color: AppTheme.surfaceColor,
+                color: context.colors.surface,
                 borderRadius: BorderRadius.circular(14),
                 boxShadow: [
                   BoxShadow(
@@ -103,12 +103,12 @@ class HomeHeader extends ConsumerWidget {
               child: Row(
                 children: [
                   Icon(Icons.search_rounded,
-                      color: AppTheme.textLight, size: 22),
+                      color: context.colors.textTertiary, size: 22),
                   const SizedBox(width: 10),
                   Text(
                     'Tìm kiếm bộ thẻ...',
-                    style: const TextStyle(
-                      color: AppTheme.textLight,
+                    style: TextStyle(
+                      color: context.colors.textTertiary,
                       fontSize: 15,
                     ),
                   ),
@@ -133,7 +133,7 @@ class HomeHeader extends ConsumerWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: AppTheme.cardBg,
+      backgroundColor: context.colors.card,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -197,7 +197,7 @@ class _SearchSheetState extends State<_SearchSheet> {
               width: 40,
               height: 4,
               decoration: BoxDecoration(
-                color: AppTheme.dividerColor,
+                color: context.colors.divider,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -207,16 +207,16 @@ class _SearchSheetState extends State<_SearchSheet> {
               child: TextField(
                 controller: _controller,
                 autofocus: true,
-                style: const TextStyle(color: AppTheme.textDark),
+                style: TextStyle(color: context.colors.textPrimary),
                 onChanged: _onSearch,
                 decoration: InputDecoration(
                   hintText: 'Tìm bộ thẻ...',
-                  prefixIcon: const Icon(Icons.search_rounded,
-                      color: AppTheme.textLight),
+                  prefixIcon: Icon(Icons.search_rounded,
+                      color: context.colors.textTertiary),
                   suffixIcon: _controller.text.isNotEmpty
                       ? IconButton(
-                          icon: const Icon(Icons.clear,
-                              color: AppTheme.textLight),
+                          icon: Icon(Icons.clear,
+                              color: context.colors.textTertiary),
                           onPressed: () {
                             _controller.clear();
                             _onSearch('');
@@ -234,11 +234,11 @@ class _SearchSheetState extends State<_SearchSheet> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.search_off,
-                              size: 56, color: AppTheme.textLight),
+                              size: 56, color: context.colors.textTertiary),
                           const SizedBox(height: 12),
-                          const Text('Không tìm thấy bộ thẻ nào',
+                          Text('Không tìm thấy bộ thẻ nào',
                               style: TextStyle(
-                                  color: AppTheme.textMedium, fontSize: 15)),
+                                  color: context.colors.textSecondary, fontSize: 15)),
                         ],
                       ),
                     )
@@ -264,14 +264,14 @@ class _SearchSheetState extends State<_SearchSheet> {
                                 color: color, size: 24),
                           ),
                           title: Text(deck.title,
-                              style: const TextStyle(
-                                  color: AppTheme.textDark,
+                              style: TextStyle(
+                                  color: context.colors.textPrimary,
                                   fontWeight: FontWeight.w600)),
                           subtitle: Text('${deck.cardCount} thẻ',
-                              style: const TextStyle(
-                                  color: AppTheme.textMedium, fontSize: 13)),
-                          trailing: const Icon(Icons.chevron_right,
-                              color: AppTheme.textLight),
+                              style: TextStyle(
+                                  color: context.colors.textSecondary, fontSize: 13)),
+                          trailing: Icon(Icons.chevron_right,
+                              color: context.colors.textTertiary),
                           onTap: () {
                             Navigator.pop(context);
                             context.push('/deck/${deck.id}');

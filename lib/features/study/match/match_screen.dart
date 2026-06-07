@@ -95,12 +95,12 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     final cardsAsync = ref.watch(deckCardsProvider(widget.deckId));
 
     return cardsAsync.when(
-      loading: () => const Scaffold(
-        backgroundColor: Color(0xFF1A1D28),
-        body: Center(child: CircularProgressIndicator(color: AppTheme.primary)),
+      loading: () => Scaffold(
+        backgroundColor: context.colors.bg,
+        body: const Center(child: CircularProgressIndicator(color: AppTheme.primary)),
       ),
       error: (e, _) => Scaffold(
-        backgroundColor: const Color(0xFF1A1D28),
+        backgroundColor: context.colors.bg,
         body: Center(child: Text('Lỗi: $e')),
       ),
       data: (cards) {
@@ -112,16 +112,16 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
         if (_finished) return _buildFinished(cards);
 
         return Scaffold(
-          backgroundColor: const Color(0xFF1A1D28),
+          backgroundColor: context.colors.bg,
           appBar: AppBar(
-            backgroundColor: const Color(0xFF1A1D28),
+            backgroundColor: context.colors.bg,
             elevation: 0,
             leading: IconButton(
               icon: const Icon(Icons.close, color: Colors.white),
               onPressed: () => context.pop(),
             ),
-            title: const Text('Ghép thẻ',
-                style: TextStyle(color: Colors.white)),
+            title: Text('Ghép thẻ',
+                style: TextStyle(color: context.colors.textPrimary)),
             centerTitle: true,
             actions: [
               StreamBuilder(
@@ -130,8 +130,8 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
                   padding: const EdgeInsets.only(right: 16),
                   child: Text(
                     _formatTime(_stopwatch.elapsedMilliseconds),
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style: TextStyle(
+                        color: context.colors.textPrimary,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
                   ),
@@ -153,7 +153,7 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
                 const SizedBox(height: 16),
                 Text(
                   '$_matchedCount / ${_items.length ~/ 2} cặp',
-                  style: TextStyle(color: Colors.grey[400], fontSize: 13),
+                  style: TextStyle(color: context.colors.textSecondary, fontSize: 13),
                 ),
                 const SizedBox(height: 16),
                 Expanded(
@@ -170,7 +170,7 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
                       final item = _items[index];
                       final isSelected = _selectedIndex == index;
 
-                      Color bgColor = const Color(0xFF2A2D3E);
+                      Color bgColor = context.colors.card;
                       Color borderColor = Colors.transparent;
 
                       if (item.isMatched) {
@@ -201,7 +201,7 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
                               style: TextStyle(
                                 color: item.isMatched
                                     ? Colors.green[300]
-                                    : Colors.white,
+                                    : context.colors.textPrimary,
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,
                               ),
