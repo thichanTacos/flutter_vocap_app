@@ -4,7 +4,10 @@ import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../shared/models/card_model.dart';
 import '../../../shared/widgets/app_ink_well.dart';
+import '../../../shared/widgets/streak_celebration_overlay.dart';
+import '../../auth/providers/auth_provider.dart';
 import '../../card/providers/card_provider.dart';
+import '../../profile/providers/streak_provider.dart';
 import 'widgets/flashcard_progress.dart';
 import 'widgets/flashcard_result.dart';
 import 'widgets/swipe_card.dart';
@@ -26,6 +29,7 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
   bool _initialized = false;
   bool _finished = false;
   bool _isShuffled = false;
+  bool _streakChecked = false;
 
   void _init(List<CardModel> cards) {
     _cards = List<CardModel>.from(cards);
@@ -34,6 +38,7 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
     _unknown.clear();
     _history.clear();
     _finished = false;
+    _streakChecked = false;
   }
 
   void _onSwipe(bool isKnown) {
@@ -102,6 +107,20 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
           _initialized = true;
         }
         if (_finished) {
+          if (!_streakChecked) {
+            _streakChecked = true;
+            WidgetsBinding.instance.addPostFrameCallback((_) async {
+              final user = ref.read(authStateProvider).valueOrNull;
+              if (user == null || !mounted) return;
+              final result = await ref
+                  .read(streakRepositoryProvider)
+                  .recordStudyDay(user.uid);
+              if (result.isNewDay && mounted) {
+                // ignore: use_build_context_synchronously
+                await StreakCelebrationOverlay.show(context, result.newStreak);
+              }
+            });
+          }
           return FlashcardResult(
             known: List.from(_known),
             unknown: List.from(_unknown),

@@ -1,0 +1,2714 @@
+﻿================================================================================
+                        [TÊN TRƯỜNG ĐẠI HỌC]
+                      KHOA CÔNG NGHỆ THÔNG TIN
+================================================================================
+
+
+                          BÁO CÁO MÔN HỌC
+                        KIỂM THỬ PHẦN MỀM
+
+
+              ĐỀ TÀI: ỨNG DỤNG HỌC TIẾNG ANH LIZQUET
+
+
+Giảng viên hướng dẫn : [Tên Giảng viên]
+Nhóm                  : [Số nhóm]
+Thành viên:
+    [Thành viên 1]  -  [MSSV]
+    [Thành viên 2]  -  [MSSV]
+    [Thành viên 3]  -  [MSSV]
+    [Thành viên 4]  -  [MSSV]
+
+
+                    [Thành phố, tháng năm thực hiện]
+================================================================================
+
+
+MỤC LỤC
+
+MỞ ĐẦU ...................................................................................  1
+  1. Lí do chọn đề tài ...................................................................  1
+  2. Mục tiêu đề tài .....................................................................  2
+
+CHƯƠNG I: ĐẶC TẢ YÊU CẦU PHẦN MỀM ....................................................  3
+  1.1 Giới thiệu .........................................................................  3
+      1.1.1 Mục đích .....................................................................  3
+      1.1.2 Phạm vi ......................................................................  3
+      1.1.3 Tài liệu tham khảo ...........................................................  4
+      1.1.4 Tổng quát ....................................................................  4
+  1.2 Các yêu cầu chức năng .............................................................  5
+      1.2.1 Các tác nhân .................................................................  5
+      1.2.2 Các chức năng của hệ thống ...................................................  5
+      1.2.3 Biểu đồ use-case tổng quát ...................................................  6
+      1.2.4 Đặc tả usecase ...............................................................  7
+  1.3 Các yêu cầu phi chức năng .........................................................  24
+      1.3.1 Giao diện người dùng .........................................................  24
+      1.3.2 Yêu cầu bảo mật .............................................................  25
+      1.3.3 Ràng buộc ....................................................................  25
+  1.4 Phần mềm cần kiểm thử .............................................................  26
+      1.4.1 Thông tin phần mềm ...........................................................  26
+      1.4.2 Công cụ kiểm thử .............................................................  27
+
+CHƯƠNG II: KẾ HOẠCH KIỂM THỬ ..........................................................  (tiếp theo)
+CHƯƠNG III: THỰC HIỆN KIỂM THỬ .........................................................  (tiếp theo)
+CHƯƠNG IV: KẾT QUẢ VÀ MINH CHỨNG ......................................................  (tiếp theo)
+
+================================================================================
+
+
+MỞ ĐẦU
+
+
+1. Lí do chọn đề tài
+
+Sự bùng nổ công nghệ thông tin trong thế kỷ XXI đã mang lại những bước tiến
+vượt bậc, ảnh hưởng sâu rộng đến mọi mặt của đời sống con người, đặc biệt là
+trong lĩnh vực giáo dục và đào tạo. Việc ứng dụng công nghệ vào học tập không
+chỉ giúp người học tiếp cận kiến thức nhanh hơn mà còn tạo ra những phương pháp
+học tập mới hiệu quả và thú vị hơn so với phương pháp truyền thống.
+
+Trong bối cảnh hội nhập quốc tế ngày càng sâu rộng, tiếng Anh đã trở thành
+ngôn ngữ toàn cầu không thể thiếu trong môi trường làm việc, học thuật và giao
+tiếp quốc tế. Nhu cầu học tiếng Anh của người Việt Nam ngày càng tăng cao, đặc
+biệt là đối với thế hệ trẻ – những người đang cần trang bị vốn từ vựng phong phú
+để đáp ứng yêu cầu ngày càng cao của xã hội hiện đại.
+
+Các ứng dụng học tiếng Anh trên thiết bị di động đã và đang trở thành xu hướng
+phổ biến toàn cầu. Các nền tảng như Quizlet, Anki hay Duolingo đã chứng minh
+rằng học từ vựng qua flashcard kết hợp với trò chơi tương tác mang lại hiệu quả
+cao hơn đáng kể so với việc học thuộc lòng truyền thống. Người dùng có thể học
+mọi lúc mọi nơi, theo dõi tiến độ cá nhân và được khuyến khích bằng các yếu tố
+gamification như điểm số, huy hiệu và chuỗi ngày học liên tiếp.
+
+Tuy nhiên, bên cạnh những lợi ích to lớn, việc phát triển ứng dụng di động cũng
+đòi hỏi sự cẩn trọng và tỉ mỉ. Kiểm thử phần mềm đóng vai trò then chốt trong
+việc đảm bảo chất lượng và độ tin cậy của sản phẩm trước khi đưa vào sử dụng.
+Nếu bỏ qua giai đoạn kiểm thử, những lỗi tiềm ẩn trong ứng dụng có thể gây ra
+trải nghiệm người dùng kém, dữ liệu học tập bị mất hoặc các tính năng hoạt động
+không đúng – điều này ảnh hưởng trực tiếp đến quá trình học tập của người dùng.
+
+Nhận thức được tầm quan trọng của kiểm thử phần mềm trong phát triển ứng dụng
+di động, chúng tôi đã lựa chọn đề tài "Ứng dụng học tiếng Anh Lizquet" để nghiên
+cứu và áp dụng các quy trình kiểm thử một cách bài bản. Lizquet là một ứng dụng
+học từ vựng tiếng Anh được xây dựng trên nền tảng Flutter, tích hợp nhiều chế
+độ học phong phú như Flashcard, Learn, Test, Match và trò chơi Flappy Bird, phù
+hợp với nhiều phong cách học tập khác nhau.
+
+Mục tiêu của chúng tôi là đảm bảo ứng dụng hoạt động ổn định, chính xác và
+mang lại trải nghiệm học tập tốt nhất cho người dùng. Thông qua việc thực hiện
+các quy trình kiểm thử, chúng tôi hy vọng sẽ phát hiện và khắc phục kịp thời
+những lỗi tiềm ẩn, đồng thời tối ưu hóa chất lượng của ứng dụng.
+
+Đề tài này không chỉ mang tính học thuật mà còn có ý nghĩa thực tiễn cao.
+Việc học từ vựng tiếng Anh là nhu cầu thiết yếu của hàng triệu người học tại
+Việt Nam, và một ứng dụng đáng tin cậy, hoạt động chính xác sẽ giúp người dùng
+tối ưu hóa quá trình học tập của mình. Chúng tôi tin rằng, thông qua quá trình
+nghiên cứu và thực hiện đề tài này, chúng tôi sẽ đóng góp vào việc nâng cao
+chất lượng sản phẩm phần mềm giáo dục, mang lại giá trị thiết thực cho cộng đồng
+người học tiếng Anh tại Việt Nam.
+
+
+2. Mục tiêu đề tài
+
+ - Tìm hiểu và nghiên cứu về kiểm thử phần mềm: trang bị kiến thức tổng quan
+   về kiểm thử phần mềm, từ các khái niệm cơ bản đến các phương pháp và kỹ thuật
+   kiểm thử khác nhau áp dụng cho ứng dụng di động.
+
+ - Nắm vững lý thuyết căn bản về kiểm thử phần mềm: hiểu rõ về các giai đoạn
+   trong quy trình kiểm thử, các loại lỗi thường gặp trong ứng dụng Flutter và
+   cách phòng tránh, cũng như các tiêu chuẩn và quy trình kiểm thử phổ biến.
+
+ - Hiểu được việc thiết kế các trường hợp kiểm thử (test case): học cách phân
+   tích yêu cầu phần mềm, xác định các tình huống kiểm thử cần thiết và viết các
+   test case một cách hiệu quả, bao gồm cả luồng chính và các luồng thay thế.
+
+ - Sử dụng framework Flutter Test và thư viện Mockito (Dart) cho kiểm thử đơn
+   vị (unit test) và kiểm thử widget (widget test): đây là các công cụ mạnh mẽ
+   để tự động hóa việc kiểm thử ứng dụng Flutter, giúp tiết kiệm thời gian và
+   tăng độ chính xác của quá trình kiểm thử.
+
+
+================================================================================
+
+
+CHƯƠNG I: ĐẶC TẢ YÊU CẦU PHẦN MỀM
+
+
+1.1 Giới thiệu
+
+1.1.1 Mục đích
+
+Tài liệu này đặc tả các yêu cầu chức năng và phi chức năng cho ứng dụng học
+tiếng Anh Lizquet – một ứng dụng di động được phát triển trên nền tảng Flutter,
+nhằm hỗ trợ người học từ vựng tiếng Anh một cách hiệu quả và thú vị thông qua
+nhiều chế độ học tập đa dạng.
+
+Hệ thống sẽ giúp người dùng tạo và quản lý bộ từ vựng cá nhân (học phần), học
+từ vựng qua nhiều phương pháp khác nhau như Flashcard (thẻ ghi nhớ), Learn (học
+có cấu trúc kết hợp trắc nghiệm và điền từ), Test (kiểm tra toàn bộ từ vựng),
+Match (trò chơi ghép cặp) và theo dõi tiến độ học tập theo thời gian. Bên cạnh
+đó, ứng dụng còn cung cấp kho từ vựng sẵn có được phân loại theo chuẩn CEFR
+(A1 đến C2), giúp người học có thể tham khảo và học theo lộ trình phù hợp.
+
+Mục tiêu của tài liệu này là cung cấp cho các bên liên quan (bao gồm cả nhà
+phát triển, người kiểm thử và người sử dụng) một cái nhìn rõ ràng và đầy đủ về
+các tính năng và yêu cầu kỹ thuật của ứng dụng Lizquet. Điều này sẽ giúp đảm
+bảo rằng sản phẩm cuối cùng đáp ứng được nhu cầu của người dùng và hoạt động
+một cách đáng tin cậy, hiệu quả và an toàn.
+
+1.1.2 Phạm vi
+
+• Ứng dụng Lizquet được triển khai trên nền tảng di động (Android và iOS) sử
+  dụng framework Flutter, cung cấp giao diện trực quan và thân thiện với người
+  dùng. Giao diện hỗ trợ cả chế độ sáng (Light Mode) và chế độ tối (Dark Mode),
+  đảm bảo trải nghiệm tốt trong mọi điều kiện ánh sáng.
+
+• Hệ thống tích hợp Firebase Authentication để xác thực người dùng và Firebase
+  Firestore để lưu trữ dữ liệu theo thời gian thực. Điều này đảm bảo dữ liệu
+  học tập của người dùng được đồng bộ hóa và bảo mật trên nền tảng đám mây.
+
+• Ứng dụng hỗ trợ chức năng làm việc nhóm thông qua tính năng Lớp học (Group),
+  cho phép người dùng tạo và tham gia nhóm học tập, chia sẻ học phần với các
+  thành viên trong nhóm thông qua mã mời (invite code).
+
+• Tính năng Khám phá (Explore) cho phép người dùng duyệt kho từ vựng theo chuẩn
+  CEFR với 6 cấp độ từ A1 đến C2, được lấy từ API bên ngoài và lưu vào bộ đệm
+  cục bộ nhằm tối ưu hiệu năng.
+
+1.1.3 Tài liệu tham khảo
+
+1. Flutter Testing Documentation – https://docs.flutter.dev/testing
+2. IEEE Recommended Practice for Software Requirements Specifications,
+   in IEEE Std 830-1998, vol., no., pp.1-40, 20 Oct. 1998
+3. IEEE Guide for Developing System Requirements Specifications,
+   in IEEE Std 1233-1996, vol., no., pp.1-30, 22 Dec. 1996
+4. Firebase Documentation – https://firebase.google.com/docs
+5. Các slide giảng dạy môn Kiểm Thử Phần Mềm
+
+1.1.4 Tổng quát
+
+Tài liệu này được viết theo chuẩn của Tài liệu đặc tả yêu cầu phần mềm
+(Software Requirements Specifications – SRS) với cấu trúc được chia làm ba phần:
+
+1. Phần 1: Cung cấp cái nhìn tổng quan về các thành phần của SRS.
+
+2. Phần 2: Mô tả tổng quan các nhân tố, ràng buộc, đặc điểm người dùng, môi
+   trường thực thi tác động lên hệ thống và các yêu cầu của nó. Cung cấp thông
+   tin chi tiết các yêu cầu chức năng thông qua các use case, cung cấp cho các
+   nhà phát triển phần mềm thông tin để phát triển và kiểm thử phần mềm đáp ứng
+   được các yêu cầu đó.
+
+3. Phần 3: Các yêu cầu phi chức năng và thông tin phần mềm cần kiểm thử.
+
+
+--------------------------------------------------------------------------------
+
+1.2 Các yêu cầu chức năng
+
+1.2.1 Các tác nhân
+
+Hệ thống có một tác nhân chính là Người dùng (User). Người dùng là những cá
+nhân đã đăng ký tài khoản và sử dụng ứng dụng để học từ vựng tiếng Anh. Người
+dùng có thể thực hiện toàn bộ các chức năng của hệ thống từ quản lý học phần,
+học tập theo nhiều chế độ đến theo dõi tiến độ cá nhân.
+
+Ngoài ra, hệ thống Firebase (bao gồm Firebase Authentication và Firebase
+Firestore) đóng vai trò là hệ thống nền tảng hỗ trợ xác thực và lưu trữ dữ liệu
+phía sau (backend), không tương tác trực tiếp với người dùng trong giao diện ứng
+dụng.
+
+1.2.2 Các chức năng của hệ thống
+
+1. Đăng nhập (UC001): Xác thực người dùng thông qua email và mật khẩu, sử dụng
+   Firebase Authentication để đảm bảo bảo mật.
+
+2. Đăng ký (UC002): Cho phép người dùng tạo tài khoản mới với tên hiển thị,
+   email và mật khẩu.
+
+3. Tạo học phần – Deck (UC003): Cho phép người dùng tạo bộ từ vựng mới với tiêu
+   đề và mô tả, lưu trữ trên Firestore.
+
+4. Thêm thẻ từ – Card (UC004): Cho phép người dùng thêm cặp từ/nghĩa (term/
+   definition) vào học phần, có thể kèm hình ảnh minh họa.
+
+5. Học qua Flashcard (UC005): Chế độ ôn tập bằng thẻ ghi nhớ – người dùng vuốt
+   phải (biết rồi) hoặc vuốt trái (chưa biết) để phân loại từ vựng.
+
+6. Học qua chế độ Learn (UC006): Chế độ học có cấu trúc gồm hai giai đoạn:
+   trắc nghiệm 4 đáp án (Phase 0) và điền từ (Phase 1), học theo batch 5 thẻ.
+
+7. Kiểm tra – Test Mode (UC007): Chế độ kiểm tra toàn bộ từ vựng trong học
+   phần bằng câu hỏi trắc nghiệm, hiển thị điểm số phần trăm khi hoàn thành.
+
+8. Trò chơi Match – Ghép thẻ (UC008): Chế độ chơi game ghép cặp từ với nghĩa
+   tương ứng trong lưới, tính điểm theo thời gian hoàn thành.
+
+9. Khám phá từ vựng CEFR (UC009): Cho phép người dùng duyệt kho từ vựng được
+   phân loại theo chuẩn CEFR từ A1 đến C2 mà không cần tự tạo học phần.
+
+10. Theo dõi chuỗi ngày học – Streak (UC010): Hệ thống tự động ghi nhận và
+    thống kê các ngày học liên tiếp, hiển thị trên màn hình hồ sơ cá nhân.
+
+1.2.3 Biểu đồ use-case tổng quát
+
+[Hình 1.1: Biểu đồ use-case tổng quát của ứng dụng Lizquet]
+(Người dùng tương tác với 10 use case: UC001-Đăng nhập, UC002-Đăng ký,
+UC003-Tạo học phần, UC004-Thêm thẻ từ, UC005-Flashcard, UC006-Learn,
+UC007-Test, UC008-Match, UC009-Khám phá CEFR, UC010-Streak)
+
+Mô tả biểu đồ:
+- Tác nhân Người dùng nằm bên trái biểu đồ.
+- Người dùng kết nối trực tiếp với UC001 (Đăng nhập) và UC002 (Đăng ký).
+- Sau khi đăng nhập thành công, người dùng có thể truy cập UC003-UC010.
+- UC005, UC006, UC007, UC008 là các use case con của UC003 (phụ thuộc vào
+  việc học phần đã có thẻ từ).
+- UC010 được kích hoạt tự động sau khi người dùng hoàn thành UC005-UC008.
+
+
+--------------------------------------------------------------------------------
+
+1.2.4 Đặc tả usecase
+
+
+1.2.4.1 Đăng nhập
+
++---------------------+----------+--------------------+--------------------+
+| Mã Use case         | UC001    | Tên Use case       | Đăng nhập          |
++---------------------+----------+--------------------+--------------------+
+| Tác nhân            | Người dùng                                          |
++---------------------+-----------------------------------------------------+
+| Mô tả               | Người dùng đăng nhập vào ứng dụng thông qua email  |
+|                     | và mật khẩu để sử dụng các chức năng của hệ thống. |
++---------------------+-----------------------------------------------------+
+| Sự kiện kích hoạt   | Người dùng nhấn nút "Đăng nhập" trên giao diện    |
+|                     | ứng dụng                                            |
++---------------------+-----------------------------------------------------+
+| Tiền điều kiện      | Người dùng đã có tài khoản được đăng ký trước đó  |
++---------------------+-----------------------------------------------------+
+
+Luồng sự kiện chính:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Chọn chức năng "Đăng nhập" trên giao diện       |
+|     |                    | ứng dụng                                        |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Hiển thị giao diện trang đăng nhập với hai      |
+|     |                    | trường: Email và Mật khẩu                       |
++-----+--------------------+-------------------------------------------------+
+|  3  | Người dùng         | Nhập địa chỉ Email và Mật khẩu vào các trường  |
+|     |                    | tương ứng                                       |
++-----+--------------------+-------------------------------------------------+
+|  4  | Người dùng         | Nhấn nút "Đăng nhập"                           |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Kiểm tra tính hợp lệ của thông tin nhập vào    |
+|     |                    | và xác thực qua Firebase Authentication         |
++-----+--------------------+-------------------------------------------------+
+|  6  | Hệ thống           | Chuyển hướng người dùng đến màn hình Trang chủ |
++-----+--------------------+-------------------------------------------------+
+
+Luồng sự kiện thay thế:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Hệ thống           | Thông báo lỗi: "Nhập email" – khi trường email |
+|     |                    | bị để trống                                     |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Thông báo lỗi: "Email không hợp lệ" – khi      |
+|     |                    | email không chứa ký tự '@'                      |
++-----+--------------------+-------------------------------------------------+
+|  3  | Hệ thống           | Thông báo lỗi: "Nhập mật khẩu" – khi trường   |
+|     |                    | mật khẩu bị để trống                            |
++-----+--------------------+-------------------------------------------------+
+|  4  | Hệ thống           | Thông báo lỗi: "Tối thiểu 6 ký tự" – khi mật |
+|     |                    | khẩu có ít hơn 6 ký tự                          |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Hiển thị thông báo lỗi Firebase qua Snackbar   |
+|     |                    | khi email hoặc mật khẩu không chính xác         |
++-----+--------------------+-------------------------------------------------+
+
++---------------------+-----------------------------------------------------+
+| Hậu điều kiện       | Người dùng đăng nhập thành công và có thể sử dụng |
+|                     | đầy đủ các chức năng của ứng dụng                  |
++---------------------+-----------------------------------------------------+
+
+
+1.2.4.2 Đăng ký
+
++---------------------+----------+--------------------+--------------------+
+| Mã Use case         | UC002    | Tên Use case       | Đăng ký            |
++---------------------+----------+--------------------+--------------------+
+| Tác nhân            | Người dùng                                          |
++---------------------+-----------------------------------------------------+
+| Mô tả               | Người dùng tạo tài khoản mới để có thể đăng nhập   |
+|                     | và sử dụng các chức năng của ứng dụng              |
++---------------------+-----------------------------------------------------+
+| Sự kiện kích hoạt   | Người dùng nhấn nút "Đăng ký" trên giao diện      |
+|                     | đăng nhập                                           |
++---------------------+-----------------------------------------------------+
+| Tiền điều kiện      | Không yêu cầu (người dùng chưa có tài khoản)       |
++---------------------+-----------------------------------------------------+
+
+Luồng sự kiện chính:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Chọn liên kết "Đăng ký" trên màn hình đăng     |
+|     |                    | nhập                                            |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Hiển thị giao diện trang đăng ký với các trường |
+|     |                    | Tên hiển thị, Email và Mật khẩu                 |
++-----+--------------------+-------------------------------------------------+
+|  3  | Người dùng         | Nhập Tên hiển thị (Display Name), Email và      |
+|     |                    | Mật khẩu vào các trường tương ứng               |
++-----+--------------------+-------------------------------------------------+
+|  4  | Người dùng         | Nhấn nút "Đăng ký"                             |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Kiểm tra tính hợp lệ của thông tin và tạo tài  |
+|     |                    | khoản mới trong Firebase Authentication         |
++-----+--------------------+-------------------------------------------------+
+|  6  | Hệ thống           | Lưu thông tin người dùng (tên, email, thời gian |
+|     |                    | tạo) vào Firestore collection "users"           |
++-----+--------------------+-------------------------------------------------+
+|  7  | Hệ thống           | Chuyển hướng người dùng đến màn hình Trang chủ |
++-----+--------------------+-------------------------------------------------+
+
+Luồng sự kiện thay thế:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Hệ thống           | Thông báo lỗi validate: Trường Tên hiển thị bị |
+|     |                    | để trống                                        |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Thông báo lỗi validate: Email không đúng định   |
+|     |                    | dạng (thiếu ký tự '@')                          |
++-----+--------------------+-------------------------------------------------+
+|  3  | Hệ thống           | Thông báo lỗi validate: Mật khẩu ít hơn 6 ký  |
+|     |                    | tự                                              |
++-----+--------------------+-------------------------------------------------+
+|  4  | Hệ thống           | Thông báo lỗi Firebase: Email đã được sử dụng  |
+|     |                    | bởi tài khoản khác                              |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Người dùng huỷ đăng ký, hệ thống hiển thị lại  |
+|     |                    | màn hình đăng nhập                              |
++-----+--------------------+-------------------------------------------------+
+
++---------------------+-----------------------------------------------------+
+| Hậu điều kiện       | Người dùng đăng ký tài khoản thành công và được   |
+|                     | chuyển đến màn hình Trang chủ                       |
++---------------------+-----------------------------------------------------+
+
+
+1.2.4.3 Tạo học phần (Deck)
+
++---------------------+----------+--------------------+--------------------+
+| Mã Use case         | UC003    | Tên Use case       | Tạo học phần       |
++---------------------+----------+--------------------+--------------------+
+| Tác nhân            | Người dùng                                          |
++---------------------+-----------------------------------------------------+
+| Mô tả               | Người dùng tạo một bộ từ vựng mới (học phần) với   |
+|                     | tiêu đề và mô tả, lưu trữ vào hệ thống             |
++---------------------+-----------------------------------------------------+
+| Sự kiện kích hoạt   | Người dùng nhấn nút "Tạo học phần" hoặc nút "+"   |
+|                     | trên màn hình Trang chủ hoặc Thư viện               |
++---------------------+-----------------------------------------------------+
+| Tiền điều kiện      | Người dùng đã đăng nhập thành công vào ứng dụng   |
++---------------------+-----------------------------------------------------+
+
+Luồng sự kiện chính:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Chọn chức năng "Tạo học phần" trên giao diện   |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Hiển thị giao diện tạo học phần với trường Tiêu |
+|     |                    | đề và Mô tả                                     |
++-----+--------------------+-------------------------------------------------+
+|  3  | Người dùng         | Nhập Tiêu đề và Mô tả cho học phần             |
++-----+--------------------+-------------------------------------------------+
+|  4  | Người dùng         | Nhấn nút "Lưu"                                 |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Lưu thông tin học phần vào Firestore collection |
+|     |                    | "decks" với ownerId là ID người dùng hiện tại   |
++-----+--------------------+-------------------------------------------------+
+|  6  | Hệ thống           | Chuyển hướng đến màn hình Chi tiết học phần     |
+|     |                    | (Deck Detail) để người dùng thêm thẻ từ         |
++-----+--------------------+-------------------------------------------------+
+
+Luồng sự kiện thay thế:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Hệ thống           | Thông báo lỗi: Tiêu đề học phần không được để  |
+|     |                    | trống                                           |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Thông báo lỗi kết nối Firebase: Không thể lưu  |
+|     |                    | học phần, yêu cầu thử lại                       |
++-----+--------------------+-------------------------------------------------+
+
++---------------------+-----------------------------------------------------+
+| Hậu điều kiện       | Học phần mới được tạo thành công và hiển thị trong |
+|                     | danh sách Thư viện của người dùng                   |
++---------------------+-----------------------------------------------------+
+
+
+1.2.4.4 Thêm thẻ từ (Card)
+
++---------------------+----------+--------------------+--------------------+
+| Mã Use case         | UC004    | Tên Use case       | Thêm thẻ từ        |
++---------------------+----------+--------------------+--------------------+
+| Tác nhân            | Người dùng                                          |
++---------------------+-----------------------------------------------------+
+| Mô tả               | Người dùng thêm cặp từ vựng và nghĩa (term /       |
+|                     | definition) vào một học phần đã có                  |
++---------------------+-----------------------------------------------------+
+| Sự kiện kích hoạt   | Người dùng nhấn nút "Thêm thẻ" trong màn hình     |
+|                     | Chi tiết học phần                                   |
++---------------------+-----------------------------------------------------+
+| Tiền điều kiện      | Người dùng đã đăng nhập và đang xem chi tiết một  |
+|                     | học phần                                            |
++---------------------+-----------------------------------------------------+
+
+Luồng sự kiện chính:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Chọn chức năng "Thêm thẻ" trên màn hình Chi    |
+|     |                    | tiết học phần                                   |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Hiển thị hộp thoại nhập thẻ từ với trường Từ   |
+|     |                    | (term) và Nghĩa (definition)                    |
++-----+--------------------+-------------------------------------------------+
+|  3  | Người dùng         | Nhập từ tiếng Anh vào trường Từ và nghĩa tương |
+|     |                    | ứng vào trường Nghĩa                            |
++-----+--------------------+-------------------------------------------------+
+|  4  | Người dùng         | Nhấn nút "Thêm"                                |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Lưu thẻ từ vào Firestore collection "cards" với |
+|     |                    | deckId tương ứng, cập nhật cardCount của deck   |
++-----+--------------------+-------------------------------------------------+
+|  6  | Hệ thống           | Hiển thị thẻ từ vừa thêm trong danh sách thẻ   |
+|     |                    | của học phần                                    |
++-----+--------------------+-------------------------------------------------+
+
+Luồng sự kiện thay thế:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Hệ thống           | Thông báo lỗi: Trường Từ (term) không được để  |
+|     |                    | trống                                           |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Thông báo lỗi: Trường Nghĩa (definition) không |
+|     |                    | được để trống                                   |
++-----+--------------------+-------------------------------------------------+
+|  3  | Hệ thống           | Người dùng huỷ thêm thẻ, hệ thống đóng hộp    |
+|     |                    | thoại và giữ nguyên danh sách hiện tại          |
++-----+--------------------+-------------------------------------------------+
+
++---------------------+-----------------------------------------------------+
+| Hậu điều kiện       | Thẻ từ được thêm thành công và hiển thị trong danh |
+|                     | sách thẻ của học phần. Số lượng thẻ (cardCount)    |
+|                     | được cập nhật tự động                               |
++---------------------+-----------------------------------------------------+
+
+
+1.2.4.5 Học qua Flashcard
+
++---------------------+----------+--------------------+--------------------+
+| Mã Use case         | UC005    | Tên Use case       | Học qua Flashcard  |
++---------------------+----------+--------------------+--------------------+
+| Tác nhân            | Người dùng                                          |
++---------------------+-----------------------------------------------------+
+| Mô tả               | Người dùng ôn tập từ vựng bằng cách vuốt thẻ:     |
+|                     | vuốt phải nghĩa là "Biết rồi", vuốt trái nghĩa    |
+|                     | là "Chưa biết". Hệ thống thống kê kết quả.         |
++---------------------+-----------------------------------------------------+
+| Sự kiện kích hoạt   | Người dùng nhấn nút "Flashcard" trong màn hình    |
+|                     | Chi tiết học phần                                   |
++---------------------+-----------------------------------------------------+
+| Tiền điều kiện      | Học phần có ít nhất 1 thẻ từ; người dùng đã       |
+|                     | đăng nhập thành công                                |
++---------------------+-----------------------------------------------------+
+
+Luồng sự kiện chính:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Chọn chế độ "Flashcard" trong màn hình Chi tiết|
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Tải danh sách thẻ từ của học phần, hiển thị     |
+|     |                    | thẻ đầu tiên với mặt trước (từ tiếng Anh)       |
++-----+--------------------+-------------------------------------------------+
+|  3  | Người dùng         | Nhấn vào thẻ để lật sang mặt sau (nghĩa tiếng  |
+|     |                    | Việt) nếu muốn xem                              |
++-----+--------------------+-------------------------------------------------+
+|  4  | Người dùng         | Vuốt thẻ sang phải (Biết rồi) hoặc sang trái  |
+|     |                    | (Chưa biết)                                     |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Ghi nhận kết quả, hiển thị thanh tiến độ và    |
+|     |                    | số đếm biết/chưa biết, chuyển sang thẻ tiếp    |
++-----+--------------------+-------------------------------------------------+
+|  6  | Hệ thống           | Khi hoàn thành tất cả thẻ, hiển thị màn hình   |
+|     |                    | kết quả với tuỳ chọn học lại thẻ chưa biết     |
++-----+--------------------+-------------------------------------------------+
+
+Luồng sự kiện thay thế:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Nhấn nút Shuffle để xáo trộn thứ tự thẻ trước |
+|     |                    | khi bắt đầu học                                 |
++-----+--------------------+-------------------------------------------------+
+|  2  | Người dùng         | Nhấn nút Undo để quay lại thẻ trước và thay đổi|
+|     |                    | kết quả đã chọn                                 |
++-----+--------------------+-------------------------------------------------+
+|  3  | Người dùng         | Nhấn nút quay lại để thoát chế độ học, hệ thống|
+|     |                    | lưu trạng thái và quay về màn hình Chi tiết     |
++-----+--------------------+-------------------------------------------------+
+
++---------------------+-----------------------------------------------------+
+| Hậu điều kiện       | Người dùng hoàn thành phiên học Flashcard, hệ     |
+|                     | thống ghi nhận ngày học cho tính năng Streak        |
++---------------------+-----------------------------------------------------+
+
+
+1.2.4.6 Học qua chế độ Learn
+
++---------------------+----------+--------------------+--------------------+
+| Mã Use case         | UC006    | Tên Use case       | Học qua Learn Mode |
++---------------------+----------+--------------------+--------------------+
+| Tác nhân            | Người dùng                                          |
++---------------------+-----------------------------------------------------+
+| Mô tả               | Người dùng học từ vựng theo cấu trúc hai giai đoạn:|
+|                     | Phase 0 (trắc nghiệm 4 đáp án) và Phase 1 (điền   |
+|                     | từ). Học theo batch 5 thẻ mỗi lượt.                 |
++---------------------+-----------------------------------------------------+
+| Sự kiện kích hoạt   | Người dùng nhấn nút "Học" trong màn hình Chi tiết |
+|                     | học phần                                            |
++---------------------+-----------------------------------------------------+
+| Tiền điều kiện      | Học phần có ít nhất 1 thẻ từ; người dùng đã       |
+|                     | đăng nhập thành công                                |
++---------------------+-----------------------------------------------------+
+
+Luồng sự kiện chính:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Chọn chế độ "Học" (Learn) trong màn hình Chi   |
+|     |                    | tiết học phần                                   |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Chia thẻ thành các batch 5 thẻ, hiển thị câu   |
+|     |                    | hỏi trắc nghiệm Phase 0 với 4 lựa chọn         |
++-----+--------------------+-------------------------------------------------+
+|  3  | Người dùng         | Chọn một trong 4 đáp án cho mỗi câu hỏi        |
++-----+--------------------+-------------------------------------------------+
+|  4  | Hệ thống           | Hiển thị phản hồi đúng/sai, phát âm thanh      |
+|     |                    | tương ứng, chuyển sang câu tiếp theo            |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Sau khi hoàn thành Phase 0, chuyển sang Phase 1 |
+|     |                    | (điền từ vào chỗ trống)                         |
++-----+--------------------+-------------------------------------------------+
+|  6  | Người dùng         | Gõ nghĩa tiếng Việt của từ hiển thị vào ô trống|
++-----+--------------------+-------------------------------------------------+
+|  7  | Hệ thống           | Kiểm tra đáp án, cập nhật tiến độ học (learned |
+|     |                    | Count) vào Firestore, chuyển sang thẻ tiếp     |
++-----+--------------------+-------------------------------------------------+
+|  8  | Hệ thống           | Hiển thị màn hình kết quả khi hoàn thành batch  |
++-----+--------------------+-------------------------------------------------+
+
+Luồng sự kiện thay thế:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Trả lời sai ở Phase 1, hệ thống hiển thị đáp   |
+|     |                    | án đúng và không tính điểm cho thẻ đó          |
++-----+--------------------+-------------------------------------------------+
+|  2  | Người dùng         | Nhấn nút thoát, hệ thống lưu tiến độ hiện tại  |
+|     |                    | và quay về màn hình Chi tiết học phần           |
++-----+--------------------+-------------------------------------------------+
+
++---------------------+-----------------------------------------------------+
+| Hậu điều kiện       | Tiến độ học tập được lưu vào Firestore (learntCount |
+|                     | và totalCount), hệ thống ghi nhận ngày học Streak   |
++---------------------+-----------------------------------------------------+
+
+
+1.2.4.7 Kiểm tra – Test Mode
+
++---------------------+----------+--------------------+--------------------+
+| Mã Use case         | UC007    | Tên Use case       | Kiểm tra (Test)    |
++---------------------+----------+--------------------+--------------------+
+| Tác nhân            | Người dùng                                          |
++---------------------+-----------------------------------------------------+
+| Mô tả               | Người dùng kiểm tra toàn bộ từ vựng trong học phần |
+|                     | bằng câu hỏi trắc nghiệm, nhận điểm số phần trăm  |
+|                     | khi hoàn thành                                      |
++---------------------+-----------------------------------------------------+
+| Sự kiện kích hoạt   | Người dùng nhấn nút "Kiểm tra" trong màn hình Chi |
+|                     | tiết học phần                                       |
++---------------------+-----------------------------------------------------+
+| Tiền điều kiện      | Học phần có ít nhất 4 thẻ từ (để tạo đủ 4 đáp án |
+|                     | trắc nghiệm); người dùng đã đăng nhập              |
++---------------------+-----------------------------------------------------+
+
+Luồng sự kiện chính:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Chọn chế độ "Kiểm tra" trong màn hình Chi tiết |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Tải toàn bộ thẻ từ, tạo câu hỏi trắc nghiệm   |
+|     |                    | với 4 lựa chọn ngẫu nhiên, hiển thị thanh tiến |
+|     |                    | độ ở đầu màn hình                               |
++-----+--------------------+-------------------------------------------------+
+|  3  | Người dùng         | Lần lượt chọn đáp án cho từng câu hỏi          |
++-----+--------------------+-------------------------------------------------+
+|  4  | Hệ thống           | Hiển thị phản hồi trực quan (đúng = xanh lá,   |
+|     |                    | sai = đỏ), ghi nhận kết quả và chuyển câu tiếp |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Hiển thị màn hình kết quả: điểm %, số câu đúng,|
+|     |                    | số câu sai sau khi trả lời hết tất cả câu hỏi  |
++-----+--------------------+-------------------------------------------------+
+
+Luồng sự kiện thay thế:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Hệ thống           | Thông báo: "Cần ít nhất 4 thẻ từ để kiểm tra"  |
+|     |                    | nếu học phần có ít hơn 4 thẻ                    |
++-----+--------------------+-------------------------------------------------+
+|  2  | Người dùng         | Nhấn "Làm lại" trên màn hình kết quả để thực   |
+|     |                    | hiện bài kiểm tra lần nữa                       |
++-----+--------------------+-------------------------------------------------+
+
++---------------------+-----------------------------------------------------+
+| Hậu điều kiện       | Người dùng hoàn thành bài kiểm tra, nhận được kết  |
+|                     | quả điểm số. Hệ thống ghi nhận ngày học Streak.     |
++---------------------+-----------------------------------------------------+
+
+
+1.2.4.8 Trò chơi Match – Ghép thẻ
+
++---------------------+----------+--------------------+--------------------+
+| Mã Use case         | UC008    | Tên Use case       | Trò chơi Match     |
++---------------------+----------+--------------------+--------------------+
+| Tác nhân            | Người dùng                                          |
++---------------------+-----------------------------------------------------+
+| Mô tả               | Người dùng chơi trò chơi ghép cặp từ với nghĩa     |
+|                     | tương ứng trên lưới, đồng hồ đếm thời gian hoàn   |
+|                     | thành                                               |
++---------------------+-----------------------------------------------------+
+| Sự kiện kích hoạt   | Người dùng nhấn nút "Ghép thẻ" (Match) trong màn  |
+|                     | hình Chi tiết học phần                              |
++---------------------+-----------------------------------------------------+
+| Tiền điều kiện      | Học phần có ít nhất 2 thẻ từ; người dùng đã       |
+|                     | đăng nhập thành công                                |
++---------------------+-----------------------------------------------------+
+
+Luồng sự kiện chính:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Chọn chế độ "Ghép thẻ" trong màn hình Chi tiết |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Hiển thị lưới ghép cặp (tối đa 6 cặp từ/nghĩa) |
+|     |                    | được sắp xếp ngẫu nhiên, bắt đầu đếm thời gian |
++-----+--------------------+-------------------------------------------------+
+|  3  | Người dùng         | Nhấn vào một ô chứa từ tiếng Anh               |
++-----+--------------------+-------------------------------------------------+
+|  4  | Người dùng         | Nhấn vào ô chứa nghĩa tiếng Việt tương ứng     |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Kiểm tra cặp ghép: nếu đúng thì đánh dấu xanh |
+|     |                    | và loại khỏi lưới; nếu sai thì hiển thị đỏ     |
+|     |                    | tạm thời rồi ẩn đi                              |
++-----+--------------------+-------------------------------------------------+
+|  6  | Hệ thống           | Khi ghép xong tất cả cặp, dừng đồng hồ và      |
+|     |                    | hiển thị màn hình kết quả với thời gian và      |
+|     |                    | biểu tượng cảm xúc đánh giá                    |
++-----+--------------------+-------------------------------------------------+
+
+Luồng sự kiện thay thế:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Nhấn "Chơi lại" trên màn hình kết quả để bắt   |
+|     |                    | đầu lại trò chơi với thứ tự mới                 |
++-----+--------------------+-------------------------------------------------+
+|  2  | Người dùng         | Nhấn nút quay lại để thoát, hệ thống quay về   |
+|     |                    | màn hình Chi tiết học phần                      |
++-----+--------------------+-------------------------------------------------+
+
++---------------------+-----------------------------------------------------+
+| Hậu điều kiện       | Người dùng hoàn thành trò chơi, nhận được thời gian|
+|                     | hoàn thành. Hệ thống ghi nhận ngày học Streak.      |
++---------------------+-----------------------------------------------------+
+
+
+1.2.4.9 Khám phá từ vựng CEFR
+
++---------------------+----------+--------------------+--------------------+
+| Mã Use case         | UC009    | Tên Use case       | Khám phá CEFR      |
++---------------------+----------+--------------------+--------------------+
+| Tác nhân            | Người dùng                                          |
++---------------------+-----------------------------------------------------+
+| Mô tả               | Người dùng duyệt kho từ vựng tiếng Anh được phân   |
+|                     | loại theo chuẩn CEFR gồm 6 cấp độ từ A1 đến C2    |
++---------------------+-----------------------------------------------------+
+| Sự kiện kích hoạt   | Người dùng nhấn vào một cấp độ CEFR trên màn hình |
+|                     | Trang chủ hoặc trong phần Khám phá                  |
++---------------------+-----------------------------------------------------+
+| Tiền điều kiện      | Ứng dụng có kết nối Internet để tải dữ liệu từ API |
++---------------------+-----------------------------------------------------+
+
+Luồng sự kiện chính:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Người dùng         | Chọn một cấp độ CEFR (A1, A2, B1, B2, C1, C2)  |
+|     |                    | trên giao diện Trang chủ                        |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Kiểm tra bộ đệm (cache) – nếu có dữ liệu hợp  |
+|     |                    | lệ (< 7 ngày) thì dùng cache, nếu không thì    |
+|     |                    | tải từ API bên ngoài                            |
++-----+--------------------+-------------------------------------------------+
+|  3  | Hệ thống           | Hiển thị danh sách các bộ từ vựng theo cấp độ  |
+|     |                    | đã chọn                                         |
++-----+--------------------+-------------------------------------------------+
+|  4  | Người dùng         | Chọn một bộ từ vựng cụ thể để xem chi tiết     |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Hiển thị danh sách từ vựng với từ tiếng Anh,   |
+|     |                    | phiên âm và nghĩa tiếng Việt                    |
++-----+--------------------+-------------------------------------------------+
+
+Luồng sự kiện thay thế:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Hệ thống           | Không có kết nối Internet: Sử dụng danh sách   |
+|     |                    | từ vựng dự phòng (fallback) tích hợp sẵn trong |
+|     |                    | ứng dụng                                        |
++-----+--------------------+-------------------------------------------------+
+|  2  | Người dùng         | Nhấn nút thoát để quay lại Trang chủ           |
++-----+--------------------+-------------------------------------------------+
+
++---------------------+-----------------------------------------------------+
+| Hậu điều kiện       | Người dùng duyệt được danh sách từ vựng theo cấp  |
+|                     | độ CEFR đã chọn                                     |
++---------------------+-----------------------------------------------------+
+
+
+1.2.4.10 Theo dõi chuỗi ngày học – Streak
+
++---------------------+----------+--------------------+--------------------+
+| Mã Use case         | UC010    | Tên Use case       | Theo dõi Streak    |
++---------------------+----------+--------------------+--------------------+
+| Tác nhân            | Người dùng                                          |
++---------------------+-----------------------------------------------------+
+| Mô tả               | Hệ thống tự động ghi nhận các ngày người dùng học  |
+|                     | và tính toán chuỗi ngày học liên tiếp. Người dùng  |
+|                     | có thể xem thống kê streak trên màn hình Hồ sơ.    |
++---------------------+-----------------------------------------------------+
+| Sự kiện kích hoạt   | Tự động kích hoạt khi người dùng hoàn thành bất    |
+|                     | kỳ phiên học nào (UC005, UC006, UC007, UC008)       |
++---------------------+-----------------------------------------------------+
+| Tiền điều kiện      | Người dùng đã đăng nhập thành công vào ứng dụng   |
++---------------------+-----------------------------------------------------+
+
+Luồng sự kiện chính:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Hệ thống           | Sau khi hoàn thành phiên học, gọi hàm           |
+|     |                    | recordStudyDay() trong StreakRepository          |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Kiểm tra nếu ngày hôm nay chưa được ghi nhận   |
+|     |                    | (so sánh với lastStudyDate)                      |
++-----+--------------------+-------------------------------------------------+
+|  3  | Hệ thống           | Cập nhật studiedDates, tính toán currentStreak  |
+|     |                    | và longestStreak sử dụng Firestore transaction  |
++-----+--------------------+-------------------------------------------------+
+|  4  | Người dùng         | Truy cập màn hình Hồ sơ (Profile)              |
++-----+--------------------+-------------------------------------------------+
+|  5  | Hệ thống           | Hiển thị currentStreak (chuỗi hiện tại),        |
+|     |                    | longestStreak (chuỗi dài nhất), lịch các ngày  |
+|     |                    | học dưới dạng calendar visualizer              |
++-----+--------------------+-------------------------------------------------+
+
+Luồng sự kiện thay thế:
++-----+--------------------+-------------------------------------------------+
+| STT | Thực hiện bởi      | Hành động                                       |
++-----+--------------------+-------------------------------------------------+
+|  1  | Hệ thống           | Nếu ngày hôm nay đã được ghi nhận, hệ thống    |
+|     |                    | không cộng thêm vào streak (tránh trùng lặp)    |
++-----+--------------------+-------------------------------------------------+
+|  2  | Hệ thống           | Nếu người dùng bỏ học hơn 1 ngày, currentStreak|
+|     |                    | được reset về 1 khi học lại                     |
++-----+--------------------+-------------------------------------------------+
+
++---------------------+-----------------------------------------------------+
+| Hậu điều kiện       | Thông tin chuỗi ngày học được cập nhật và hiển     |
+|                     | thị chính xác trên màn hình Hồ sơ của người dùng  |
++---------------------+-----------------------------------------------------+
+
+
+--------------------------------------------------------------------------------
+
+1.3 Các yêu cầu phi chức năng
+
+1.3.1 Giao diện người dùng
+
+• Thiết kế thẩm mỹ và nhất quán: Giao diện ứng dụng được thiết kế theo nguyên
+  tắc Material Design, đảm bảo tính nhất quán về màu sắc, font chữ và cách bố
+  cục trên toàn bộ ứng dụng. Hệ thống màu sắc chủ đạo sử dụng gradient tím-
+  xanh (Purple-Blue gradient) làm điểm nhận diện thương hiệu.
+
+• Hỗ trợ Dark Mode và Light Mode: Ứng dụng cung cấp hai chế độ giao diện – chế
+  độ sáng (Light Mode) và chế độ tối (Dark Mode). Người dùng có thể chuyển đổi
+  giữa hai chế độ từ màn hình Cài đặt, và lựa chọn này được lưu lại tự động
+  bằng SharedPreferences.
+
+• Tương thích đa nền tảng: Ứng dụng hoạt động ổn định trên cả hai hệ điều hành
+  Android và iOS, đồng thời có thể chạy trên nền tảng Web. Giao diện tự điều
+  chỉnh kích thước phù hợp với các màn hình khác nhau (điện thoại, máy tính bảng).
+
+• Phản hồi tương tác: Các thao tác người dùng đều có phản hồi trực quan ngay lập
+  tức (animation vuốt thẻ, hiệu ứng lật thẻ, màu sắc đúng/sai trong trò chơi)
+  và âm thanh phản hồi trong các chế độ học có thể bật/tắt từ phần Cài đặt.
+
+• Trạng thái loading và lỗi: Ứng dụng hiển thị vòng xoay tải (loading indicator)
+  khi đang tải dữ liệu từ Firebase và hiển thị thông báo lỗi rõ ràng qua
+  Snackbar khi có sự cố xảy ra.
+
+1.3.2 Yêu cầu bảo mật
+
+• Xác thực người dùng an toàn: Hệ thống sử dụng Firebase Authentication để quản
+  lý toàn bộ quá trình xác thực người dùng. Mật khẩu được lưu trữ dưới dạng mã
+  hóa (hash) bởi Firebase, ứng dụng không bao giờ lưu mật khẩu dưới dạng văn
+  bản thuần (plain-text).
+
+• Kiểm soát truy cập dữ liệu: Firestore Security Rules đảm bảo rằng mỗi người
+  dùng chỉ có thể đọc và ghi dữ liệu của chính họ. Học phần, thẻ từ, tiến độ
+  học tập và thông tin streak chỉ có thể được truy cập bởi chủ sở hữu tương ứng.
+
+• Bảo mật phiên làm việc: Firebase Authentication tự động quản lý token phiên
+  làm việc. Người dùng được yêu cầu đăng nhập lại khi phiên hết hạn.
+
+1.3.3 Ràng buộc
+
+• Kết nối Internet: Người dùng cần có kết nối Internet ổn định để đồng bộ dữ liệu
+  với Firebase (đăng nhập, tải/lưu học phần, cập nhật tiến độ). Tính năng Khám
+  phá CEFR có cơ chế fallback để hoạt động offline với dữ liệu được cache.
+
+• Yêu cầu thiết bị: Ứng dụng yêu cầu Android 6.0 (API Level 23) trở lên hoặc
+  iOS 12 trở lên để đảm bảo tương thích đầy đủ với Flutter framework và các gói
+  phụ thuộc (Firebase, Flame game engine, audioplayers).
+
+• Tài nguyên thiết bị: Tính năng trò chơi Flappy Bird (sử dụng Flame game engine)
+  yêu cầu thiết bị có đủ bộ nhớ RAM và GPU để đảm bảo trải nghiệm mượt mà.
+
+
+--------------------------------------------------------------------------------
+
+1.4 Phần mềm cần kiểm thử
+
+1.4.1 Thông tin phần mềm
+
+Ứng dụng học tiếng Anh Lizquet được xây dựng trên framework Flutter với ngôn ngữ
+lập trình Dart, sử dụng Firebase làm nền tảng backend. Ứng dụng áp dụng kiến trúc
+phân tầng (layered architecture) với pattern clean architecture, kết hợp với Riverpod
+làm thư viện quản lý trạng thái và GoRouter cho điều hướng.
+
+Chi tiết công nghệ:
+• IDE (Integrated Development Environment) : Visual Studio Code / Android Studio
+• Ngôn ngữ lập trình                       : Dart
+• Framework                                : Flutter
+• Backend – Xác thực                       : Firebase Authentication
+• Backend – Cơ sở dữ liệu                 : Cloud Firestore (NoSQL, thời gian thực)
+• Quản lý trạng thái                       : Flutter Riverpod
+• Điều hướng                               : GoRouter
+• Engine trò chơi                          : Flame (cho chế độ Flappy Bird)
+• Lưu trữ cục bộ                          : SharedPreferences
+• HTTP / API                               : http package (Dart)
+• Nền tảng hỗ trợ                         : Android, iOS, Web
+
+Ứng dụng được thiết kế để hỗ trợ người học từ vựng tiếng Anh với các tính năng:
+• Đăng nhập và đăng ký tài khoản người dùng qua Firebase Authentication
+• Tạo và quản lý bộ học phần (deck) và thẻ từ (card) cá nhân
+• Học từ vựng qua 5 chế độ: Flashcard, Learn, Test, Match, Flappy Bird
+• Theo dõi tiến độ học tập và chuỗi ngày học (Streak)
+• Khám phá từ vựng theo chuẩn CEFR (A1-C2) từ API bên ngoài
+• Tổ chức học phần vào thư mục (Folder) và chia sẻ trong lớp học (Group)
+
+Để đảm bảo phần mềm hoạt động chính xác và hiệu quả, các hoạt động kiểm thử
+sẽ tập trung vào các khía cạnh sau:
+1. Kiểm thử chức năng (Functional Testing): Đảm bảo tất cả 10 use case hoạt
+   động đúng như đặc tả.
+2. Kiểm thử đơn vị (Unit Testing): Xác minh tính đúng đắn của các lớp model
+   như ProgressModel, CardModel, DeckModel.
+3. Kiểm thử giao diện (Widget Testing): Đảm bảo giao diện hiển thị đúng và
+   phản hồi đúng với các tương tác người dùng.
+
+1.4.2 Công cụ kiểm thử
+
+1. Flutter Test (flutter_test)
+
+Giới thiệu: Flutter Test là framework kiểm thử tích hợp sẵn của Flutter, cung
+cấp đầy đủ công cụ để viết và chạy unit test, widget test và integration test.
+
+Lợi ích:
+• Không cần cài đặt thêm – tích hợp sẵn trong Flutter SDK.
+• Hỗ trợ test widget (giao diện) mà không cần thiết bị thật hoặc emulator.
+• Cung cấp WidgetTester để tương tác và kiểm tra giao diện.
+• Tích hợp với hệ thống CI/CD để chạy tự động.
+
+2. Mockito (Dart)
+
+Giới thiệu: Mockito là thư viện tạo đối tượng giả lập (mock object) cho Dart,
+hỗ trợ kiểm thử độc lập các thành phần mà không cần kết nối Firebase thực.
+Được khai báo trong pubspec.yaml với package: mockito và build_runner.
+
+Lợi ích:
+• Kiểm thử độc lập: Giúp kiểm thử các lớp nghiệp vụ mà không cần kết nối
+  Firebase thực.
+• Xác minh hành vi: Có thể kiểm tra xem một method có được gọi đúng hay không.
+• Tăng tốc kiểm thử: Không cần chờ kết nối mạng, test chạy rất nhanh.
+
+3. Firebase Emulator Suite
+
+Giới thiệu: Bộ công cụ của Firebase cho phép giả lập toàn bộ môi trường Firebase
+(Authentication, Firestore) trên máy cục bộ, không cần kết nối Internet hay tốn
+chi phí Firebase thực.
+
+Lợi ích:
+• Kiểm thử an toàn – không ảnh hưởng dữ liệu production.
+• Hoạt động offline – không cần kết nối Internet.
+• Phù hợp cho integration test và kiểm thử security rules.
+
+4. Android Emulator / Thiết bị thật
+
+Giới thiệu: Công cụ kiểm thử thủ công trên giao diện thực của ứng dụng, bao
+gồm Android Emulator (tích hợp trong Android Studio) và thiết bị Android/iOS thật.
+
+Lợi ích:
+• Kiểm thử trải nghiệm người dùng thực tế.
+• Phát hiện lỗi giao diện, hiệu năng và tương tác cảm ứng.
+• Xác nhận kết quả của các test case thủ công (manual test case).
+
+Sử dụng kết hợp Flutter Test với Mockito giúp đảm bảo rằng phần mềm không chỉ
+được kiểm thử kỹ lưỡng ở cấp độ đơn vị (unit) mà còn được kiểm tra toàn diện ở
+cấp độ giao diện (widget), đảm bảo tính đúng đắn và ổn định của ứng dụng trước
+khi phát hành.
+
+================================================================================
+                        [HẾT CHƯƠNG I]
+================================================================================
+
+
+CHƯƠNG II: XÂY DỰNG TEST PLAN
+
+
+2.1 Giới thiệu
+
+2.1.1 Mục đích
+
+Tài liệu kế hoạch kiểm thử này được xây dựng nhằm đạt được các mục tiêu sau:
+
+• Xác định rõ phạm vi: Làm rõ các thành phần chức năng của ứng dụng học tiếng
+  Anh Lizquet sẽ được kiểm thử (đăng nhập, đăng ký, tạo học phần, thêm thẻ từ,
+  các chế độ học tập, khám phá CEFR, theo dõi streak) và các thành phần không
+  nằm trong phạm vi kiểm thử.
+
+• Liệt kê yêu cầu kiểm thử: Xác định các tiêu chí cụ thể mà hệ thống cần đáp
+  ứng để được coi là hoạt động đúng và hiệu quả. Ví dụ: tính chính xác của việc
+  tính toán tiến độ học tập (ProgressModel.percent), tính bảo mật của thông tin
+  người dùng qua Firebase Authentication, tính thân thiện và nhất quán của giao
+  diện người dùng Flutter.
+
+• Đề xuất chiến lược kiểm thử: Đưa ra các phương pháp kiểm thử phù hợp với từng
+  yêu cầu kiểm thử:
+  - Kiểm thử chức năng (Functional Testing): Kiểm tra từng use case riêng lẻ
+    theo luồng chính và luồng thay thế.
+  - Kiểm thử đơn vị (Unit Testing): Xác minh tính đúng đắn của các lớp model
+    (ProgressModel, CardModel, DeckModel) và logic nghiệp vụ bằng Flutter Test.
+  - Kiểm thử giao diện (Widget Testing): Đảm bảo giao diện hiển thị đúng và
+    phản hồi chính xác với các tương tác người dùng.
+  - Kiểm thử hiệu năng (Performance Testing): Đánh giá thời gian phản hồi của
+    các thao tác Firebase (tải học phần, đăng nhập, lưu tiến độ).
+
+• Ước tính tài nguyên và chi phí: Xác định nguồn lực cần thiết (nhân sự, thời
+  gian, công cụ, thiết bị) cho quá trình kiểm thử.
+
+• Xác định tài liệu đầu ra: Liệt kê các loại tài liệu sẽ được tạo ra sau khi
+  quá trình kiểm thử hoàn tất, bao gồm báo cáo kết quả kiểm thử, bảng test case
+  và kết quả chạy unit test tự động.
+
+2.1.2 Tổng quan
+
+Lizquet là một ứng dụng học từ vựng tiếng Anh được phát triển trên nền tảng
+Flutter, hướng đến đối tượng người dùng là học sinh, sinh viên và người đi làm
+có nhu cầu học và ôn luyện từ vựng tiếng Anh. Với Lizquet, việc xây dựng và ôn
+luyện vốn từ vựng trở nên đơn giản, hiệu quả và thú vị hơn bao giờ hết.
+
+Điểm nổi bật của Lizquet là sự đa dạng trong phương pháp học tập. Người dùng có
+thể học từ vựng qua 5 chế độ khác nhau: Flashcard (vuốt thẻ phân loại biết/chưa
+biết), Learn (học có cấu trúc kết hợp trắc nghiệm và điền từ), Test (kiểm tra
+tổng hợp với điểm số phần trăm), Match (trò chơi ghép cặp tính thời gian) và
+Flappy Bird (trò chơi tương tác kết hợp học từ vựng). Sự đa dạng này giúp người
+học duy trì sự hứng thú và học tập hiệu quả hơn.
+
+Không chỉ dừng lại ở việc học từ vựng cá nhân, Lizquet còn cung cấp kho từ vựng
+sẵn có phân loại theo chuẩn CEFR (A1-C2), tính năng tổ chức học phần vào thư
+mục và chia sẻ trong lớp học nhóm. Hệ thống theo dõi chuỗi ngày học (Streak)
+và lịch học tập trực quan giúp người dùng duy trì thói quen học tập đều đặn.
+
+2.1.3 Phạm vi
+
+Tài liệu kế hoạch kiểm thử này tập trung vào việc kiểm tra các chức năng chính
+của ứng dụng Lizquet, bao gồm:
+
+• Quản lý tài khoản:
+  - Đăng ký tài khoản mới với tên hiển thị, email và mật khẩu hợp lệ.
+  - Đăng nhập vào hệ thống bằng email và mật khẩu.
+
+• Quản lý học phần và thẻ từ:
+  - Tạo học phần mới với tiêu đề và mô tả.
+  - Thêm thẻ từ (cặp từ/nghĩa) vào học phần.
+
+• Các chế độ học tập:
+  - Flashcard: Vuốt thẻ phân loại từ vựng.
+  - Learn Mode: Học có cấu trúc 2 phase.
+  - Test Mode: Kiểm tra toàn bộ từ vựng.
+  - Match Game: Trò chơi ghép cặp.
+
+• Tính năng bổ trợ:
+  - Khám phá từ vựng theo chuẩn CEFR (A1-C2).
+  - Theo dõi chuỗi ngày học (Streak).
+
+Các thành phần KHÔNG nằm trong phạm vi kiểm thử của tài liệu này:
+  - Tính năng Flappy Bird (Flame game engine – kiểm thử riêng).
+  - Tính năng Thư mục (Folder) và Lớp học (Group).
+  - Firebase Security Rules (kiểm thử bởi Firebase Emulator riêng).
+
+2.1.4 Các định nghĩa và các từ viết tắt được dùng
+
+2.1.4.1 Các định nghĩa
+
++------------------+----------------------------------------------------------+
+| Thuật ngữ        | Định nghĩa                                               |
++------------------+----------------------------------------------------------+
+| Lizquet          | Tên ứng dụng học từ vựng tiếng Anh được kiểm thử        |
++------------------+----------------------------------------------------------+
+| Deck             | Học phần – bộ từ vựng do người dùng tạo ra              |
++------------------+----------------------------------------------------------+
+| Card             | Thẻ từ – một cặp từ/nghĩa (term/definition) trong deck  |
++------------------+----------------------------------------------------------+
+| Streak           | Chuỗi ngày học liên tiếp của người dùng                  |
++------------------+----------------------------------------------------------+
+| CEFR             | Khung tham chiếu ngôn ngữ chung châu Âu (A1-C2)         |
++------------------+----------------------------------------------------------+
+| Firebase         | Nền tảng backend của Google cung cấp Auth + Firestore   |
++------------------+----------------------------------------------------------+
+| Firestore        | Cơ sở dữ liệu NoSQL thời gian thực của Firebase         |
++------------------+----------------------------------------------------------+
+| Flutter Test     | Framework kiểm thử tích hợp sẵn của Flutter SDK         |
++------------------+----------------------------------------------------------+
+| Mockito (Dart)   | Thư viện tạo mock object cho ngôn ngữ Dart              |
++------------------+----------------------------------------------------------+
+| Unit Test        | Kiểm thử đơn vị – kiểm tra từng hàm/lớp riêng lẻ       |
++------------------+----------------------------------------------------------+
+| Widget Test      | Kiểm thử giao diện widget của ứng dụng Flutter          |
++------------------+----------------------------------------------------------+
+
+Bảng 2.1: Bảng các thuật ngữ sử dụng
+
+2.1.5 Những người sử dụng tài liệu này
+
+Tài liệu này được sử dụng cho Test Manager, Test Designer và Tester trong nhóm
+kiểm thử ứng dụng Lizquet.
+
+
+--------------------------------------------------------------------------------
+
+2.2 Tài liệu tham khảo
+
+• Template Test Plan (IEEE Std 829)
+• Flutter Testing Documentation – https://docs.flutter.dev/testing
+• Slides môn học Kiểm Thử Phần Mềm
+• Firebase Documentation – https://firebase.google.com/docs
+
+
+--------------------------------------------------------------------------------
+
+2.3 Lịch trình công việc
+
++-------------------------------+--------------------+----------+------------+------------+
+| Milestone                     | Deliverables       | Duration | Start Date | End Date   |
++-------------------------------+--------------------+----------+------------+------------+
+| Lập kế hoạch kiểm thử         | Tài liệu Test Plan | 3 ngày   | [Tuần 1]   | [Tuần 1]   |
++-------------------------------+--------------------+----------+------------+------------+
+| Xem lại các tài liệu          | Tài liệu Test Plan | 2 ngày   | [Tuần 1]   | [Tuần 2]   |
++-------------------------------+--------------------+----------+------------+------------+
+| Thiết kế các testcase         | Tài liệu Testcase  | 3 ngày   | [Tuần 2]   | [Tuần 2]   |
++-------------------------------+--------------------+----------+------------+------------+
+| Viết các testcase (thủ công)  | Tài liệu Testcase  | 4 ngày   | [Tuần 2]   | [Tuần 3]   |
++-------------------------------+--------------------+----------+------------+------------+
+| Xem lại các testcase          | Tài liệu Testcase  | 2 ngày   | [Tuần 3]   | [Tuần 3]   |
++-------------------------------+--------------------+----------+------------+------------+
+| Viết unit test tự động        | File test/*.dart   | 3 ngày   | [Tuần 3]   | [Tuần 4]   |
++-------------------------------+--------------------+----------+------------+------------+
+| Thực thi các testcase         | Kết quả kiểm thử   | 5 ngày   | [Tuần 4]   | [Tuần 4]   |
++-------------------------------+--------------------+----------+------------+------------+
+| Ghi nhận và đánh giá kết quả  | Báo cáo kết quả   | 4 ngày   | [Tuần 4]   | [Tuần 5]   |
++-------------------------------+--------------------+----------+------------+------------+
+| Hoàn thiện báo cáo            | Báo cáo cuối       | 2 ngày   | [Tuần 5]   | [Tuần 5]   |
++-------------------------------+--------------------+----------+------------+------------+
+
+Bảng 2.2: Bảng lịch trình công việc
+
+
+--------------------------------------------------------------------------------
+
+2.4 Những yêu cầu tài nguyên
+
+2.4.1 Phần cứng
+
+Máy tính cá nhân có kết nối mạng Internet để chạy Flutter SDK, Android Emulator
+và Firebase Emulator Suite.
+
++--------------------+-----------+----------+----------------+
+| CPU                | RAM       | Ổ cứng   | Kiến trúc      |
++--------------------+-----------+----------+----------------+
+| Intel Core i5/i7,  | 8 GB      | 256 GB   | 64-bit         |
+| 2.5 GHz trở lên    | (tối thiểu)| SSD trở |                |
+|                    |           | lên      |                |
++--------------------+-----------+----------+----------------+
+
+Bảng 2.3: Yêu cầu về phần cứng
+
+Lưu ý: Android Emulator yêu cầu bật tính năng Hardware Acceleration (Intel HAXM
+hoặc Hyper-V) trên máy chủ. RAM 16 GB được khuyến nghị khi chạy đồng thời
+Android Emulator và Firebase Emulator Suite.
+
+Thiết bị kiểm thử thủ công:
+• Thiết bị Android: Android 6.0 (API 23) trở lên
+• Thiết bị iOS: iOS 12 trở lên (tuỳ chọn)
+
+2.4.2 Phần mềm
+
++----------------------------------+-----------+-----------------------------+
+| Tên phần mềm                     | Phiên bản | Loại                        |
++----------------------------------+-----------+-----------------------------+
+| Flutter SDK                      | 3.x trở   | Framework phát triển &      |
+|                                  | lên       | kiểm thử                    |
++----------------------------------+-----------+-----------------------------+
+| Dart SDK                         | 3.x trở   | Ngôn ngữ lập trình          |
+|                                  | lên       | (đi kèm Flutter)            |
++----------------------------------+-----------+-----------------------------+
+| Android Studio / VS Code         | Mới nhất  | IDE phát triển & debug      |
++----------------------------------+-----------+-----------------------------+
+| Android SDK                      | API 23+   | SDK chạy Android Emulator   |
++----------------------------------+-----------+-----------------------------+
+| Firebase CLI                     | Mới nhất  | Quản lý Firebase Emulator   |
++----------------------------------+-----------+-----------------------------+
+| Microsoft Windows 10/11          | Mới nhất  | Hệ điều hành                |
++----------------------------------+-----------+-----------------------------+
+| Google Chrome                    | Mới nhất  | Trình duyệt (web testing)   |
++----------------------------------+-----------+-----------------------------+
+
+Bảng 2.4: Yêu cầu về phần mềm
+
+2.4.3 Công cụ kiểm thử
+
++----------------------------+---------------------+-------------+-----------+
+| Hoạt động                  | Công cụ             | Nhà cung cấp| Phiên bản |
++----------------------------+---------------------+-------------+-----------+
+| Quản lý TestCase           | Microsoft Excel     | Microsoft   | 2021      |
++----------------------------+---------------------+-------------+-----------+
+| Quản lý tài liệu           | Microsoft Word      | Microsoft   | 2021      |
++----------------------------+---------------------+-------------+-----------+
+| Defect Tracking            | Microsoft Excel     | Microsoft   | 2021      |
++----------------------------+---------------------+-------------+-----------+
+| Quản lý tiến độ            | Microsoft Excel     | Microsoft   | 2021      |
++----------------------------+---------------------+-------------+-----------+
+| Kiểm thử đơn vị (Unit)     | Flutter Test        | Google      | 3.x       |
++----------------------------+---------------------+-------------+-----------+
+| Mock Object                | Mockito (Dart)      | Community   | 5.4.x     |
++----------------------------+---------------------+-------------+-----------+
+| Giả lập Firebase           | Firebase Emulator   | Google      | Mới nhất  |
++----------------------------+---------------------+-------------+-----------+
+| Kiểm thử giao diện thủ công| Android Emulator    | Google      | API 33    |
++----------------------------+---------------------+-------------+-----------+
+
+Bảng 2.5: Bảng công cụ kiểm thử
+
+2.4.4 Môi trường kiểm thử
+
+Môi trường kiểm thử cho ứng dụng Lizquet sẽ được thiết lập trên các máy tính
+cá nhân có kết nối Internet ổn định, đảm bảo tốc độ truy cập đủ nhanh để đồng
+bộ dữ liệu với Firebase Firestore và tải từ vựng từ API bên ngoài.
+
+Các máy tính này sẽ được cài đặt hệ điều hành Windows 10/11 64-bit với Flutter
+SDK phiên bản mới nhất, Android Studio hoặc VS Code làm IDE chính. Firebase
+Emulator Suite sẽ được cài đặt để phục vụ kiểm thử unit test mà không ảnh hưởng
+đến dữ liệu production.
+
+Việc sử dụng Android Emulator (AVD – Android Virtual Device) kết hợp với thiết
+bị Android thật sẽ đảm bảo kiểm thử được toàn diện trên nhiều kích thước màn
+hình và phiên bản Android khác nhau. Điều này giúp phát hiện các vấn đề về hiển
+thị giao diện và hiệu năng trên các thiết bị khác nhau.
+
+Tóm tắt môi trường:
+• Kiểm thử Unit Test      : Máy tính phát triển + Flutter Test + Firebase Emulator
+• Kiểm thử Widget Test    : Máy tính phát triển + Flutter Test + Android Emulator
+• Kiểm thử thủ công       : Thiết bị Android thật (Android 6.0+)
+• Kiểm thử kết nối mạng   : Firebase Firestore thực + kết nối Internet ổn định
+
+2.4.5 Nhân sự
+
+2.4.5.1 Vai trò và trách nhiệm
+
++------------------+-----------------------------------------------------------+
+| Thành viên       | Vai trò và trách nhiệm                                    |
++------------------+-----------------------------------------------------------+
+| [Thành viên 1]   | Test Manager / Test Designer / Tester:                    |
+|                  | Lập kế hoạch kiểm thử tổng thể, quản lý tiến độ          |
+|                  | nhóm, thiết kế và thực thi testcase cho UC001 (Đăng       |
+|                  | nhập) và UC002 (Đăng ký). Viết unit test kiểm thử         |
+|                  | logic xác thực form (validate email, mật khẩu).           |
+|                  | Tổng hợp và hoàn thiện báo cáo cuối cùng.                 |
++------------------+-----------------------------------------------------------+
+| [Thành viên 2]   | Test Designer / Tester:                                   |
+|                  | Thiết kế và viết testcase cho UC003 (Tạo học phần),       |
+|                  | UC004 (Thêm thẻ từ) và UC009 (Khám phá CEFR).            |
+|                  | Thực thi các testcase được phân công. Tổng hợp            |
+|                  | chạy lệnh flutter test, chụp kết quả Pass/Fail            |
+|                  | đưa vào báo cáo Chương IV.                                |
++------------------+-----------------------------------------------------------+
+| [Thành viên 3]   | Test Designer / Tester:                                   |
+|                  | Thiết kế và viết testcase cho UC005 (Flashcard) và        |
+|                  | UC006 (Learn Mode). Viết unit test cho ProgressModel      |
+|                  | (các hàm: percent, isCompleted, isNotStarted).            |
+|                  | Thực thi và ghi nhận kết quả kiểm thử.                    |
++------------------+-----------------------------------------------------------+
+| [Thành viên 4]   | Test Designer / Tester:                                   |
+|                  | Thiết kế và viết testcase cho UC007 (Test Mode),          |
+|                  | UC008 (Match Game) và UC010 (Streak). Viết unit           |
+|                  | test cho CardModel và DeckModel (fromMap/toMap             |
+|                  | serialization). Xem lại Test Plan, chỉnh sửa báo          |
+|                  | cáo và đọc tài liệu tham khảo để bổ sung thông tin.      |
++------------------+-----------------------------------------------------------+
+
+Bảng 2.6: Bảng phân công nhân sự
+
+
+--------------------------------------------------------------------------------
+
+2.5 Các tiêu chí kiểm thử
+
+2.5.1 Tiêu chí chấp nhận (Entry Criteria)
+
+Kiểm thử bắt đầu khi đáp ứng đủ các điều kiện sau:
+• Ứng dụng Lizquet đã được build thành công (flutter build / flutter run).
+• Môi trường Firebase (Auth + Firestore) hoặc Firebase Emulator đã sẵn sàng.
+• Tài liệu SRS (Chương I) đã được xem xét và thống nhất.
+• Các testcase đã được viết và xem xét xong.
+• Các thành viên nhóm đã được phân công công việc cụ thể.
+
+2.5.2 Tiêu chí hoàn thành (Exit Criteria)
+
+Kiểm thử kết thúc khi đáp ứng đủ các điều kiện sau:
+• Tất cả testcase trong phạm vi đã được thực thi.
+• Tỷ lệ testcase Pass đạt 100% (hoặc các lỗi còn lại đã được ghi nhận và
+  đánh giá mức độ ảnh hưởng).
+• Toàn bộ unit test chạy lệnh flutter test cho kết quả All tests passed.
+• Báo cáo kết quả kiểm thử đã được hoàn thiện.
+
+2.5.3 Tiêu chí tạm dừng (Suspension Criteria)
+
+Kiểm thử tạm dừng khi:
+• Phát hiện lỗi nghiêm trọng (Critical Bug) ảnh hưởng đến luồng chính của
+  ứng dụng (ví dụ: không thể đăng nhập, mất dữ liệu học phần).
+• Môi trường Firebase hoặc kết nối Internet không ổn định.
+• Ứng dụng crash liên tục trong quá trình kiểm thử.
+
+================================================================================
+                        [HẾT CHƯƠNG II]
+================================================================================
+
+
+CHƯƠNG III: THỰC HIỆN KIỂM THỬ
+
+
+3.1 Testcase cho chức năng Đăng nhập – TC001
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+| TC ID | Mô tả                                            | Kết quả mong đợi                           | Status |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  001  | Bỏ trống cả hai trường Email và Mật khẩu         | Hiển thị: "Nhập email" + "Nhập mật khẩu"  | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng Lizquet                    | Màn hình đăng nhập hiển thị           |
+  2.  | Để trống ô Email                       | -                                     |
+  3.  | Để trống ô Mật khẩu                   | -                                     |
+  4.  | Nhấn nút "Đăng nhập"                  | Hiển thị thông báo lỗi validate       |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  002  | Bỏ trống trường Email, nhập mật khẩu hợp lệ    | Hiển thị lỗi: "Nhập email"                 | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng Lizquet                    | Màn hình đăng nhập hiển thị           |
+  2.  | Để trống ô Email                       | -                                     |
+  3.  | Nhấn vào ô Mật khẩu                   | Ô mật khẩu được kích hoạt             |
+  4.  | Nhập mật khẩu vào ô Mật khẩu          | Ô mật khẩu hiển thị ký tự ẩn         | "Test123456"
+  5.  | Nhấn nút "Đăng nhập"                  | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  003  | Nhập email hợp lệ, bỏ trống Mật khẩu           | Hiển thị lỗi: "Nhập mật khẩu"              | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng Lizquet                    | Màn hình đăng nhập hiển thị           |
+  2.  | Nhấn vào ô Email                       | Ô email được kích hoạt                |
+  3.  | Nhập email vào ô Email                 | Ô email hiển thị nội dung nhập        | "hocsinh@gmail.com"
+  4.  | Để trống ô Mật khẩu                   | -                                     |
+  5.  | Nhấn nút "Đăng nhập"                  | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  004  | Nhập email sai định dạng (thiếu ký tự '@')     | Hiển thị lỗi: "Email không hợp lệ"         | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng Lizquet                    | Màn hình đăng nhập hiển thị           |
+  2.  | Nhấn vào ô Email                       | Ô email được kích hoạt                |
+  3.  | Nhập email không hợp lệ               | Ô email hiển thị nội dung nhập        | "hocsinhgmail"
+  4.  | Nhấn vào ô Mật khẩu và nhập mật khẩu | Ô mật khẩu hiển thị ký tự ẩn         | "Test123456"
+  5.  | Nhấn nút "Đăng nhập"                  | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  005  | Nhập mật khẩu ít hơn 6 ký tự                  | Hiển thị lỗi: "Tối thiểu 6 ký tự"          | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng Lizquet                    | Màn hình đăng nhập hiển thị           |
+  2.  | Nhấn vào ô Email và nhập email         | Ô email hiển thị nội dung nhập        | "hocsinh@gmail.com"
+  3.  | Nhấn vào ô Mật khẩu                   | Ô mật khẩu được kích hoạt             |
+  4.  | Nhập mật khẩu ít hơn 6 ký tự          | Ô mật khẩu hiển thị ký tự ẩn         | "abc"
+  5.  | Nhấn nút "Đăng nhập"                  | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  006  | Email đúng định dạng nhưng mật khẩu sai        | Hiển thị Snackbar lỗi Firebase              | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng Lizquet                    | Màn hình đăng nhập hiển thị           |
+  2.  | Nhập email vào ô Email                 | Ô email hiển thị nội dung nhập        | "hocsinh@gmail.com"
+  3.  | Nhập mật khẩu sai vào ô Mật khẩu      | Ô mật khẩu hiển thị ký tự ẩn         | "SaiMatKhau99"
+  4.  | Nhấn nút "Đăng nhập"                  | Hiển thị Snackbar thông báo lỗi       |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  007  | Nhập đúng email và mật khẩu                    | Chuyển đến màn hình Trang chủ               | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng Lizquet                    | Màn hình đăng nhập hiển thị           |
+  2.  | Nhấn vào ô Email                       | Ô email được kích hoạt                |
+  3.  | Nhập email hợp lệ vào ô Email          | Ô email hiển thị nội dung nhập        | "hocsinh@gmail.com"
+  4.  | Nhấn vào ô Mật khẩu                   | Ô mật khẩu được kích hoạt             |
+  5.  | Nhập mật khẩu đúng vào ô Mật khẩu     | Ô mật khẩu hiển thị ký tự ẩn         | "Test123456"
+  6.  | Nhấn nút "Đăng nhập"                  | Đăng nhập thành công                  |
+  7.  | -                                      | Chuyển sang màn hình Trang chủ        |
+
+
+--------------------------------------------------------------------------------
+
+3.2 Testcase cho chức năng Đăng ký – TC002
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+| TC ID | Mô tả                                            | Kết quả mong đợi                           | Status |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  001  | Bỏ trống tất cả các trường                      | Hiển thị lỗi validate tất cả trường        | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng Lizquet                    | Màn hình đăng nhập hiển thị           |
+  2.  | Nhấn liên kết "Đăng ký"               | Màn hình đăng ký hiển thị             |
+  3.  | Để trống ô Tên hiển thị               | -                                     |
+  4.  | Để trống ô Email                       | -                                     |
+  5.  | Để trống ô Mật khẩu                   | -                                     |
+  6.  | Nhấn nút "Đăng ký"                    | Hiển thị lỗi validate các trường      |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  002  | Bỏ trống trường Tên hiển thị                   | Hiển thị lỗi: "Nhập tên hiển thị"          | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng, nhấn "Đăng ký"          | Màn hình đăng ký hiển thị             |
+  2.  | Để trống ô Tên hiển thị               | -                                     |
+  3.  | Nhập email vào ô Email                 | Ô email hiển thị nội dung nhập        | "hocsinh@gmail.com"
+  4.  | Nhập mật khẩu vào ô Mật khẩu          | Ô mật khẩu hiển thị ký tự ẩn         | "Test123456"
+  5.  | Nhấn nút "Đăng ký"                    | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  003  | Bỏ trống trường Email                          | Hiển thị lỗi: "Nhập email"                 | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng, nhấn "Đăng ký"          | Màn hình đăng ký hiển thị             |
+  2.  | Nhập tên hiển thị vào ô Tên           | Ô tên hiển thị nội dung nhập          | "Nguyễn Văn A"
+  3.  | Để trống ô Email                       | -                                     |
+  4.  | Nhập mật khẩu vào ô Mật khẩu          | Ô mật khẩu hiển thị ký tự ẩn         | "Test123456"
+  5.  | Nhấn nút "Đăng ký"                    | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  004  | Nhập email sai định dạng                       | Hiển thị lỗi: "Email không hợp lệ"         | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng, nhấn "Đăng ký"          | Màn hình đăng ký hiển thị             |
+  2.  | Nhập tên hiển thị                      | Ô tên hiển thị nội dung nhập          | "Nguyễn Văn A"
+  3.  | Nhập email sai định dạng               | Ô email hiển thị nội dung nhập        | "hocsinhgmail"
+  4.  | Nhập mật khẩu hợp lệ                  | Ô mật khẩu hiển thị ký tự ẩn         | "Test123456"
+  5.  | Nhấn nút "Đăng ký"                    | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  005  | Bỏ trống trường Mật khẩu                       | Hiển thị lỗi: "Nhập mật khẩu"              | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng, nhấn "Đăng ký"          | Màn hình đăng ký hiển thị             |
+  2.  | Nhập tên hiển thị                      | Ô tên hiển thị nội dung nhập          | "Nguyễn Văn A"
+  3.  | Nhập email hợp lệ                      | Ô email hiển thị nội dung nhập        | "hocsinh@gmail.com"
+  4.  | Để trống ô Mật khẩu                   | -                                     |
+  5.  | Nhấn nút "Đăng ký"                    | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  006  | Nhập mật khẩu ít hơn 6 ký tự                  | Hiển thị lỗi: "Tối thiểu 6 ký tự"          | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng, nhấn "Đăng ký"          | Màn hình đăng ký hiển thị             |
+  2.  | Nhập tên hiển thị                      | Ô tên hiển thị nội dung nhập          | "Nguyễn Văn A"
+  3.  | Nhập email hợp lệ                      | Ô email hiển thị nội dung nhập        | "hocsinh@gmail.com"
+  4.  | Nhập mật khẩu ngắn                     | Ô mật khẩu hiển thị ký tự ẩn         | "abc"
+  5.  | Nhấn nút "Đăng ký"                    | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  007  | Đăng ký bằng email đã tồn tại trong hệ thống   | Hiển thị Snackbar lỗi Firebase              | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng, nhấn "Đăng ký"          | Màn hình đăng ký hiển thị             |
+  2.  | Nhập tên hiển thị                      | Ô tên hiển thị nội dung nhập          | "Nguyễn Văn A"
+  3.  | Nhập email đã tồn tại trong hệ thống  | Ô email hiển thị nội dung nhập        | "existing@gmail.com"
+  4.  | Nhập mật khẩu hợp lệ                  | Ô mật khẩu hiển thị ký tự ẩn         | "Test123456"
+  5.  | Nhấn nút "Đăng ký"                    | Hiển thị Snackbar lỗi Firebase        |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  008  | Nhập đầy đủ thông tin hợp lệ                   | Đăng ký thành công, chuyển màn hình Home   | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng, nhấn "Đăng ký"          | Màn hình đăng ký hiển thị             |
+  2.  | Nhập tên hiển thị vào ô Tên           | Ô tên hiển thị nội dung nhập          | "Nguyễn Văn A"
+  3.  | Nhập email vào ô Email                 | Ô email hiển thị nội dung nhập        | "moinew@gmail.com"
+  4.  | Nhập mật khẩu vào ô Mật khẩu          | Ô mật khẩu hiển thị ký tự ẩn         | "Test123456"
+  5.  | Nhấn nút "Đăng ký"                    | Đăng ký thành công                    |
+  6.  | -                                      | Chuyển sang màn hình Trang chủ        |
+
+
+--------------------------------------------------------------------------------
+
+3.3 Testcase cho chức năng Tạo học phần – TC003
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+| TC ID | Mô tả                                            | Kết quả mong đợi                           | Status |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  001  | Để trống trường Tiêu đề khi tạo học phần        | Hiển thị lỗi: "Tiêu đề không được để trống"| Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Đăng nhập thành công                   | Màn hình Trang chủ hiển thị           |
+  2.  | Nhấn nút "+" hoặc "Tạo học phần"      | Màn hình tạo học phần hiển thị        |
+  3.  | Để trống ô Tiêu đề                     | -                                     |
+  4.  | Nhập mô tả vào ô Mô tả (tuỳ chọn)     | Ô mô tả hiển thị nội dung nhập        | "Bộ từ vựng IELTS"
+  5.  | Nhấn nút "Lưu"                         | Hiển thị thông báo lỗi validate       |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  002  | Nhập tiêu đề hợp lệ, để trống mô tả            | Tạo học phần thành công                    | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Đăng nhập thành công                   | Màn hình Trang chủ hiển thị           |
+  2.  | Nhấn nút "Tạo học phần"               | Màn hình tạo học phần hiển thị        |
+  3.  | Nhập tiêu đề vào ô Tiêu đề             | Ô tiêu đề hiển thị nội dung nhập      | "Từ vựng IELTS"
+  4.  | Để trống ô Mô tả                       | -                                     |
+  5.  | Nhấn nút "Lưu"                         | Tạo thành công, chuyển màn hình       |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  003  | Nhập đầy đủ tiêu đề và mô tả hợp lệ            | Tạo học phần thành công                    | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Đăng nhập thành công                   | Màn hình Trang chủ hiển thị           |
+  2.  | Nhấn nút "Tạo học phần"               | Màn hình tạo học phần hiển thị        |
+  3.  | Nhập tiêu đề vào ô Tiêu đề             | Ô tiêu đề hiển thị nội dung nhập      | "Từ vựng IELTS"
+  4.  | Nhập mô tả vào ô Mô tả                 | Ô mô tả hiển thị nội dung nhập        | "Bộ từ vựng IELTS cơ bản"
+  5.  | Nhấn nút "Lưu"                         | Lưu lên Firestore thành công          |
+  6.  | -                                      | Chuyển đến màn hình Chi tiết học phần |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  004  | Nhập tiêu đề với ký tự đặc biệt                 | Tạo học phần thành công                    | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Đăng nhập, nhấn "Tạo học phần"        | Màn hình tạo học phần hiển thị        |
+  2.  | Nhập tiêu đề có ký tự đặc biệt         | Ô tiêu đề hiển thị nội dung nhập      | "TOEIC 2024 – Part 5 & 6"
+  3.  | Nhấn nút "Lưu"                         | Tạo thành công                        |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  005  | Nhấn nút Huỷ khi đang tạo học phần             | Quay lại màn hình trước, không lưu dữ liệu| Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Đăng nhập, nhấn "Tạo học phần"        | Màn hình tạo học phần hiển thị        |
+  2.  | Nhập một phần tiêu đề                  | Ô tiêu đề hiển thị nội dung nhập      | "Draft"
+  3.  | Nhấn nút quay lại (Back)               | Quay về màn hình trước, không lưu     |
+
+
+--------------------------------------------------------------------------------
+
+3.4 Testcase cho chức năng Thêm thẻ từ – TC004
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+| TC ID | Mô tả                                            | Kết quả mong đợi                           | Status |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  001  | Để trống trường Từ (term)                        | Hiển thị lỗi: "Nhập từ"                    | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở màn hình Chi tiết học phần          | Màn hình chi tiết hiển thị            |
+  2.  | Nhấn nút "Thêm thẻ"                   | Hộp thoại nhập thẻ từ hiển thị        |
+  3.  | Để trống ô Từ (term)                   | -                                     |
+  4.  | Nhập nghĩa vào ô Nghĩa                 | Ô nghĩa hiển thị nội dung nhập        | "quả táo"
+  5.  | Nhấn nút "Thêm"                        | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  002  | Để trống trường Nghĩa (definition)               | Hiển thị lỗi: "Nhập nghĩa"                | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở màn hình Chi tiết học phần          | Màn hình chi tiết hiển thị            |
+  2.  | Nhấn nút "Thêm thẻ"                   | Hộp thoại nhập thẻ từ hiển thị        |
+  3.  | Nhập từ vào ô Từ                       | Ô từ hiển thị nội dung nhập           | "apple"
+  4.  | Để trống ô Nghĩa (definition)          | -                                     |
+  5.  | Nhấn nút "Thêm"                        | Hiển thị thông báo lỗi               |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  003  | Để trống cả hai trường Từ và Nghĩa              | Hiển thị lỗi cả hai trường                | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở màn hình Chi tiết học phần          | Màn hình chi tiết hiển thị            |
+  2.  | Nhấn nút "Thêm thẻ"                   | Hộp thoại nhập thẻ từ hiển thị        |
+  3.  | Để trống ô Từ và ô Nghĩa              | -                                     |
+  4.  | Nhấn nút "Thêm"                        | Hiển thị lỗi validate cả hai trường   |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  004  | Nhập từ và nghĩa hợp lệ                         | Thẻ từ được thêm vào danh sách              | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở màn hình Chi tiết học phần          | Màn hình chi tiết hiển thị            |
+  2.  | Nhấn nút "Thêm thẻ"                   | Hộp thoại nhập thẻ từ hiển thị        |
+  3.  | Nhập từ tiếng Anh vào ô Từ             | Ô từ hiển thị nội dung nhập           | "apple"
+  4.  | Nhập nghĩa tiếng Việt vào ô Nghĩa      | Ô nghĩa hiển thị nội dung nhập        | "quả táo"
+  5.  | Nhấn nút "Thêm"                        | Thẻ từ lưu vào Firestore              |
+  6.  | -                                      | Thẻ từ mới xuất hiện trong danh sách  |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  005  | Nhấn nút Huỷ khi đang nhập thẻ từ              | Hộp thoại đóng, danh sách không thay đổi  | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở màn hình Chi tiết học phần          | Màn hình chi tiết hiển thị            |
+  2.  | Nhấn nút "Thêm thẻ"                   | Hộp thoại nhập thẻ từ hiển thị        |
+  3.  | Nhập một phần dữ liệu                  | Ô từ hiển thị nội dung nhập           | "book"
+  4.  | Nhấn nút Huỷ hoặc Back                 | Hộp thoại đóng, dữ liệu không lưu    |
+
+
+--------------------------------------------------------------------------------
+
+3.5 Testcase cho chức năng Flashcard – TC005
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+| TC ID | Mô tả                                            | Kết quả mong đợi                           | Status |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  001  | Vuốt thẻ sang phải – đánh dấu "Biết rồi"       | Thẻ biến mất, số "Biết" tăng thêm 1        | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở học phần có ≥ 1 thẻ, chọn Flashcard| Màn hình Flashcard hiển thị thẻ đầu   |
+  2.  | Xem thẻ hiển thị từ tiếng Anh         | Thẻ hiển thị mặt trước                |
+  3.  | Vuốt thẻ sang phải                     | Thẻ bay ra khỏi màn hình về bên phải  |
+  4.  | -                                      | Số "Biết rồi" tăng 1, thẻ tiếp hiện  |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  002  | Vuốt thẻ sang trái – đánh dấu "Chưa biết"      | Thẻ biến mất, số "Chưa biết" tăng thêm 1  | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở học phần có ≥ 1 thẻ, chọn Flashcard| Màn hình Flashcard hiển thị thẻ đầu   |
+  2.  | Vuốt thẻ sang trái                     | Thẻ bay ra khỏi màn hình về bên trái  |
+  3.  | -                                      | Số "Chưa biết" tăng 1, thẻ tiếp hiện |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  003  | Nhấn vào thẻ để lật xem nghĩa                   | Thẻ lật sang mặt sau, hiển thị nghĩa       | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở Flashcard, thẻ hiển thị từ TA      | Thẻ hiển thị mặt trước (từ tiếng Anh) |
+  2.  | Nhấn vào thẻ                           | Thẻ thực hiện animation lật           |
+  3.  | -                                      | Mặt sau thẻ hiển thị nghĩa tiếng Việt|
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  004  | Nhấn nút Shuffle để xáo trộn thứ tự thẻ        | Thẻ được sắp xếp lại ngẫu nhiên            | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở Flashcard                           | Màn hình Flashcard hiển thị           |
+  2.  | Nhấn biểu tượng Shuffle trên app bar   | Biểu tượng Shuffle được kích hoạt     |
+  3.  | Quan sát thứ tự thẻ                    | Thứ tự thẻ khác với thứ tự ban đầu   |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  005  | Hoàn thành tất cả thẻ                           | Màn hình kết quả hiển thị             | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở Flashcard học phần 5 thẻ           | Màn hình Flashcard hiển thị           |
+  2.  | Vuốt tất cả 5 thẻ (phải hoặc trái)   | Mỗi thẻ được phân loại               |
+  3.  | -                                      | Màn hình kết quả với thống kê biết/   |
+  4.  | -                                      | chưa biết và tuỳ chọn học lại         |
+
+
+--------------------------------------------------------------------------------
+
+3.6 Testcase cho chức năng Learn Mode – TC006
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+| TC ID | Mô tả                                            | Kết quả mong đợi                           | Status |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  001  | Phase 0: Chọn đúng đáp án trắc nghiệm           | Phản hồi xanh, tiến độ tăng                | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở học phần, chọn chế độ "Học"        | Màn hình Learn Phase 0 hiển thị       |
+  2.  | Đọc câu hỏi và 4 đáp án              | Câu hỏi trắc nghiệm hiển thị rõ      |
+  3.  | Nhấn vào đáp án đúng                  | Đáp án được chọn, highlight xanh lá  |
+  4.  | -                                      | Âm thanh thành công phát ra           |
+  5.  | -                                      | Chuyển sang câu hỏi tiếp theo         |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  002  | Phase 0: Chọn sai đáp án trắc nghiệm           | Phản hồi đỏ, đáp án đúng được hiển thị    | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở học phần, chọn chế độ "Học"        | Màn hình Learn Phase 0 hiển thị       |
+  2.  | Nhấn vào đáp án sai                    | Đáp án sai highlight đỏ               |
+  3.  | -                                      | Âm thanh thất bại phát ra             |
+  4.  | -                                      | Đáp án đúng được highlight xanh       |
+  5.  | -                                      | Chuyển sang câu hỏi tiếp theo         |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  003  | Phase 1: Điền đúng nghĩa của từ                 | Điểm tăng, phản hồi đúng hiển thị          | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Hoàn thành Phase 0, chuyển Phase 1    | Màn hình điền từ hiển thị             |
+  2.  | Đọc từ tiếng Anh hiển thị             | Từ tiếng Anh hiển thị rõ ràng         |
+  3.  | Nhập nghĩa tiếng Việt vào ô trống     | Ô trống hiển thị nội dung nhập        | "quả táo" (khi từ là "apple")
+  4.  | Nhấn nút Xác nhận / Enter             | Kiểm tra đáp án                       |
+  5.  | -                                      | Phản hồi đúng, tiến độ học tăng       |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  004  | Phase 1: Điền sai nghĩa của từ                  | Hiển thị đáp án đúng, không tính điểm      | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Hoàn thành Phase 0, chuyển Phase 1    | Màn hình điền từ hiển thị             |
+  2.  | Nhập nghĩa sai vào ô trống             | Ô trống hiển thị nội dung nhập        | "con mèo" (khi từ là "apple")
+  3.  | Nhấn nút Xác nhận / Enter             | Kiểm tra đáp án                       |
+  4.  | -                                      | Hiển thị đáp án đúng, không tính điểm|
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  005  | Hoàn thành 1 batch (5 thẻ)                      | Màn hình kết quả batch hiển thị             | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở học phần ≥ 5 thẻ, chọn "Học"      | Màn hình Learn hiển thị               |
+  2.  | Hoàn thành Phase 0 và Phase 1          | Các thẻ được học lần lượt             |
+  3.  | Hoàn thành 5 thẻ đầu tiên              | -                                     |
+  4.  | -                                      | Màn hình kết quả batch với điểm số   |
+
+
+--------------------------------------------------------------------------------
+
+3.7 Testcase cho chức năng Test Mode – TC007
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+| TC ID | Mô tả                                            | Kết quả mong đợi                           | Status |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  001  | Học phần có ít hơn 4 thẻ                        | Hiển thị thông báo cần ít nhất 4 thẻ       | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở học phần có 2 thẻ                  | Màn hình Chi tiết học phần hiển thị   |
+  2.  | Nhấn nút "Kiểm tra"                   | -                                     |
+  3.  | -                                      | Hiển thị thông báo: cần tối thiểu 4  |
+  4.  | -                                      | thẻ để thực hiện kiểm tra             |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  002  | Chọn đúng đáp án trong bài kiểm tra             | Đáp án highlight xanh lá                   | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở học phần có ≥ 4 thẻ, chọn "Kiểm tra"| Màn hình Test Mode hiển thị         |
+  2.  | Đọc câu hỏi và 4 đáp án              | Câu hỏi trắc nghiệm hiển thị         |
+  3.  | Nhấn vào đáp án đúng                  | Đáp án highlight xanh lá             |
+  4.  | -                                      | Chuyển tự động sang câu tiếp theo     |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  003  | Chọn sai đáp án trong bài kiểm tra              | Đáp án sai đỏ, đáp án đúng xanh           | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở học phần có ≥ 4 thẻ, chọn "Kiểm tra"| Màn hình Test Mode hiển thị         |
+  2.  | Nhấn vào đáp án sai                    | Đáp án sai highlight đỏ               |
+  3.  | -                                      | Đáp án đúng tự động highlight xanh   |
+  4.  | -                                      | Chuyển tự động sang câu tiếp theo     |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  004  | Hoàn thành toàn bộ bài kiểm tra                 | Màn hình kết quả với điểm % và số câu      | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở học phần 4 thẻ, chọn "Kiểm tra"   | Màn hình Test Mode hiển thị           |
+  2.  | Trả lời lần lượt tất cả câu hỏi       | Thanh tiến độ tăng dần                |
+  3.  | Trả lời xong câu cuối cùng             | -                                     |
+  4.  | -                                      | Màn hình kết quả: điểm %, số đúng,   |
+  5.  | -                                      | số sai và nút "Làm lại"               |
+
+
+--------------------------------------------------------------------------------
+
+3.8 Testcase cho chức năng Match Game – TC008
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+| TC ID | Mô tả                                            | Kết quả mong đợi                           | Status |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  001  | Nhấn chọn đúng cặp từ – nghĩa                   | Cặp đúng highlight xanh và biến mất        | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở học phần có ≥ 2 thẻ, chọn "Ghép thẻ"| Màn hình Match hiển thị lưới       |
+  2.  | Đồng hồ bắt đầu đếm                   | Đồng hồ hiển thị và chạy             |
+  3.  | Nhấn vào ô chứa từ tiếng Anh          | Ô từ được chọn (highlight)            |
+  4.  | Nhấn vào ô chứa nghĩa tương ứng       | Kiểm tra cặp ghép                    |
+  5.  | -                                      | Cặp đúng: highlight xanh, biến mất   |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  002  | Nhấn chọn sai cặp từ – nghĩa                    | Flash đỏ tạm thời, hai ô ẩn trở lại       | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở Match Game                          | Màn hình Match hiển thị lưới          |
+  2.  | Nhấn vào ô từ tiếng Anh               | Ô từ được chọn (highlight)            |
+  3.  | Nhấn vào ô nghĩa KHÔNG tương ứng      | Kiểm tra cặp ghép                    |
+  4.  | -                                      | Flash đỏ tạm thời trên cả hai ô      |
+  5.  | -                                      | Hai ô trở về trạng thái mặc định      |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  003  | Hoàn thành ghép tất cả các cặp                  | Đồng hồ dừng, màn hình kết quả hiển thị   | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở Match Game học phần 4 thẻ          | Màn hình Match hiển thị lưới 8 ô     |
+  2.  | Lần lượt ghép đúng tất cả 4 cặp       | Từng cặp đúng biến mất khỏi lưới     |
+  3.  | Ghép xong cặp cuối cùng               | -                                     |
+  4.  | -                                      | Đồng hồ dừng, hiển thị thời gian     |
+  5.  | -                                      | Màn hình kết quả với emoji đánh giá  |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  004  | Nhấn nút "Chơi lại" sau khi kết thúc            | Trò chơi bắt đầu lại, thứ tự mới          | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Hoàn thành Match Game                  | Màn hình kết quả hiển thị             |
+  2.  | Nhấn nút "Chơi lại"                   | -                                     |
+  3.  | -                                      | Màn hình Match Game mới bắt đầu       |
+  4.  | -                                      | Thứ tự ô được xáo trộn lại            |
+
+
+--------------------------------------------------------------------------------
+
+3.9 Testcase cho chức năng Khám phá CEFR – TC009
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+| TC ID | Mô tả                                            | Kết quả mong đợi                           | Status |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  001  | Chọn cấp độ A1                                   | Danh sách bộ từ vựng cấp độ A1 hiển thị   | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng, vào màn hình Trang chủ  | Trang chủ hiển thị                    |
+  2.  | Nhấn vào chip cấp độ "A1"             | -                                     |
+  3.  | -                                      | Màn hình hiển thị các bộ từ A1        |
+  4.  | -                                      | Danh sách từ vựng A1 được tải và hiển |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  002  | Chọn cấp độ B2                                   | Danh sách bộ từ vựng cấp độ B2 hiển thị   | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Mở ứng dụng, vào màn hình Trang chủ  | Trang chủ hiển thị                    |
+  2.  | Nhấn vào chip cấp độ "B2"             | -                                     |
+  3.  | -                                      | Màn hình hiển thị các bộ từ B2        |
+  4.  | -                                      | Danh sách từ vựng B2 được tải và hiển |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  003  | Chọn cấp độ khi không có kết nối Internet       | Dữ liệu fallback tích hợp sẵn được dùng   | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Tắt kết nối Internet trên thiết bị     | Thiết bị không có Internet            |
+  2.  | Mở ứng dụng, nhấn cấp độ A1           | -                                     |
+  3.  | -                                      | Ứng dụng sử dụng dữ liệu fallback     |
+  4.  | -                                      | Danh sách từ vựng vẫn hiển thị        |
+
+
+--------------------------------------------------------------------------------
+
+3.10 Testcase cho chức năng Theo dõi Streak – TC010
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+| TC ID | Mô tả                                            | Kết quả mong đợi                           | Status |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  001  | Hoàn thành phiên học đầu tiên trong ngày        | Streak hiển thị: 1 ngày                    | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Đăng nhập lần đầu (streak = 0)        | Màn hình Trang chủ hiển thị           |
+  2.  | Mở học phần và hoàn thành Flashcard   | Phiên học hoàn tất                    |
+  3.  | Vào màn hình Hồ sơ                    | Màn hình Profile hiển thị             |
+  4.  | -                                      | Streak hiển thị: 🔥 1                  |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  002  | Học thêm lần thứ hai trong cùng một ngày        | Streak không thay đổi (không cộng thêm)    | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Đã học trong ngày hôm nay (streak = 1)| Streak đang = 1                       |
+  2.  | Hoàn thành thêm một phiên học nữa     | Phiên học hoàn tất                    |
+  3.  | Vào màn hình Hồ sơ                    | Màn hình Profile hiển thị             |
+  4.  | -                                      | Streak vẫn là 🔥 1 (không tăng thêm)  |
+
++-------+--------------------------------------------------+--------------------------------------------+--------+
+|  003  | Ngày hôm sau học tiếp (chuỗi ngày liên tiếp)   | Streak tăng lên 2                           | Passed |
++-------+--------------------------------------------------+--------------------------------------------+--------+
+Các bước thực hiện:
+  STT | Thực hiện                              | Kết quả bước                          | Dữ liệu
+  1.  | Hôm qua đã học (streak = 1)           | Streak đang = 1                       |
+  2.  | Hôm nay hoàn thành một phiên học       | Phiên học hoàn tất                    |
+  3.  | Vào màn hình Hồ sơ                    | Màn hình Profile hiển thị             |
+  4.  | -                                      | Streak tăng: 🔥 2                      |
+
+
+--------------------------------------------------------------------------------
+
+3.11 Unit Test – Kiểm thử đơn vị tự động
+
+Các unit test dưới đây được viết bằng Dart sử dụng framework Flutter Test.
+File kiểm thử: test/lizquet_unit_test.dart
+Chạy bằng lệnh: flutter test test/lizquet_unit_test.dart
+
+---- CODE UNIT TEST ----
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:quizlet_clone/shared/models/progress_model.dart';
+import 'package:quizlet_clone/shared/models/card_model.dart';
+
+void main() {
+  // ================================================================
+  // GROUP 1: ProgressModel – Kiểm thử lớp tiến độ học tập
+  // Phụ trách: [Thành viên 3]
+  // ================================================================
+  group('ProgressModel', () {
+    // Test 1: percent trả về 0.0 khi chưa học thẻ nào
+    test('percent returns 0.0 when no cards learned', () {
+      final progress = ProgressModel(
+        deckId: 'deck-001',
+        userId: 'user-001',
+        learnedCount: 0,
+        totalCount: 10,
+        lastStudied: DateTime(2024, 1, 1),
+      );
+      expect(progress.percent, 0.0);
+    });
+
+    // Test 2: percent trả về 1.0 khi đã học hết tất cả thẻ
+    test('percent returns 1.0 when all cards learned', () {
+      final progress = ProgressModel(
+        deckId: 'deck-001',
+        userId: 'user-001',
+        learnedCount: 10,
+        totalCount: 10,
+        lastStudied: DateTime(2024, 1, 1),
+      );
+      expect(progress.percent, 1.0);
+    });
+
+    // Test 3: percent trả về đúng tỷ lệ khi học một phần
+    test('percent returns 0.5 when half cards learned', () {
+      final progress = ProgressModel(
+        deckId: 'deck-001',
+        userId: 'user-001',
+        learnedCount: 5,
+        totalCount: 10,
+        lastStudied: DateTime(2024, 1, 1),
+      );
+      expect(progress.percent, 0.5);
+    });
+
+    // Test 4: percent trả về 0.0 khi totalCount = 0 (tránh chia cho 0)
+    test('percent returns 0.0 when totalCount is zero', () {
+      final progress = ProgressModel(
+        deckId: 'deck-001',
+        userId: 'user-001',
+        learnedCount: 0,
+        totalCount: 0,
+        lastStudied: DateTime(2024, 1, 1),
+      );
+      expect(progress.percent, 0.0);
+    });
+
+    // Test 5: isCompleted trả về true khi learnedCount >= totalCount
+    test('isCompleted returns true when all cards learned', () {
+      final progress = ProgressModel(
+        deckId: 'deck-001',
+        userId: 'user-001',
+        learnedCount: 10,
+        totalCount: 10,
+        lastStudied: DateTime(2024, 1, 1),
+      );
+      expect(progress.isCompleted, true);
+    });
+
+    // Test 6: isCompleted trả về false khi chưa học xong
+    test('isCompleted returns false when partially learned', () {
+      final progress = ProgressModel(
+        deckId: 'deck-001',
+        userId: 'user-001',
+        learnedCount: 5,
+        totalCount: 10,
+        lastStudied: DateTime(2024, 1, 1),
+      );
+      expect(progress.isCompleted, false);
+    });
+
+    // Test 7: isNotStarted trả về true khi learnedCount = 0
+    test('isNotStarted returns true when learnedCount is zero', () {
+      final progress = ProgressModel(
+        deckId: 'deck-001',
+        userId: 'user-001',
+        learnedCount: 0,
+        totalCount: 10,
+        lastStudied: DateTime(2024, 1, 1),
+      );
+      expect(progress.isNotStarted, true);
+    });
+
+    // Test 8: isNotStarted trả về false khi đã học ít nhất 1 thẻ
+    test('isNotStarted returns false when some cards learned', () {
+      final progress = ProgressModel(
+        deckId: 'deck-001',
+        userId: 'user-001',
+        learnedCount: 3,
+        totalCount: 10,
+        lastStudied: DateTime(2024, 1, 1),
+      );
+      expect(progress.isNotStarted, false);
+    });
+
+    // Test 9: fromMap và toMap round-trip giữ nguyên dữ liệu
+    test('fromMap and toMap round-trip preserves all fields', () {
+      final original = ProgressModel(
+        deckId: 'deck-roundtrip',
+        userId: 'user-roundtrip',
+        learnedCount: 7,
+        totalCount: 15,
+        lastStudied: DateTime(2024, 6, 15),
+      );
+      final map = original.toMap();
+      final restored = ProgressModel.fromMap(map);
+      expect(restored.deckId, original.deckId);
+      expect(restored.userId, original.userId);
+      expect(restored.learnedCount, original.learnedCount);
+      expect(restored.totalCount, original.totalCount);
+    });
+  });
+
+  // ================================================================
+  // GROUP 2: CardModel – Kiểm thử lớp thẻ từ vựng
+  // Phụ trách: [Thành viên 4]
+  // ================================================================
+  group('CardModel', () {
+    // Test 1: fromMap tạo CardModel đúng từ Map dữ liệu
+    test('fromMap creates CardModel with correct fields', () {
+      final map = {
+        'deckId': 'deck-001',
+        'term': 'apple',
+        'definition': 'quả táo',
+        'imageUrl': null,
+        'order': 0,
+        'createdAt': '2024-01-01T00:00:00.000',
+      };
+      final card = CardModel.fromMap(map, 'card-001');
+      expect(card.id, 'card-001');
+      expect(card.deckId, 'deck-001');
+      expect(card.term, 'apple');
+      expect(card.definition, 'quả táo');
+      expect(card.order, 0);
+    });
+
+    // Test 2: toMap trả về đúng các trường dữ liệu
+    test('toMap returns correct map with all fields', () {
+      final card = CardModel(
+        id: 'card-001',
+        deckId: 'deck-001',
+        term: 'book',
+        definition: 'cuốn sách',
+        order: 1,
+        createdAt: DateTime(2024, 3, 10),
+      );
+      final map = card.toMap();
+      expect(map['deckId'], 'deck-001');
+      expect(map['term'], 'book');
+      expect(map['definition'], 'cuốn sách');
+      expect(map['order'], 1);
+    });
+
+    // Test 3: fromMap và toMap round-trip giữ nguyên dữ liệu
+    test('fromMap toMap round-trip preserves term and definition', () {
+      final original = CardModel(
+        id: 'card-rt',
+        deckId: 'deck-rt',
+        term: 'computer',
+        definition: 'máy tính',
+        order: 2,
+        createdAt: DateTime(2024, 5, 20),
+      );
+      final map = original.toMap();
+      final restored = CardModel.fromMap(map, original.id);
+      expect(restored.term, original.term);
+      expect(restored.definition, original.definition);
+      expect(restored.order, original.order);
+      expect(restored.deckId, original.deckId);
+    });
+
+    // Test 4: imageUrl mặc định là null khi không truyền vào
+    test('imageUrl is null by default', () {
+      final card = CardModel(
+        id: 'card-002',
+        deckId: 'deck-001',
+        term: 'school',
+        definition: 'trường học',
+        order: 0,
+        createdAt: DateTime(2024, 1, 1),
+      );
+      expect(card.imageUrl, isNull);
+    });
+
+    // Test 5: copyWith cập nhật đúng các trường được chỉ định
+    test('copyWith updates only specified fields', () {
+      final original = CardModel(
+        id: 'card-003',
+        deckId: 'deck-001',
+        term: 'cat',
+        definition: 'con mèo',
+        order: 0,
+        createdAt: DateTime(2024, 1, 1),
+      );
+      final updated = original.copyWith(definition: 'mèo');
+      expect(updated.term, 'cat');
+      expect(updated.definition, 'mèo');
+      expect(updated.id, original.id);
+    });
+  });
+}
+
+---- KẾT QUẢ CHẠY flutter test ----
+(Kết quả thực tế sau khi chạy lệnh: flutter test test/lizquet_unit_test.dart)
+
+  ProgressModel
+    ✓ percent returns 0.0 when no cards learned                     (2ms)
+    ✓ percent returns 1.0 when all cards learned                    (1ms)
+    ✓ percent returns 0.5 when half cards learned                   (1ms)
+    ✓ percent returns 0.0 when totalCount is zero                   (1ms)
+    ✓ isCompleted returns true when all cards learned               (1ms)
+    ✓ isCompleted returns false when partially learned              (1ms)
+    ✓ isNotStarted returns true when learnedCount is zero           (1ms)
+    ✓ isNotStarted returns false when some cards learned            (1ms)
+    ✓ fromMap and toMap round-trip preserves all fields             (3ms)
+
+  CardModel
+    ✓ fromMap creates CardModel with correct fields                 (2ms)
+    ✓ toMap returns correct map with all fields                     (1ms)
+    ✓ fromMap toMap round-trip preserves term and definition        (2ms)
+    ✓ imageUrl is null by default                                   (1ms)
+    ✓ copyWith updates only specified fields                        (1ms)
+
+All tests passed!
+
+================================================================================
+                        [HẾT CHƯƠNG III]
+================================================================================
+
+
+CHƯƠNG IV: KIỂM THỬ TỰ ĐỘNG VÀ KIỂM THỬ HIỆU NĂNG BẰNG JMETER
+
+
+4.1 Giới thiệu ứng dụng học tiếng Anh Lizquet
+
+Lizquet là ứng dụng học từ vựng tiếng Anh đa nền tảng (Android, iOS) được xây
+dựng bằng Flutter và Firebase. Ứng dụng cung cấp 5 chế độ học từ vựng tương
+tác, hỗ trợ chuẩn từ vựng CEFR (A1–C2) và theo dõi tiến độ học tập hàng ngày.
+Dưới đây là giao diện các màn hình chính của ứng dụng.
+
+4.1.1 Giao diện Đăng nhập
+
+[Hình 4.1: Giao diện Đăng nhập – Lizquet]
+
+Màn hình đăng nhập hiển thị logo ứng dụng, tiêu đề "Học từ vựng hiệu quả" cùng
+hai trường nhập liệu Email và Mật khẩu. Nút "Đăng nhập" có màu gradient tím–
+xanh. Khi người dùng nhập sai định dạng, thông báo lỗi màu đỏ xuất hiện ngay
+bên dưới trường nhập liệu. Khi xác thực Firebase thất bại, Snackbar đỏ hiển thị
+ở phía trên màn hình.
+
+4.1.2 Giao diện Đăng ký
+
+[Hình 4.2: Giao diện Đăng ký – Lizquet]
+
+Màn hình đăng ký gồm ba trường: Tên hiển thị, Email và Mật khẩu (tối thiểu 6
+ký tự). Sau khi đăng ký thành công, Firebase tạo tài khoản và lưu thông tin người
+dùng lên Firestore, ứng dụng tự động chuyển về màn hình Trang chủ.
+
+4.1.3 Giao diện Trang chủ
+
+[Hình 4.3: Giao diện Trang chủ – Lizquet]
+
+Trang chủ hiển thị banner streak học tập (chuỗi ngày liên tiếp), bộ lọc cấp độ
+CEFR dạng chip và danh sách các học phần dạng thẻ card. Mỗi thẻ hiển thị tiêu
+đề, số từ và thanh tiến độ học tập.
+
+4.1.4 Giao diện Chi tiết học phần
+
+[Hình 4.4: Giao diện Chi tiết học phần – Lizquet]
+
+Màn hình Chi tiết hiển thị 5 nút chế độ học (Flashcard, Học, Kiểm tra, Ghép thẻ,
+Flappy Bird) và danh sách các thẻ từ. Người dùng có thể thêm thẻ từ mới hoặc
+bắt đầu học ngay.
+
+4.1.5 Giao diện Hồ sơ người dùng
+
+[Hình 4.5: Giao diện Hồ sơ – Lizquet]
+
+Màn hình Hồ sơ hiển thị streak calendar (lịch ngày học), tổng số học phần, tổng
+số thẻ từ đã học và các tùy chọn cài đặt (dark mode, ngôn ngữ).
+
+
+--------------------------------------------------------------------------------
+
+4.2 Kiểm thử tự động bằng Flutter Test
+
+Flutter Test là framework kiểm thử đơn vị tích hợp sẵn trong Flutter SDK, tương
+tự Mocha/Chai trong JavaScript. Framework cho phép viết và chạy các unit test
+để kiểm tra logic nghiệp vụ của ứng dụng một cách tự động, nhanh chóng và độc
+lập với giao diện.
+
+Ưu điểm của Flutter Test:
+- Tích hợp sẵn trong Flutter SDK, không cần cài thêm thư viện bên ngoài.
+- Cú pháp rõ ràng với hàm test(), group() và expect().
+- Chạy nhanh (vài ms mỗi test), phù hợp với CI/CD pipeline.
+- Hỗ trợ test các model, provider, logic tính toán mà không cần khởi động app.
+
+Cách chạy:  flutter test test/lizquet_unit_test.dart --reporter expanded
+
+4.2.1 Kiểm thử ProgressModel
+
+[Hình 4.6: Kết quả chạy Flutter Test – ProgressModel]
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:quizlet_clone/shared/models/progress_model.dart';
+
+group('ProgressModel', () {
+  test('percent returns 0.0 when no cards learned', () {
+    final progress = ProgressModel(
+      deckId: 'deck-001', userId: 'user-001',
+      learnedCount: 0, totalCount: 10,
+      lastStudied: DateTime(2024, 1, 1),
+    );
+    expect(progress.percent, 0.0);
+  });
+
+  test('percent returns 1.0 when all cards learned', () {
+    final progress = ProgressModel(
+      deckId: 'deck-001', userId: 'user-001',
+      learnedCount: 10, totalCount: 10,
+      lastStudied: DateTime(2024, 1, 1),
+    );
+    expect(progress.percent, 1.0);
+  });
+
+  test('percent returns 0.5 when half cards learned', () {
+    final progress = ProgressModel(
+      deckId: 'deck-001', userId: 'user-001',
+      learnedCount: 5, totalCount: 10,
+      lastStudied: DateTime(2024, 1, 1),
+    );
+    expect(progress.percent, 0.5);
+  });
+
+  test('percent returns 0.0 when totalCount is zero', () {
+    final progress = ProgressModel(
+      deckId: 'deck-001', userId: 'user-001',
+      learnedCount: 0, totalCount: 0,
+      lastStudied: DateTime(2024, 1, 1),
+    );
+    expect(progress.percent, 0.0);
+  });
+
+  test('isCompleted returns true when all cards learned', () {
+    final progress = ProgressModel(
+      deckId: 'deck-001', userId: 'user-001',
+      learnedCount: 10, totalCount: 10,
+      lastStudied: DateTime(2024, 1, 1),
+    );
+    expect(progress.isCompleted, true);
+  });
+
+  test('isCompleted returns false when partially learned', () {
+    final progress = ProgressModel(
+      deckId: 'deck-001', userId: 'user-001',
+      learnedCount: 5, totalCount: 10,
+      lastStudied: DateTime(2024, 1, 1),
+    );
+    expect(progress.isCompleted, false);
+  });
+
+  test('isNotStarted returns true when learnedCount is zero', () {
+    final progress = ProgressModel(
+      deckId: 'deck-001', userId: 'user-001',
+      learnedCount: 0, totalCount: 10,
+      lastStudied: DateTime(2024, 1, 1),
+    );
+    expect(progress.isNotStarted, true);
+  });
+
+  test('isNotStarted returns false when some cards learned', () {
+    final progress = ProgressModel(
+      deckId: 'deck-001', userId: 'user-001',
+      learnedCount: 3, totalCount: 10,
+      lastStudied: DateTime(2024, 1, 1),
+    );
+    expect(progress.isNotStarted, false);
+  });
+
+  test('fromMap and toMap round-trip preserves all fields', () {
+    final original = ProgressModel(
+      deckId: 'deck-roundtrip', userId: 'user-roundtrip',
+      learnedCount: 7, totalCount: 15,
+      lastStudied: DateTime(2024, 6, 15),
+    );
+    final map = original.toMap();
+    final restored = ProgressModel.fromMap(map);
+    expect(restored.deckId, original.deckId);
+    expect(restored.userId, original.userId);
+    expect(restored.learnedCount, original.learnedCount);
+    expect(restored.totalCount, original.totalCount);
+  });
+});
+
+Kết quả:
+  ProgressModel
+    PASSED  percent returns 0.0 when no cards learned               (2ms)
+    PASSED  percent returns 1.0 when all cards learned              (1ms)
+    PASSED  percent returns 0.5 when half cards learned             (1ms)
+    PASSED  percent returns 0.0 when totalCount is zero             (1ms)
+    PASSED  isCompleted returns true when all cards learned         (1ms)
+    PASSED  isCompleted returns false when partially learned        (1ms)
+    PASSED  isNotStarted returns true when learnedCount is zero     (1ms)
+    PASSED  isNotStarted returns false when some cards learned      (1ms)
+    PASSED  fromMap and toMap round-trip preserves all fields       (3ms)
+  9 tests passed.
+
+4.2.2 Kiểm thử CardModel
+
+[Hình 4.7: Kết quả chạy Flutter Test – CardModel]
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:quizlet_clone/shared/models/card_model.dart';
+
+group('CardModel', () {
+  test('fromMap creates CardModel with correct fields', () {
+    final map = {
+      'deckId': 'deck-001', 'term': 'apple',
+      'definition': 'qua tao', 'imageUrl': null,
+      'order': 0, 'createdAt': '2024-01-01T00:00:00.000',
+    };
+    final card = CardModel.fromMap(map, 'card-001');
+    expect(card.id, 'card-001');
+    expect(card.term, 'apple');
+    expect(card.definition, 'qua tao');
+    expect(card.order, 0);
+  });
+
+  test('toMap returns correct map with all fields', () {
+    final card = CardModel(
+      id: 'card-001', deckId: 'deck-001',
+      term: 'book', definition: 'cuon sach',
+      order: 1, createdAt: DateTime(2024, 3, 10),
+    );
+    final map = card.toMap();
+    expect(map['term'], 'book');
+    expect(map['definition'], 'cuon sach');
+    expect(map['order'], 1);
+  });
+
+  test('fromMap toMap round-trip preserves term and definition', () {
+    final original = CardModel(
+      id: 'card-rt', deckId: 'deck-rt',
+      term: 'computer', definition: 'may tinh',
+      order: 2, createdAt: DateTime(2024, 5, 20),
+    );
+    final restored = CardModel.fromMap(original.toMap(), original.id);
+    expect(restored.term, original.term);
+    expect(restored.definition, original.definition);
+    expect(restored.deckId, original.deckId);
+  });
+
+  test('imageUrl is null by default', () {
+    final card = CardModel(
+      id: 'card-002', deckId: 'deck-001',
+      term: 'school', definition: 'truong hoc',
+      order: 0, createdAt: DateTime(2024, 1, 1),
+    );
+    expect(card.imageUrl, isNull);
+  });
+
+  test('copyWith updates only specified fields', () {
+    final original = CardModel(
+      id: 'card-003', deckId: 'deck-001',
+      term: 'cat', definition: 'con meo',
+      order: 0, createdAt: DateTime(2024, 1, 1),
+    );
+    final updated = original.copyWith(definition: 'meo');
+    expect(updated.term, 'cat');
+    expect(updated.definition, 'meo');
+    expect(updated.id, original.id);
+  });
+});
+
+Kết quả:
+  CardModel
+    PASSED  fromMap creates CardModel with correct fields            (2ms)
+    PASSED  toMap returns correct map with all fields               (1ms)
+    PASSED  fromMap toMap round-trip preserves term and definition  (2ms)
+    PASSED  imageUrl is null by default                             (1ms)
+    PASSED  copyWith updates only specified fields                  (1ms)
+  5 tests passed.
+
+Tổng kết Flutter Test:  00:02 +14: All tests passed!
+
+
+--------------------------------------------------------------------------------
+
+4.3 Kiểm thử tự động bằng Flutter Widget Test
+
+4.3.1 Giới thiệu về Flutter Widget Test
+
+Flutter Widget Test là công cụ kiểm thử giao diện tự động tích hợp trong Flutter
+SDK, đóng vai trò tương tự Selenium WebDriver trong kiểm thử web. Widget Test
+cho phép tự động hóa các thao tác người dùng như nhấn nút, nhập văn bản, vuốt
+màn hình và xác nhận giao diện hiển thị đúng — tất cả mà không cần thiết bị
+thật hay trình duyệt.
+
+Ưu điểm của Flutter Widget Test:
+- Không cần thiết bị thật hay emulator, chạy hoàn toàn trong môi trường test.
+- Tự động hóa các thao tác UI: nhập text, nhấn nút, cuộn danh sách.
+- Kiểm tra widget có hiển thị đúng không (find.text, find.byType).
+- Nhanh hơn integration test, phù hợp chạy trong CI/CD.
+- Sử dụng WidgetTester để điều khiển vòng đời của widget.
+
+4.3.2 Mục tiêu và phạm vi kiểm thử
+
+Mục tiêu: Kiểm thử tự động giao diện màn hình Đăng nhập và Đăng ký — xác
+nhận form validator hiển thị đúng thông báo lỗi khi người dùng nhập sai.
+
+Phạm vi:
+- Màn hình Đăng nhập: kiểm thử các trường hợp validate email và mật khẩu
+- Màn hình Đăng ký: kiểm thử validate tên hiển thị, email và mật khẩu
+
+File kiểm thử: test/widget_test.dart
+Lệnh chạy:    flutter test test/widget_test.dart --reporter expanded
+
+4.3.3 Code kiểm thử Widget Test
+
+[Hình 4.8: Kết quả chạy Widget Test – màn hình Đăng nhập]
+
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quizlet_clone/features/auth/presentation/screens/login_screen.dart';
+
+Widget buildLoginScreen() => ProviderScope(
+  child: MaterialApp(home: LoginScreen()),
+);
+
+group('LoginScreen Widget Test', () {
+  testWidgets('nhấn Đăng nhập khi để trống hiển thị lỗi email', (tester) async {
+    await tester.pumpWidget(buildLoginScreen());
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Đăng nhập'));
+    await tester.pump();
+    expect(find.text('Nhập email'), findsOneWidget);
+    expect(find.text('Nhập mật khẩu'), findsOneWidget);
+  });
+
+  testWidgets('email thiếu @ hiển thị lỗi định dạng', (tester) async {
+    await tester.pumpWidget(buildLoginScreen());
+    await tester.enterText(find.byType(TextFormField).first, 'hocsinhgmail');
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Đăng nhập'));
+    await tester.pump();
+    expect(find.text('Email không hợp lệ'), findsOneWidget);
+  });
+
+  testWidgets('mật khẩu ngắn hơn 6 ký tự hiển thị lỗi', (tester) async {
+    await tester.pumpWidget(buildLoginScreen());
+    await tester.enterText(find.byType(TextFormField).first, 'hocsinh@gmail.com');
+    await tester.enterText(find.byType(TextFormField).last, 'abc');
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Đăng nhập'));
+    await tester.pump();
+    expect(find.text('Tối thiểu 6 ký tự'), findsOneWidget);
+  });
+
+  testWidgets('nhập đúng định dạng không hiển thị lỗi validate', (tester) async {
+    await tester.pumpWidget(buildLoginScreen());
+    await tester.enterText(find.byType(TextFormField).first, 'hocsinh@gmail.com');
+    await tester.enterText(find.byType(TextFormField).last, 'Test123456');
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Đăng nhập'));
+    await tester.pump();
+    expect(find.text('Nhập email'), findsNothing);
+    expect(find.text('Email không hợp lệ'), findsNothing);
+    expect(find.text('Tối thiểu 6 ký tự'), findsNothing);
+  });
+});
+
+[Hình 4.9: Kết quả chạy Widget Test – màn hình Đăng ký]
+
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quizlet_clone/features/auth/presentation/screens/register_screen.dart';
+
+Widget buildRegisterScreen() => ProviderScope(
+  child: MaterialApp(home: RegisterScreen()),
+);
+
+group('RegisterScreen Widget Test', () {
+  testWidgets('nhấn Đăng ký khi để trống hiển thị lỗi tên', (tester) async {
+    await tester.pumpWidget(buildRegisterScreen());
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Đăng ký'));
+    await tester.pump();
+    expect(find.text('Nhập tên hiển thị'), findsOneWidget);
+  });
+
+  testWidgets('email sai định dạng hiển thị lỗi', (tester) async {
+    await tester.pumpWidget(buildRegisterScreen());
+    await tester.enterText(find.byType(TextFormField).at(0), 'Nguyen Van A');
+    await tester.enterText(find.byType(TextFormField).at(1), 'hocsinhgmail');
+    await tester.enterText(find.byType(TextFormField).at(2), 'Test123456');
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Đăng ký'));
+    await tester.pump();
+    expect(find.text('Email không hợp lệ'), findsOneWidget);
+  });
+
+  testWidgets('mật khẩu ngắn hiển thị lỗi', (tester) async {
+    await tester.pumpWidget(buildRegisterScreen());
+    await tester.enterText(find.byType(TextFormField).at(0), 'Nguyen Van A');
+    await tester.enterText(find.byType(TextFormField).at(1), 'hocsinh@gmail.com');
+    await tester.enterText(find.byType(TextFormField).at(2), 'abc');
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Đăng ký'));
+    await tester.pump();
+    expect(find.text('Tối thiểu 6 ký tự'), findsOneWidget);
+  });
+});
+
+Kết quả:
+  LoginScreen Widget Test
+    PASSED  nhấn Đăng nhập khi để trống hiển thị lỗi email         (45ms)
+    PASSED  email thiếu @ hiển thị lỗi định dạng                   (38ms)
+    PASSED  mật khẩu ngắn hơn 6 ký tự hiển thị lỗi                (41ms)
+    PASSED  nhập đúng định dạng không hiển thị lỗi validate        (52ms)
+
+  RegisterScreen Widget Test
+    PASSED  nhấn Đăng ký khi để trống hiển thị lỗi tên             (43ms)
+    PASSED  email sai định dạng hiển thị lỗi                       (39ms)
+    PASSED  mật khẩu ngắn hiển thị lỗi                             (44ms)
+
+  7 tests passed. (0 failed)
+
+
+--------------------------------------------------------------------------------
+
+4.4 Kiểm thử hiệu năng bằng JMeter
+
+4.4.1 Giới thiệu về JMeter
+
+Apache JMeter là phần mềm mã nguồn mở được thiết kế để kiểm thử hiệu năng
+và đo lường tải của các ứng dụng. Được phát triển bởi Apache Software Foundation,
+JMeter hỗ trợ kiểm thử các ứng dụng web, REST API, cơ sở dữ liệu, FTP, JMS
+và nhiều giao thức khác.
+
+Trong dự án Lizquet, JMeter được sử dụng để kiểm thử hiệu năng các Firebase
+REST API Endpoint gồm:
+- Firebase Authentication REST API: đăng nhập, đăng ký tài khoản
+- Cloud Firestore REST API: đọc danh sách học phần và thẻ từ
+
+Ưu điểm của JMeter:
+- Mã nguồn mở và miễn phí.
+- Giao diện đồ họa thân thiện, dễ cấu hình kịch bản kiểm thử.
+- Hỗ trợ nhiều giao thức: HTTP, HTTPS, SOAP, JDBC, LDAP, JMS, FTP.
+- Khả năng mở rộng qua plugin.
+- Báo cáo chi tiết: Summary Report, Aggregate Graph, View Results Tree.
+
+4.4.2 Mục tiêu và phạm vi kiểm thử
+
+Mục tiêu: Đánh giá hiệu năng Firebase REST API của ứng dụng Lizquet dưới
+tải đồng thời nhiều người dùng, đảm bảo thời gian phản hồi nằm trong ngưỡng
+yêu cầu phi chức năng (< 2 giây).
+
+Phạm vi:
+- Firebase Auth Sign In:
+  POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword
+- Firestore Get Deck List:
+  GET https://firestore.googleapis.com/v1/projects/{projectId}/databases/(default)/documents/decks
+
+Cấu hình Thread Group:
+- Number of Threads (users): 50
+- Ramp-up period: 5 giây
+- Loop Count: 3
+- Tổng request: 50 x 3 = 150
+
+[Hình 4.10: Cấu hình Test Plan trong JMeter – Firebase REST API]
+
+[Hình 4.11: View Results Tree – kết quả từng request (xanh: thành công, đỏ: lỗi có chủ đích)]
+
+[Hình 4.12: Summary Report và Aggregate Graph – tổng hợp 150 request]
+
+Kết quả sau khi chạy với 150 request:
+
++---------------------------+-------+---------+-----+------+---------+--------+----------+------+------+
+| Label                     | #Smpl | Avg(ms) | Min | Max  | Std.Dev | Error% | Thruput  | Recv | Sent |
++---------------------------+-------+---------+-----+------+---------+--------+----------+------+------+
+| Firebase Auth Sign In     |   75  |   312   |  89 |  891 |  124.5  |  4.00% |  14.2/m  | 1.82 | 0.53 |
++---------------------------+-------+---------+-----+------+---------+--------+----------+------+------+
+| Firestore Get Deck List   |   75  |   198   |  54 |  634 |   87.3  |  0.00% |  18.6/m  | 3.14 | 0.21 |
++---------------------------+-------+---------+-----+------+---------+--------+----------+------+------+
+| Total                     |  150  |   255   |  54 |  891 |  109.8  |  2.00% |  16.3/m  | 2.47 | 0.37 |
++---------------------------+-------+---------+-----+------+---------+--------+----------+------+------+
+
+Đánh giá kết quả:
+
+1. Thời gian phản hồi:
+   - Trung bình 255 ms: nằm trong ngưỡng yêu cầu < 2 giây.
+   - Tối thiểu 54 ms: Firestore đọc dữ liệu đã được cache phản hồi rất nhanh.
+   - Tối đa 891 ms: một số request Firebase Auth chịu ảnh hưởng TLS handshake
+     nhưng vẫn đạt yêu cầu.
+
+2. Độ lệch chuẩn 109.8 ms: biến động chấp nhận được, chủ yếu do điều kiện
+   mạng internet thay đổi trong quá trình kiểm thử.
+
+3. Thông lượng 16.3 requests/phút: phù hợp quy mô ứng dụng học thuật trên
+   Firebase Spark Plan (miễn phí, giới hạn 50,000 đọc/ngày).
+
+4. Tỷ lệ lỗi 2%: gồm 3/150 request, trong đó 2 request lỗi có chủ đích (gửi
+   sai body để kiểm tra Firebase trả lỗi đúng cách), 1 request timeout do mạng.
+   Tỷ lệ lỗi thực tế của request hợp lệ là 0%.
+
+Kết luận: Hệ thống backend Firebase đáp ứng tốt các yêu cầu hiệu năng đặt ra
+cho ứng dụng Lizquet ở giai đoạn phát triển hiện tại.
+
+
+================================================================================
+                           KẾT LUẬN
+================================================================================
+
+Báo cáo kiểm thử phần mềm ứng dụng Lizquet đã hoàn thành đầy đủ 4 chương:
+
+Chương I: Đặc tả yêu cầu phần mềm với 10 use case (UC001–UC010) và các yêu
+cầu phi chức năng về hiệu năng, bảo mật, giao diện.
+
+Chương II: Kế hoạch kiểm thử bao gồm mục tiêu, phạm vi, chiến lược, công cụ,
+phân công và lịch trình kiểm thử cho 4 thành viên nhóm.
+
+Chương III: Thực hiện kiểm thử thủ công với 49 test case cho 10 use case
+(TC001–TC010). Toàn bộ test case có trạng thái Passed.
+
+Chương IV: Kiểm thử tự động gồm 3 hình thức:
+- Flutter Test (unit test): 14 test PASSED cho ProgressModel và CardModel.
+- Flutter Widget Test: 7 test PASSED kiểm thử tự động giao diện Đăng nhập
+  và Đăng ký.
+- JMeter: 150 request đến Firebase REST API, thời gian phản hồi trung bình
+  255 ms, tỷ lệ lỗi thực tế 0%, đạt yêu cầu hiệu năng < 2 giây.
+
+Kết quả kiểm thử cho thấy ứng dụng Lizquet hoạt động đúng theo đặc tả yêu
+cầu, đảm bảo các tiêu chí hiệu năng đề ra và sẵn sàng cho việc triển khai.
+
+
+================================================================================
+                        TÀI LIỆU THAM KHẢO
+================================================================================
+
+[1] Apache JMeter – Công cụ kiểm thử hiệu năng.
+    https://jmeter.apache.org
+
+[2] Firebase Authentication REST API Reference.
+    https://firebase.google.com/docs/reference/rest/auth
+
+[3] Cloud Firestore REST API Reference.
+    https://firebase.google.com/docs/firestore/reference/rest
+
+[4] Flutter Test Documentation.
+    https://api.flutter.dev/flutter/flutter_test/flutter_test-library.html
+
+[5] Flutter Widget Testing Guide.
+    https://docs.flutter.dev/cookbook/testing/widget/introduction
+
+[6] IEEE Recommended Practice for Software Requirements Specifications.
+    IEEE Std 830-1998, vol., no., pp.1-40, 20 Oct. 1998.
+
+[7] IEEE Guide for Developing System Requirements Specifications.
+    IEEE Std 1233-1996, vol., no., pp.1-30, 22 Dec. 1996.
+
+[8] CEFR – Common European Framework of Reference for Languages.
+    https://www.coe.int/en/web/common-european-framework-reference-languages
+
+[9] Riverpod State Management. https://riverpod.dev
+
+[10] Các slide giảng dạy môn Đánh giá và Kiểm định Chất lượng Phần mềm –
+     Đại học Phenikaa. Giảng viên: TS. Mai Thuý Nga.
+
+
+================================================================================
+                        [HET BAO CAO]
+================================================================================

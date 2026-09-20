@@ -1,0 +1,85 @@
+flowchart TD
+
+    %% ══════════════════════════════════════════════════════
+    %% LAYER 1 – PRESENTATION
+    %% ══════════════════════════════════════════════════════
+
+    P["<b>PRESENTATION LAYER</b>
+    ─────────────────────────────────────
+    Home · Library · Explore · Profile · Settings
+    Flashcard · Learn · Test · Match · Flappy Bird
+    Login · Register · Deck Detail
+    ─────────────────────────────────────
+    GoRouter  |  Shared Widgets"]
+
+    %% ══════════════════════════════════════════════════════
+    %% LAYER 2 – STATE MANAGEMENT
+    %% ══════════════════════════════════════════════════════
+
+    SM["<b>STATE MANAGEMENT  —  Riverpod</b>
+    ─────────────────────────────────────
+    AuthNotifier  ·  DeckNotifier  ·  CardNotifier
+    FolderNotifier  ·  GroupNotifier  ·  StreakNotifier
+    ProgressNotifier  ·  ExploreNotifier  ·  AppSettingsNotifier"]
+
+    %% ══════════════════════════════════════════════════════
+    %% LAYER 3 – DATA
+    %% ══════════════════════════════════════════════════════
+
+    DL["<b>DATA LAYER</b>
+    ─────────────────────────────────────
+    AuthRepository  ·  DeckRepository  ·  CardRepository
+    FolderRepository  ·  GroupRepository  ·  StreakRepository
+    ProgressRepository  ·  VocabRepository
+    ─────────────────────────────────────
+    UserModel  ·  DeckModel  ·  CardModel  ·  FolderModel
+    GroupModel  ·  ProgressModel  ·  StreakModel
+    VocabLevelDeck  ·  VocabWord"]
+
+    %% ══════════════════════════════════════════════════════
+    %% LAYER 4 – FIREBASE
+    %% ══════════════════════════════════════════════════════
+
+    FB["<b>FIREBASE  —  Backend as a Service</b>
+    ─────────────────────────────────────
+    Firebase Authentication  |  Cloud Firestore
+    users · decks · cards · folders · groups · streak · progress"]
+
+    %% ══════════════════════════════════════════════════════
+    %% CORE & UTILITIES (bên cạnh)
+    %% ══════════════════════════════════════════════════════
+
+    CU["<b>CORE &amp; UTILITIES</b>
+    ───────────────────
+    AppTheme · AppColors
+    AudioService
+    AppSettings
+    SharedPreferences
+    Flame Engine
+    firebase_options"]
+
+    %% ══════════════════════════════════════════════════════
+    %% ARROWS
+    %% ══════════════════════════════════════════════════════
+
+    P   -->|"gọi provider"| SM
+    SM  -->|"dùng repository"| DL
+    DL  -->|"đọc / ghi dữ liệu"| FB
+    P   --->|"dùng theme, âm thanh"| CU
+    SM  --->|"đọc cài đặt"| CU
+
+    %% ══════════════════════════════════════════════════════
+    %% STYLES
+    %% ══════════════════════════════════════════════════════
+
+    style P  fill:#D6E8FF,stroke:#3A7BD5,stroke-width:2.5px,color:#0D1B2A,font-size:14px
+    style SM fill:#E8E0FF,stroke:#6C5CE7,stroke-width:2.5px,color:#0D1B2A,font-size:14px
+    style DL fill:#FFE8D6,stroke:#E07A3A,stroke-width:2.5px,color:#0D1B2A,font-size:14px
+    style FB fill:#FFF3CD,stroke:#F0A500,stroke-width:2.5px,color:#0D1B2A,font-size:14px
+    style CU fill:#D6F5E3,stroke:#27AE60,stroke-width:2px,color:#0D1B2A,font-size:13px
+
+    linkStyle 0 stroke:#3A7BD5,stroke-width:2px
+    linkStyle 1 stroke:#6C5CE7,stroke-width:2px
+    linkStyle 2 stroke:#E07A3A,stroke-width:2px
+    linkStyle 3 stroke:#27AE60,stroke-width:1.5px,stroke-dasharray:6
+    linkStyle 4 stroke:#27AE60,stroke-width:1.5px,stroke-dasharray:6

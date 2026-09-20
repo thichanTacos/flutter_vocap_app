@@ -16,13 +16,16 @@ class StreakRepository {
           ? StreakModel.fromMap(snap.data()!)
           : const StreakModel());
 
-  Future<void> recordStudyDay(String userId) async {
+  Future<({int newStreak, bool isNewDay})> recordStudyDay(String userId) async {
     final today = StreakModel.dateKey(DateTime.now());
     final yesterday =
         StreakModel.dateKey(DateTime.now().subtract(const Duration(days: 1)));
     final cutoff =
         StreakModel.dateKey(DateTime.now().subtract(const Duration(days: 90)));
     final docRef = _doc(userId);
+
+    int newStreak = 0;
+    bool isNewDay = false;
 
     await _firestore.runTransaction((tx) async {
       final snap = await tx.get(docRef);
@@ -31,9 +34,13 @@ class StreakRepository {
           : const StreakModel();
 
       // Already recorded today — nothing to update
-      if (current.lastStudyDate == today) return;
+      if (current.lastStudyDate == today) {
+        newStreak = current.currentStreak;
+        return;
+      }
 
-      final newStreak = current.lastStudyDate == yesterday
+      isNewDay = true;
+      newStreak = current.lastStudyDate == yesterday
           ? current.currentStreak + 1
           : 1;
 
@@ -51,6 +58,8 @@ class StreakRepository {
         'studiedDates': newDates,
       });
     });
+
+    return (newStreak: newStreak, isNewDay: isNewDay);
   }
 }
 

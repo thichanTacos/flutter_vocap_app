@@ -1,0 +1,383 @@
+CHƯƠNG 4. CÀI ĐẶT VÀ TRIỂN KHAI
+
+
+4.1 Môi trường và công nghệ sử dụng
+
+4.1.1 Môi trường phát triển
+
+Ứng dụng Lizquet được phát triển trên môi trường hệ điều hành Windows 11 Pro, sử dụng hệ sinh thái phát triển di động đa nền tảng Flutter. Dưới đây là thông tin chi tiết về các thành phần trong môi trường cài đặt:
+
+    • Flutter SDK phiên bản 3.41.6 (stable): Framework chính để xây dựng giao diện và logic ứng dụng đa nền tảng.
+    • Dart SDK phiên bản 3.11.4: Ngôn ngữ lập trình được sử dụng xuyên suốt toàn bộ dự án.
+    • Flutter DevTools phiên bản 2.54.2: Công cụ hỗ trợ debug, phân tích hiệu năng và kiểm tra widget tree.
+    • Android Studio Ladybug 2024.2+: IDE hỗ trợ cấu hình Android SDK, quản lý emulator và ký ứng dụng.
+    • Visual Studio Code 1.90+: IDE phát triển chính với bộ extension Dart & Flutter.
+    • Git 2.x: Công cụ quản lý phiên bản mã nguồn, tích hợp với GitHub để lưu trữ và đồng bộ mã.
+    • Firebase CLI 13.x: Công cụ dòng lệnh để quản lý và triển khai các dịch vụ Firebase.
+
+Nền tảng mục tiêu của ứng dụng là Android (API 21 trở lên) và iOS (14.0 trở lên). Ứng dụng được phát triển và kiểm thử chủ yếu trên Android Emulator và thiết bị thật Android.
+
+
+4.1.2 Ngôn ngữ lập trình
+
+Dart 3.11.4 là ngôn ngữ lập trình duy nhất được sử dụng xuyên suốt dự án. Dart là ngôn ngữ hướng đối tượng, kiểu tĩnh (statically typed), được Google phát triển và tối ưu đặc biệt cho Flutter. Các đặc điểm nổi bật được khai thác trong dự án bao gồm:
+
+    • Null Safety: Toàn bộ codebase sử dụng Dart Sound Null Safety, hạn chế tối đa lỗi NullPointerException tại thời điểm chạy (runtime).
+    • Async/Await: Xử lý bất đồng bộ rõ ràng và dễ đọc khi tương tác với Firebase và các API bên ngoài.
+    • Extension Methods: Sử dụng extension context.colors để truy cập màu sắc theo theme một cách tiện lợi, thay thế cho việc truy cập trực tiếp vào Theme.of(context).
+    • Pattern Matching với AsyncValue: Quản lý các trạng thái loading, data, error của provider một cách an toàn và súc tích.
+
+
+4.1.3 Framework – Flutter
+
+Flutter 3.41.6 là framework phát triển ứng dụng đa nền tảng của Google. Flutter render toàn bộ giao diện người dùng thông qua Skia/Impeller engine, đảm bảo hiệu năng 60fps và giao diện đồng nhất trên mọi nền tảng mà không phụ thuộc vào thành phần UI gốc của hệ điều hành.
+
+Các tính năng Flutter được khai thác trong dự án:
+
+    • Widget tree với StatelessWidget và ConsumerWidget: Xây dựng toàn bộ giao diện theo cấu trúc cây widget khai báo (declarative UI).
+    • ThemeExtension: Triển khai hệ thống màu sắc động AppColors, tích hợp vào cả lightTheme và darkTheme, cho phép chuyển đổi giao diện sáng/tối toàn ứng dụng mà không cần viết điều kiện ternary trong từng widget.
+    • AnimatedContainer và AnimatedOpacity: Tạo hiệu ứng chuyển động mượt mà cho thanh điều hướng dưới và thẻ từ flashcard.
+    • GestureDetector và Dismissible: Xử lý thao tác vuốt thẻ flashcard và xóa các mục trong danh sách.
+    • LayoutBuilder và MediaQuery: Đảm bảo giao diện responsive trên nhiều kích thước màn hình khác nhau.
+    • BottomSheet: Hiển thị bottom sheet tạo nội dung và chỉnh sửa thông tin người dùng.
+    • CustomScrollView với Slivers: Cuộn danh sách lớn hiệu quả trong màn hình Thư viện.
+
+
+4.1.4 Cơ sở dữ liệu – Firebase
+
+Dự án sử dụng hệ sinh thái Firebase của Google làm Backend-as-a-Service (BaaS), bao gồm hai dịch vụ chính: Firebase Authentication và Cloud Firestore.
+
+a) Firebase Authentication (phiên bản 5.3.1)
+
+Firebase Authentication đảm nhận toàn bộ việc quản lý xác thực người dùng với các tính năng sau:
+
+    • Đăng ký và đăng nhập bằng Email và Password.
+    • Duy trì phiên đăng nhập tự động (persistent auth state) thông qua userChanges() stream – stream này cũng tự động phát ra sự kiện khi displayName của người dùng được cập nhật, giúp giao diện phản ánh tên mới ngay lập tức mà không cần reload.
+    • Tích hợp với GoRouter để bảo vệ route: người dùng chưa xác thực bị tự động chuyển hướng về màn hình đăng nhập (/login).
+
+b) Cloud Firestore (phiên bản 5.4.4)
+
+Cloud Firestore là cơ sở dữ liệu NoSQL thời gian thực, lưu trữ toàn bộ dữ liệu nghiệp vụ của ứng dụng. Cấu trúc các collection trong Firestore được thiết kế như sau:
+
+    • /users/{uid}: Lưu thông tin cơ bản của người dùng (displayName, email, createdAt).
+    • /decks/{deckId}: Lưu thông tin bộ thẻ (title, description, cardCount, ownerId, createdAt).
+    • /decks/{deckId}/cards/{cardId}: Lưu nội dung từng thẻ từ (front, back, order).
+    • /folders/{folderId}: Lưu thông tin thư mục (name, ownerId, deckIds[]).
+    • /groups/{groupId}: Lưu thông tin nhóm học (name, adminId, memberIds[], deckIds[]).
+    • /progress/{uid}/{deckId}: Lưu tiến độ học của người dùng theo từng bộ thẻ (correctCount, incorrectCount, lastStudied).
+    • /streaks/{uid}: Lưu dữ liệu chuỗi học (currentStreak, longestStreak, lastStudyDate, studiedDates[]).
+
+Các tính năng Firestore được khai thác trong dự án bao gồm: real-time streams để lắng nghe thay đổi dữ liệu tức thì, transactions để cập nhật streak nguyên tử (tránh race condition), batch writes để lưu nhiều thẻ từ cùng lúc, và Firestore offline persistence để dữ liệu vẫn hiển thị khi mất kết nối mạng.
+
+
+4.1.5 Thư viện và công cụ bên thứ ba
+
+a) Quản lý trạng thái – flutter_riverpod (phiên bản 2.5.1)
+
+Riverpod là thư viện quản lý trạng thái thế hệ mới, được chọn thay thế cho setState và Provider truyền thống vì tính an toàn kiểu (type-safe), khả năng tự động dispose và dễ kiểm thử. Dự án sử dụng:
+
+    • StreamProvider: Lắng nghe dữ liệu real-time từ Firestore cho danh sách bộ thẻ, streak và trạng thái xác thực.
+    • AsyncNotifierProvider: Quản lý các thao tác bất đồng bộ có trạng thái như đăng nhập, tạo bộ thẻ và cài đặt.
+    • riverpod_generator với annotation @riverpod: Tự động sinh code boilerplate thông qua build_runner, giảm thiểu mã lặp và lỗi thủ công.
+    • ref.watch, ref.read, ref.listen: Điều phối phụ thuộc giữa các provider và phản ứng với thay đổi trạng thái.
+
+b) Điều hướng – go_router (phiên bản 14.2.7)
+
+GoRouter là thư viện điều hướng khai báo (declarative routing) cho Flutter, được chọn vì hỗ trợ deep linking và guard redirect. Trong dự án, GoRouter được cấu hình để:
+
+    • Định nghĩa route theo đường dẫn URL dạng /deck/:deckId/flashcard, cho phép truyền tham số qua path.
+    • Thực hiện guard redirect: kiểm tra trạng thái xác thực trước mỗi lần điều hướng, bảo vệ các route yêu cầu đăng nhập.
+    • Phân biệt context.go() (thay thế stack) và context.push() (thêm vào stack) để kiểm soát hành vi nút quay lại.
+
+c) Game Engine – Flame (phiên bản 1.18.0)
+
+Flame là game engine 2D nhẹ chạy trên nền tảng Flutter, được sử dụng cho chế độ học Flappy Bird. Các thành phần Flame được khai thác:
+
+    • FlameGame với HasCollisionDetection: Quản lý game loop và xử lý va chạm vật lý giữa chim, ống dẫn và mặt đất.
+    • PositionComponent: Quản lý vị trí và vận tốc của các đối tượng trong game.
+    • Overlay system: Hiển thị câu hỏi từ vựng và màn hình kết quả dưới dạng Flutter widget overlay trực tiếp trên game canvas.
+
+d) Lưu trữ cục bộ – shared_preferences (phiên bản 2.3.0)
+
+SharedPreferences lưu trữ cài đặt người dùng trên thiết bị mà không cần kết nối mạng, bao gồm trạng thái ThemeMode (sáng/tối) và soundEnabled (bật/tắt âm thanh). Dữ liệu được khôi phục tự động mỗi khi ứng dụng khởi động lại.
+
+e) Các thư viện hỗ trợ khác
+
+    • lottie (3.1.2): Hiển thị hiệu ứng animation JSON trên màn hình hoàn thành và loading.
+    • cached_network_image (3.3.1): Tải và lưu cache hình ảnh từ URL, tránh tải lại không cần thiết.
+    • uuid (4.4.2): Tạo ID duy nhất (UUID v4) cho bộ thẻ, thẻ từ, thư mục và nhóm.
+    • intl (0.19.0): Định dạng ngày tháng chuẩn ISO 8601 phục vụ hệ thống streak calendar.
+    • http (1.2.0): Thực hiện HTTP request để lấy dữ liệu từ vựng CEFR từ API nội bộ.
+    • audioplayers (6.0.0): Phát âm thanh hiệu ứng (lật thẻ, đúng/sai, hoàn thành phiên học).
+    • gap (3.0.1): Widget khoảng cách ngắn gọn thay thế SizedBox trong các Column/Row.
+
+
+4.1.6 Kiến trúc phần mềm
+
+Dự án áp dụng kiến trúc Feature-first Clean Architecture kết hợp Riverpod, tổ chức mã nguồn theo tính năng thay vì theo loại file. Mỗi feature có đầy đủ các tầng: data (repository, model), providers (business logic với Riverpod) và presentation (screens, widgets). Tầng core chứa các thành phần dùng chung toàn ứng dụng như theme, router, services. Tầng shared chứa các widget và model được tái sử dụng giữa nhiều feature.
+
+Luồng dữ liệu tuân theo chiều một chiều: UI → Provider (Riverpod) → Repository → Firebase. Điều này đảm bảo tách biệt rõ ràng giữa tầng giao diện và tầng dữ liệu, giúp việc bảo trì và mở rộng tính năng trở nên dễ dàng hơn.
+
+
+──────────────────────────────────────────────────────────────────────
+
+
+4.2 Kết quả cài đặt chương trình
+
+Phần này trình bày chi tiết các tính năng cốt lõi đã được cài đặt hoàn chỉnh và chạy thực tế trên ứng dụng Lizquet.
+
+4.2.1 Màn hình Đăng ký và Đăng nhập
+
+Màn hình khởi động hiển thị logo ứng dụng Lizquet kèm form đăng nhập với thiết kế Material 3 – nền màu kem sáng (#FAFAF8), các trường nhập liệu bo góc với viền highlight màu cam chính (#FF6B35) khi được focus.
+
+Các tính năng đã triển khai và hoạt động ổn định:
+
+    • Validation real-time: Email được kiểm tra định dạng ngay khi người dùng nhập, mật khẩu yêu cầu tối thiểu 6 ký tự.
+    • Hiển thị/ẩn mật khẩu thông qua icon toggle ở cuối trường nhập liệu.
+    • Thông báo lỗi cụ thể từ Firebase: "Email đã tồn tại", "Sai mật khẩu", "Tài khoản không tồn tại" – mỗi lỗi có nội dung thông báo tiếng Việt rõ ràng.
+    • Loading indicator trong khi chờ phản hồi từ Firebase Auth, nút đăng nhập bị vô hiệu hóa để tránh gửi yêu cầu trùng lặp.
+    • Sau khi đăng nhập thành công, GoRouter tự động chuyển hướng đến /home mà không cần xử lý thủ công.
+    • Phiên đăng nhập được duy trì tự động – khi mở lại ứng dụng, người dùng đã xác thực trước đó không cần đăng nhập lại.
+
+[Hình 4.1: Màn hình Đăng nhập và Đăng ký của ứng dụng Lizquet]
+
+
+4.2.2 Màn hình Trang chủ (Home)
+
+Trang chủ được xây dựng theo cấu trúc cuộn dọc với header chào mừng hiển thị tên người dùng, section "Tiếp tục học" liệt kê các bộ thẻ gần đây và section "Khám phá từ vựng" với các chip cấp độ CEFR (A1 đến C2).
+
+Các tính năng đã triển khai:
+
+    • Header hiển thị tên người dùng được lấy real-time từ authStateProvider thông qua stream userChanges() – tên cập nhật ngay lập tức khi người dùng đổi tên trong Cài đặt.
+    • Danh sách bộ thẻ gần đây tải từ Firestore với truy vấn sắp xếp theo thời gian truy cập gần nhất.
+    • Mỗi DeckCard hiển thị gradient màu xoay vòng (cam, teal, tím, vàng, xanh lá) tạo giao diện sinh động và nhận diện trực quan.
+    • Thanh điều hướng dưới cùng với 4 tab: Trang chủ, Tạo, Thư viện, Cá nhân. Tab đang active mở rộng hiển thị nhãn văn bản với hiệu ứng animation 250ms.
+
+[Hình 4.2: Màn hình Trang chủ của ứng dụng Lizquet]
+
+
+4.2.3 Tạo và Quản lý Bộ thẻ
+
+Màn hình tạo bộ thẻ gồm hai phần: thông tin bộ thẻ (tiêu đề, mô tả) phía trên và danh sách thẻ từ bên dưới. Mỗi thẻ từ có hai trường nhập liệu: mặt trước (từ tiếng Anh) và mặt sau (nghĩa hoặc định nghĩa).
+
+Các tính năng đã triển khai:
+
+    • Thêm thẻ từ động: Nhấn nút "+" để thêm thẻ mới, danh sách tự động cuộn xuống thẻ vừa tạo.
+    • Xóa thẻ: Nhấn icon xóa trên từng thẻ hoặc vuốt sang trái để xóa nhanh.
+    • Lưu toàn bộ thẻ từ trong một lần gọi Firestore duy nhất (batch write), đảm bảo tính nhất quán của dữ liệu.
+    • Tự động cập nhật trường cardCount trong document bộ thẻ sau mỗi lần thêm hoặc xóa thẻ.
+    • Màn hình chi tiết bộ thẻ hiển thị danh sách đầy đủ các thẻ từ và 5 nút chọn chế độ học với icon và màu sắc riêng biệt.
+
+[Hình 4.3: Màn hình Tạo bộ thẻ và Xem chi tiết bộ thẻ]
+
+
+4.2.4 Chế độ học Flashcard
+
+Màn hình Flashcard hiển thị một thẻ lớn chiếm phần lớn màn hình. Mặt trước thẻ hiển thị từ tiếng Anh với cỡ chữ lớn. Progress bar phía trên theo dõi tiến trình (ví dụ: 3/20).
+
+Các tính năng đã triển khai:
+
+    • Hiệu ứng lật thẻ 3D khi người dùng nhấn vào thẻ, được thực hiện bằng AnimationController kết hợp với Transform.rotateY.
+    • Vuốt sang trái hoặc phải để chuyển sang thẻ tiếp theo với hiệu ứng slide mượt mà.
+    • Thứ tự thẻ được xáo trộn ngẫu nhiên tại thời điểm bắt đầu phiên học.
+    • Âm thanh click khi lật thẻ, có thể tắt trong phần Cài đặt.
+    • Màn hình kết thúc phiên học hiển thị animation Lottie chúc mừng và tóm tắt kết quả.
+    • Sau khi hoàn thành, hệ thống tự động ghi nhận ngày học và cập nhật chuỗi streak.
+
+[Hình 4.4: Màn hình học Flashcard]
+
+
+4.2.5 Chế độ học Learn
+
+Màn hình Learn hiển thị câu hỏi phía trên và 4 lựa chọn đáp án bên dưới dạng nút bo tròn có màu sắc. Progress bar và số thứ tự câu hiển thị trên header.
+
+Các tính năng đã triển khai:
+
+    • Hai dạng câu hỏi luân phiên: trắc nghiệm 4 đáp án và điền từ (text input).
+    • Đáp án nhiễu được chọn ngẫu nhiên từ các thẻ khác trong cùng bộ thẻ, đảm bảo tính hợp lệ và thử thách.
+    • Phản hồi tức thì: đáp án đúng highlight màu xanh, đáp án sai highlight màu đỏ kèm hiển thị đáp án đúng.
+    • Âm thanh phản hồi "đúng" hoặc "sai" qua AudioService.
+    • Thẻ trả lời sai được đưa trở lại hàng đợi ôn tập – người dùng phải trả lời đúng mới được tính hoàn thành.
+    • Tiến độ học (số câu đúng, số câu sai) được lưu vào Firestore sau khi kết thúc phiên.
+    • Màn hình kết quả hiển thị điểm số, tỉ lệ phần trăm và danh sách các từ trả lời sai.
+
+[Hình 4.5: Màn hình học Learn Mode]
+
+
+4.2.6 Chế độ Test và Match
+
+Chế độ Test tạo bài kiểm tra hoàn chỉnh từ toàn bộ thẻ trong bộ thẻ. Câu hỏi được xáo trộn ngẫu nhiên, người dùng trả lời tuần tự rồi nộp bài. Hệ thống chấm điểm tự động và hiển thị kết quả chi tiết từng câu bao gồm đáp án đúng và đáp án người dùng đã chọn.
+
+Chế độ Match hiển thị lưới các ô chứa từ và nghĩa được xáo trộn ngẫu nhiên. Người dùng nhấn chọn từng cặp để ghép đôi. Ô ghép đúng biến mất với hiệu ứng fade, ô ghép sai rung lắc và đổi màu đỏ. Đồng hồ bắt đầu đếm khi màn hình xuất hiện và dừng lại khi người dùng ghép đúng tất cả các cặp.
+
+[Hình 4.6: Màn hình Test Mode và Match Mode]
+
+
+4.2.7 Chế độ Flappy Bird học từ vựng
+
+Màn hình game hiển thị nền cuộn chuyển động, con chim được điều khiển bằng cách chạm màn hình. Khi chim tiến đến gần cặp ống dẫn, game tạm dừng và hiển thị overlay câu hỏi từ vựng.
+
+Các tính năng đã triển khai:
+
+    • Game loop chạy ổn định ở 60fps sử dụng Flame FlameGame.
+    • Vật lý đơn giản: trọng lực kéo chim xuống liên tục, mỗi lần chạm màn hình tạo lực đẩy lên.
+    • Phát hiện va chạm giữa chim với ống dẫn và mặt đất.
+    • Mỗi cặp ống dẫn gắn với một thẻ từ trong bộ thẻ đang học – khi đến gần, câu hỏi xuất hiện dưới dạng Flutter widget overlay với 3 lựa chọn đáp án.
+    • Trả lời đúng: chim vượt qua ống dẫn và tiếp tục; trả lời sai: game kết thúc ngay lập tức.
+    • Màn hình chiến thắng xuất hiện khi người dùng vượt qua tất cả thẻ từ trong bộ thẻ.
+    • Màn hình Game Over cho phép chơi lại từ đầu.
+
+[Hình 4.7: Màn hình Flappy Bird học từ vựng]
+
+
+4.2.8 Hồ sơ cá nhân và Hệ thống Streak
+
+Màn hình Hồ sơ hiển thị ba khu vực chính: avatar với vòng gradient màu teal-xanh dương và thống kê (số bộ thẻ, số thẻ từ, số ngày streak); thẻ thành tựu với icon ngọn lửa và kỷ lục dài nhất; lịch học 7 ngày trong tuần.
+
+Hệ thống streak được xây dựng với đầy đủ tính năng thực tế:
+
+    • Streak tăng 1 khi người dùng hoàn thành phiên học đầu tiên trong ngày.
+    • Streak bị reset về 1 nếu người dùng bỏ qua ít nhất một ngày không học.
+    • Học nhiều lần trong cùng một ngày không làm streak tăng thêm (idempotent) – được đảm bảo bởi Firestore transaction.
+    • Lịch học tuần hiển thị icon ngọn lửa trên các ngày đã học, viền nổi bật cho ngày hôm nay và màu nhạt cho các ngày trong tương lai.
+    • Toàn bộ dữ liệu streak được lắng nghe real-time qua Firestore stream, thay đổi ngay sau mỗi phiên học mà không cần tải lại màn hình.
+
+[Hình 4.8: Màn hình Hồ sơ cá nhân và hệ thống Streak]
+
+
+4.2.9 Màn hình Cài đặt
+
+Màn hình Cài đặt chia thành ba nhóm chức năng: Tài khoản, Giao diện và Học tập.
+
+Các tính năng đã triển khai và hoạt động chính xác:
+
+    • Chỉnh sửa tên hiển thị: Nhấn vào tên hiện tại để mở bottom sheet với TextField. Sau khi lưu, hệ thống cập nhật đồng thời Firebase Auth displayName và Firestore /users/{uid}. Tên mới phản ánh ngay lập tức trên màn hình Hồ sơ nhờ userChanges() stream.
+    • Chế độ tối/sáng: Toggle Switch thay đổi ThemeMode toàn ứng dụng ngay lập tức mà không cần khởi động lại. Hệ thống sử dụng AppColors ThemeExtension đã đăng ký trong cả lightTheme và darkTheme, đảm bảo tất cả màu sắc đều phản ánh đúng theme hiện tại.
+    • Âm thanh hiệu ứng: Toggle bật/tắt kiểm soát AudioService.enabled, ảnh hưởng đến toàn bộ âm thanh trong ứng dụng bao gồm âm thanh lật thẻ, phản hồi đúng/sai và nhạc kết thúc.
+    • Mọi cài đặt được lưu vào SharedPreferences và được khôi phục tự động khi mở lại ứng dụng.
+
+[Hình 4.9: Màn hình Cài đặt với Dark Mode]
+
+
+4.2.10 Thư viện, Thư mục và Nhóm học
+
+Màn hình Thư viện sử dụng tab bar với ba tab: Bộ thẻ, Thư mục và Nhóm. Mỗi tab hiển thị danh sách dữ liệu real-time từ Firestore với trạng thái loading, dữ liệu và rỗng được xử lý đầy đủ.
+
+Tính năng Thư mục cho phép người dùng tạo thư mục với tên tùy chỉnh và gán nhiều bộ thẻ vào một thư mục. Khi xóa thư mục, các bộ thẻ bên trong không bị ảnh hưởng.
+
+Tính năng Nhóm hỗ trợ tạo nhóm học tập, người tạo tự động trở thành quản trị viên. Admin có thể thêm bộ thẻ vào nhóm và quản lý thành viên. Toàn bộ hoạt động nhóm được đồng bộ qua Firestore.
+
+[Hình 4.10: Màn hình Thư viện với các tab Bộ thẻ, Thư mục và Nhóm]
+
+
+──────────────────────────────────────────────────────────────────────
+
+
+4.3 Đánh giá và kiểm thử phần mềm
+
+4.3.1 Phương pháp kiểm thử
+
+Quá trình kiểm thử ứng dụng Lizquet được thực hiện theo hai phương pháp chính:
+
+Kiểm thử thủ công (Manual Testing): Thực hiện trực tiếp trên thiết bị Android thật và Android Emulator, kiểm tra từng luồng nghiệp vụ theo các kịch bản test case được xây dựng dựa trên đặc tả use case.
+
+Kiểm thử tích hợp (Integration Testing): Kiểm tra sự phối hợp giữa các tầng trong kiến trúc (UI, Provider, Repository, Firebase) thông qua quan sát hành vi thực tế của ứng dụng khi thực hiện các thao tác nghiệp vụ hoàn chỉnh từ đầu đến cuối.
+
+
+4.3.2 Kết quả kiểm thử các chức năng cốt lõi
+
+a) Nhóm TC-01: Kiểm thử Đăng ký và Đăng nhập
+
+    • TC-01-01 – Đăng ký với email hợp lệ, mật khẩu 8 ký tự: Kết quả đạt. Tài khoản được tạo thành công, ứng dụng chuyển về màn hình Home.
+    • TC-01-02 – Đăng ký với email đã tồn tại trong hệ thống: Kết quả đạt. Hệ thống hiển thị thông báo lỗi "email-already-in-use" bằng tiếng Việt.
+    • TC-01-03 – Đăng ký với mật khẩu ít hơn 6 ký tự: Kết quả đạt. Validation ngăn chặn submit và hiển thị lỗi ngay dưới trường nhập liệu.
+    • TC-01-04 – Đăng nhập với thông tin chính xác: Kết quả đạt. Xác thực thành công trong khoảng 1 giây, chuyển đến màn hình Home.
+    • TC-01-05 – Đăng nhập với sai mật khẩu: Kết quả đạt. Thông báo lỗi "wrong-password" hiển thị rõ ràng.
+    • TC-01-06 – Mở lại ứng dụng sau khi đã đăng nhập: Kết quả đạt. Phiên đăng nhập được duy trì, bỏ qua màn hình login và vào Home.
+
+b) Nhóm TC-02: Kiểm thử Quản lý Bộ thẻ
+
+    • TC-02-01 – Tạo bộ thẻ với 5 thẻ từ đầy đủ: Kết quả đạt. Bộ thẻ lưu vào Firestore và xuất hiện trong Library ngay lập tức qua stream.
+    • TC-02-02 – Tạo bộ thẻ để trống tiêu đề: Kết quả đạt. Nút Lưu bị vô hiệu hóa, thông báo validation hiển thị.
+    • TC-02-03 – Chỉnh sửa tiêu đề bộ thẻ hiện có: Kết quả đạt. Firestore cập nhật và stream tự động refresh giao diện.
+    • TC-02-04 – Xóa bộ thẻ có xác nhận: Kết quả đạt. Bộ thẻ biến mất khỏi danh sách, Firestore xóa document thành công.
+
+c) Nhóm TC-03: Kiểm thử Chế độ học
+
+    • TC-03-01 – Học Flashcard đến hết bộ thẻ: Kết quả đạt. Màn hình hoàn thành xuất hiện, streak được cập nhật nếu là lần học đầu tiên trong ngày.
+    • TC-03-02 – Learn Mode – trả lời sai: Kết quả đạt. Thẻ được đưa vào hàng đợi ôn tập, phản hồi màu đỏ và âm thanh sai phát ra.
+    • TC-03-03 – Test Mode – nộp bài hoàn chỉnh: Kết quả đạt. Hệ thống chấm điểm đúng, kết quả chi tiết từng câu hiển thị.
+    • TC-03-04 – Match Mode – ghép đúng tất cả cặp từ: Kết quả đạt. Đồng hồ dừng lại khi ghép hết, thời gian hoàn thành hiển thị.
+    • TC-03-05 – Flappy Bird – trả lời sai khi gặp chướng ngại vật: Kết quả đạt. Game Over ngay lập tức, màn hình cho phép chơi lại xuất hiện.
+
+d) Nhóm TC-04: Kiểm thử Hệ thống Streak
+
+    • TC-04-01 – Hoàn thành phiên học đầu tiên trong ngày: Kết quả đạt. currentStreak tăng 1, lastStudyDate cập nhật trong Firestore, UI phản ánh ngay.
+    • TC-04-02 – Hoàn thành phiên học lần thứ 2 trong cùng ngày: Kết quả đạt. Firestore transaction phát hiện đã học hôm nay, streak không thay đổi (idempotent).
+    • TC-04-03 – Học lại sau khi bỏ qua 1 ngày không học: Kết quả đạt. Streak reset về 1 đúng như logic nghiệp vụ.
+    • TC-04-04 – Lịch học tuần phản ánh đúng ngày đã học: Kết quả đạt. Icon ngọn lửa xuất hiện đúng trên các ngày có trong studiedDates.
+
+e) Nhóm TC-05: Kiểm thử Cài đặt
+
+    • TC-05-01 – Bật Dark Mode: Kết quả đạt. Toàn ứng dụng chuyển sang giao diện tối ngay lập tức, không cần khởi động lại.
+    • TC-05-02 – Tắt âm thanh rồi học Learn Mode: Kết quả đạt. Không có âm thanh phát ra trong suốt phiên học.
+    • TC-05-03 – Đổi tên hiển thị trong Cài đặt: Kết quả đạt. Tên mới xuất hiện trên màn hình Hồ sơ ngay lập tức nhờ userChanges() stream.
+    • TC-05-04 – Đóng và mở lại ứng dụng: Kết quả đạt. Theme và trạng thái âm thanh được khôi phục đúng từ SharedPreferences.
+
+
+4.3.3 Kiểm thử hiệu năng
+
+Ứng dụng được đo thời gian phản hồi trên thiết bị Android tầm trung (RAM 4GB, chip Snapdragon 665) với kết nối mạng 4G. Kết quả như sau:
+
+    • Khởi động ứng dụng lần đầu (cold start): khoảng 2,1 giây.
+    • Xác thực đăng nhập qua Firebase Auth: từ 0,8 đến 1,5 giây tùy thuộc vào chất lượng mạng.
+    • Tải danh sách bộ thẻ từ Firestore lần đầu: từ 0,3 đến 0,6 giây.
+    • Tải lại sau khi đã cache (Firestore offline persistence): dưới 0,1 giây.
+    • Chuyển màn hình qua GoRouter: dưới 100 mili giây, animation chuyển cảnh 250ms.
+    • Hiệu ứng lật thẻ Flashcard: duy trì 60fps ổn định.
+    • Khởi động Flame game engine: khoảng 0,5 giây.
+
+Ứng dụng duy trì tốc độ khung hình 60fps ổn định trên các màn hình chính. Không ghi nhận hiện tượng giật lag (jank) đáng kể trong quá trình kiểm thử.
+
+
+4.3.4 Kiểm thử các trường hợp ngoại lệ
+
+    • Mất kết nối mạng khi đang sử dụng ứng dụng: Firestore offline persistence giữ nguyên dữ liệu đã tải, snackbar thông báo mất kết nối xuất hiện. Khi có mạng trở lại, dữ liệu tự đồng bộ. Kết quả: hoạt động đúng.
+    • Thoát ứng dụng giữa phiên học: Phiên học bị hủy, streak không được cập nhật vì chưa hoàn thành. Kết quả: hoạt động đúng.
+    • Cố gắng truy cập route được bảo vệ khi chưa đăng nhập: GoRouter phát hiện trạng thái chưa xác thực và tự động chuyển hướng về /login. Kết quả: hoạt động đúng.
+    • Học nhiều lần trong cùng một ngày: Streak chỉ tăng 1 lần đầu tiên trong ngày, các lần sau không ảnh hưởng. Kết quả: hoạt động đúng.
+    • Chọn chế độ học khi bộ thẻ chưa có thẻ từ: Các nút chế độ học bị vô hiệu hóa, giao diện hiển thị trạng thái rỗng và gợi ý thêm thẻ. Kết quả: hoạt động đúng.
+    • Nhập tên hiển thị trống trong Cài đặt: Hệ thống không lưu, hiển thị thông báo lỗi validation. Kết quả: hoạt động đúng.
+
+
+4.3.5 Đánh giá tổng thể
+
+a) Điểm mạnh của hệ thống
+
+Sau quá trình phát triển và kiểm thử, hệ thống ứng dụng Lizquet thể hiện một số điểm mạnh nổi bật:
+
+Về kiến trúc, việc áp dụng Feature-first Clean Architecture kết hợp Riverpod giúp mã nguồn có cấu trúc rõ ràng, dễ bảo trì và mở rộng từng tính năng độc lập mà không ảnh hưởng đến phần còn lại.
+
+Về trải nghiệm người dùng, tất cả dữ liệu quan trọng (bộ thẻ, streak, thông tin cá nhân) được cập nhật real-time thông qua Firestore streams, người dùng luôn thấy trạng thái mới nhất mà không cần thao tác tải lại thủ công.
+
+Về Dark Mode, hệ thống sử dụng AppColors ThemeExtension đăng ký trong cả lightTheme và darkTheme, đảm bảo không có widget nào sử dụng màu hardcode, toàn bộ giao diện chuyển đổi nhất quán khi người dùng thay đổi chế độ.
+
+Về tính chính xác của Streak, Firestore transaction đảm bảo việc cập nhật chuỗi học là nguyên tử (atomic), tránh các trường hợp race condition khi nhiều phiên học kết thúc gần nhau.
+
+Về đa dạng chế độ học, 5 chế độ học khác nhau (Flashcard, Learn, Test, Match, Flappy Bird) đáp ứng nhiều phong cách học tập và duy trì sự hứng thú của người dùng.
+
+b) Hạn chế và hướng cải thiện
+
+Mặc dù hệ thống đã hoàn thiện các chức năng cốt lõi, vẫn còn một số hạn chế cần được khắc phục trong các giai đoạn phát triển tiếp theo:
+
+    • Chưa có unit test và widget test tự động. Nguyên nhân do giới hạn thời gian phát triển. Hướng cải thiện: bổ sung test coverage cho Repository và Provider layer bằng flutter_test và Mockito.
+    • Chưa hỗ trợ đăng nhập bằng Google hoặc Apple ID. Hướng cải thiện: tích hợp Firebase Social Authentication.
+    • Chưa có thông báo push nhắc người dùng học theo lịch. Hướng cải thiện: tích hợp Firebase Cloud Messaging (FCM) kết hợp với flutter_local_notifications.
+    • Dữ liệu từ vựng CEFR hiện tại là dữ liệu tĩnh được tích hợp sẵn trong ứng dụng. Hướng cải thiện: xây dựng admin panel quản lý nội dung qua Firestore để dễ dàng cập nhật.
+    • Chưa có tính năng tìm kiếm bộ thẻ theo từ khóa. Hướng cải thiện: tích hợp Algolia Search hoặc Firestore full-text search.
+
+c) Kết luận đánh giá
+
+Hệ thống ứng dụng học từ vựng Lizquet đã được cài đặt và triển khai đầy đủ 17 use case theo yêu cầu đặt ra trong phần đặc tả. Qua quá trình kiểm thử thủ công với 26 test case trên thiết bị Android thật, toàn bộ 26 test case đều cho kết quả như mong đợi, đạt tỉ lệ 100%. Ứng dụng vận hành ổn định, duy trì hiệu năng 60fps và thời gian phản hồi chấp nhận được trên điều kiện mạng 4G thông thường.
+
+Các tính năng then chốt gồm hệ thống streak học liên tiếp, chế độ dark/light mode toàn ứng dụng, đa dạng chế độ học và đồng bộ dữ liệu real-time qua Firestore đều hoạt động chính xác và nhất quán. Ứng dụng đã sẵn sàng để bàn giao và trình diễn trước hội đồng.

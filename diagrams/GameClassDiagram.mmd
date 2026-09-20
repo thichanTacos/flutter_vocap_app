@@ -1,0 +1,172 @@
+classDiagram
+    direction TB
+
+    %% ═══════════════════════════════════════
+    %% ENUM
+    %% ═══════════════════════════════════════
+
+    class FlappyGameState {
+        <<enumeration>>
+        waiting
+        playing
+        paused
+        quiz
+        gameOver
+        win
+    }
+
+    %% ═══════════════════════════════════════
+    %% FLAME BASE CLASSES (thư viện ngoài)
+    %% ═══════════════════════════════════════
+
+    class FlameGame {
+        <<Flame>>
+        +children
+        +overlays
+        +size Vector2
+        +add(Component) void
+        +removeAll() void
+    }
+
+    class PositionComponent {
+        <<Flame>>
+        +position Vector2
+        +size Vector2
+        +angle double
+        +anchor Anchor
+        +add(Component) void
+        +removeFromParent() void
+        +render(Canvas) void
+        +update(double dt) void
+        +onLoad() Future
+    }
+
+    %% ═══════════════════════════════════════
+    %% GAME CORE
+    %% ═══════════════════════════════════════
+
+    class FlappyGame {
+        +List~CardModel~ cards
+        +FlappyGameState state
+        +int currentPipeIndex
+        +int passedCount
+        +bool isWrongAnswer
+        +CardModel? wrongAnswerCard
+        +BirdComponent bird
+        $double gravity
+        $double jumpForce
+        $double pipeSpeed
+        $double pipeGapSize
+        $double pipeWidth
+        $double groundHeight
+        +startGame() void
+        +resumeFromPause() void
+        +handleTap() void
+        +onPipePassed(int cardIndex) void
+        +onCorrectAnswer() void
+        +onWrongAnswer(CardModel) void
+        +triggerGameOver() void
+        +restartGame() void
+        -_initGame() void
+    }
+
+    %% ═══════════════════════════════════════
+    %% COMPONENTS
+    %% ═══════════════════════════════════════
+
+    class BirdComponent {
+        +Vector2 startPosition
+        -double _velocity
+        +jump() void
+        +resetVelocity() void
+        +update(double dt) void
+        +onCollisionStart() void
+        +render(Canvas) void
+    }
+
+    class GroundComponent {
+        +double groundWidth
+        +double groundHeight
+        +render(Canvas) void
+    }
+
+    class PipePairComponent {
+        +double screenHeight
+        +double groundHeight
+        +double gapCenter
+        +int cardIndex
+        -bool _quizTriggered
+        +update(double dt) void
+    }
+
+    class PipeRect {
+        +bool isTop
+        +Vector2 pipeSize
+        +render(Canvas) void
+    }
+
+    %% ═══════════════════════════════════════
+    %% SCREEN & OVERLAYS
+    %% ═══════════════════════════════════════
+
+    class FlappyScreen {
+        +String deckId
+        -FlappyGame? _game
+        +build() Widget
+    }
+
+    class QuizOverlay {
+        +FlappyGame game
+        -int? _selectedIndex
+        -bool _confirmed
+        -List~String~ _options
+        -CardModel _card
+        -_buildOptions() void
+        -_onSelect(int) void
+        -_onConfirm() void
+        +build() Widget
+    }
+
+    class GameOverOverlay {
+        +FlappyGame game
+        +build() Widget
+    }
+
+    class WinOverlay {
+        +FlappyGame game
+        +build() Widget
+    }
+
+    %% ═══════════════════════════════════════
+    %% KẾ THỪA
+    %% ═══════════════════════════════════════
+
+    FlappyGame      --|> FlameGame         : extends
+    BirdComponent   --|> PositionComponent : extends
+    GroundComponent --|> PositionComponent : extends
+    PipePairComponent --|> PositionComponent : extends
+    PipeRect        --|> PositionComponent : extends
+
+    %% ═══════════════════════════════════════
+    %% QUAN HỆ – GAME CORE
+    %% ═══════════════════════════════════════
+
+    FlappyGame "1" *-- "1"   BirdComponent      : chứa (bird)
+    FlappyGame "1" *-- "n"   PipePairComponent  : tạo n cột
+    FlappyGame "1" *-- "1"   GroundComponent    : tạo mặt đất
+    FlappyGame      --> FlappyGameState          : dùng trạng thái
+    FlappyGame      --> CardModel                : dùng dữ liệu từ
+
+    PipePairComponent "1" *-- "2" PipeRect       : chứa (top + bottom)
+
+    %% ═══════════════════════════════════════
+    %% QUAN HỆ – SCREEN / OVERLAY → GAME
+    %% ═══════════════════════════════════════
+
+    FlappyScreen    --> FlappyGame         : tạo & điều khiển
+    QuizOverlay     --> FlappyGame         : gọi onCorrectAnswer / onWrongAnswer
+    GameOverOverlay --> FlappyGame         : gọi restartGame
+    WinOverlay      --> FlappyGame         : gọi restartGame
+
+    BirdComponent   --> FlappyGame         : tham chiếu (HasGameReference)
+    PipePairComponent --> FlappyGame       : tham chiếu (HasGameReference)

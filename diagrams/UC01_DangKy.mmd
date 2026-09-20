@@ -1,0 +1,50 @@
+flowchart LR
+    subgraph ND["Người dùng"]
+        direction TB
+        nd_start([●])
+        nd_chon["Chọn chức năng\nĐăng ký"]
+        nd_nhap["Nhập email\nvà mật khẩu"]
+        nd_nhan["Nhấn nút\nĐăng ký"]
+        nd_end([◉])
+
+        nd_start --> nd_chon
+        nd_nhap --> nd_nhan
+    end
+
+    subgraph HT["Hệ thống"]
+        direction TB
+        ht_form["Hiển thị form\nđăng ký"]
+        ht_valid{"Thông tin\nhợp lệ?"}
+        ht_err_valid["Hiển thị lỗi\nvalidation"]
+        ht_email{"Email đã\ntồn tại?"}
+        ht_err_email["Thông báo:\nTài khoản đã tồn tại"]
+        ht_create["Tạo tài khoản\nFirebase Auth"]
+        ht_save{"Lưu\nthành công?"}
+        ht_err_sys["Thông báo\nlỗi hệ thống"]
+        ht_firestore["Lưu thông tin\nvào Firestore"]
+        ht_success["Thông báo\nđăng ký thành công"]
+        ht_home["Chuyển đến\nmàn hình Home"]
+
+        ht_form --> ht_valid
+        ht_valid -->|Có| ht_email
+        ht_email -->|Không| ht_create --> ht_save
+        ht_save -->|Thành công| ht_firestore --> ht_success --> ht_home
+    end
+
+    nd_chon    --> ht_form
+    ht_form    --> nd_nhap
+    nd_nhan    --> ht_valid
+    ht_valid   -->|Không| ht_err_valid --> nd_nhap
+    ht_email   -->|Có|    ht_err_email --> nd_nhap
+    ht_save    -->|Lỗi|   ht_err_sys   --> nd_end
+    ht_home    --> nd_end
+
+    style nd_start    fill:#1a1a1a,color:#fff,stroke:#000
+    style nd_end      fill:#1a1a1a,color:#fff,stroke:#000
+    style ht_valid    fill:#fff9c4,stroke:#f9a825,color:#000
+    style ht_email    fill:#fff9c4,stroke:#f9a825,color:#000
+    style ht_save     fill:#fff9c4,stroke:#f9a825,color:#000
+    style ht_err_valid fill:#ffebee,stroke:#e53935,color:#000
+    style ht_err_email fill:#ffebee,stroke:#e53935,color:#000
+    style ht_err_sys   fill:#ffebee,stroke:#e53935,color:#000
+    style ht_home      fill:#e8f5e9,stroke:#43a047,color:#000

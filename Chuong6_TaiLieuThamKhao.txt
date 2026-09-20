@@ -1,0 +1,129 @@
+CHƯƠNG 6. TÀI LIỆU THAM KHẢO
+
+
+Danh mục tài liệu tham khảo dưới đây bao gồm các tài liệu công nghệ và tài liệu nghiệp vụ được trích dẫn trong quá trình xây dựng và trình bày hệ thống ứng dụng học từ vựng Lizquet.
+
+
+──────────────────────────────────────────────────────────────────────
+TÀI LIỆU CÔNG NGHỆ
+──────────────────────────────────────────────────────────────────────
+
+[1]   Google LLC, "Flutter – Build apps for any screen", Flutter Official Documentation, https://docs.flutter.dev, truy cập tháng 05/2025.
+
+[2]   Google LLC, "Dart programming language documentation", https://dart.dev/guides, truy cập tháng 05/2025.
+
+[3]   Google LLC, "Firebase Documentation – Auth, Firestore, Cloud Messaging", https://firebase.google.com/docs, truy cập tháng 05/2025.
+
+[4]   Google LLC, "Cloud Firestore – NoSQL Cloud Database", https://firebase.google.com/docs/firestore, truy cập tháng 05/2025.
+
+[5]   Google LLC, "Firebase Authentication – Manage Users in Firebase", https://firebase.google.com/docs/auth, truy cập tháng 05/2025.
+
+[6]   Remi Rousselet, "Riverpod – A Reactive Caching and Data-binding Framework that is Testable, Accessible, and Robust", https://riverpod.dev/docs/introduction/why_riverpod, truy cập tháng 05/2025.
+
+[7]   Flutter Team, "go_router package – A declarative routing package for Flutter", https://pub.dev/packages/go_router, truy cập tháng 05/2025.
+
+[8]   Flame Engine Contributors, "Flame – A minimalist Flutter game engine", https://docs.flame-engine.org, truy cập tháng 04/2025.
+
+[9]   Google LLC, "Material Design 3 – Design system by Google", https://m3.material.io, truy cập tháng 04/2025.
+
+[10]  Flutter Community, "shared_preferences package – Persistent storage for simple data", https://pub.dev/packages/shared_preferences, truy cập tháng 05/2025.
+
+[11]  Robert C. Martin, "Clean Architecture: A Craftsman's Guide to Software Structure and Design", Prentice Hall, ISBN 978-0134494166, 2017.
+
+[12]  Airbnb, "Lottie – An iOS, Android, and React Native library that renders After Effects animations", https://airbnb.design/lottie, truy cập tháng 04/2025.
+
+[13]  Flutter Team, "uuid package – RFC4122 (v1, v4, v5) UUID generation and parsing", https://pub.dev/packages/uuid, truy cập tháng 05/2025.
+
+[14]  Flutter Team, "intl package – Internationalization and localization support", https://pub.dev/packages/intl, truy cập tháng 05/2025.
+
+[15]  Flutter Team, "audioplayers package – A Flutter plugin to play multiple audio files simultaneously", https://pub.dev/packages/audioplayers, truy cập tháng 04/2025.
+
+[16]  Google LLC, "Dart Sound Null Safety – Understanding null safety in Dart", https://dart.dev/null-safety/understanding-null-safety, truy cập tháng 04/2025.
+
+[17]  Google LLC, "Android Developers – Android API levels and compatibility", https://developer.android.com/tools/releases/platforms, truy cập tháng 05/2025.
+
+
+──────────────────────────────────────────────────────────────────────
+TÀI LIỆU NGHIỆP VỤ – PHƯƠNG PHÁP HỌC TẬP VÀ NGÔN NGỮ
+──────────────────────────────────────────────────────────────────────
+
+[18]  Council of Europe, "Common European Framework of Reference for Languages: Learning, Teaching, Assessment (CEFR) – Companion Volume", Council of Europe Publishing, ISBN 978-9287187369, 2020.
+
+[19]  P. A. Nation, "Learning Vocabulary in Another Language", Cambridge University Press, ISBN 978-0521001854, 2nd edition, 2013.
+
+[20]  H. Ebbinghaus, "Memory: A Contribution to Experimental Psychology" (Tranlated by H. A. Ruger & C. E. Bussenius), Teachers College, Columbia University, 1913. (Tái bản điện tử: https://psychclassics.yorku.ca/Ebbinghaus/memory3.htm)
+
+[21]  P. A. Wozniak, "Optimization of Learning" (SuperMemo Algorithm), SuperMemo World, 1990. Cập nhật tại: https://www.supermemo.com/en/blog/application-of-a-computer-to-improve-the-results-obtained-in-working-with-the-supermemo-method, truy cập tháng 04/2025.
+
+[22]  T. Nakata, "Contributions of the Spacing Effect to Research and Practice in Second/Foreign Language Acquisition", Language Teaching, Cambridge University Press, vol. 48, no. 3, pp. 366–383, 2015.
+
+[23]  J. Dunlosky, K. A. Rawson, E. J. Marsh, M. J. Nathan, D. T. Willingham, "Improving Students' Learning With Effective Study Techniques: A Promising Direction From Cognitive and Educational Psychology", Psychological Science in the Public Interest, vol. 14, no. 1, pp. 4–58, 2013.
+
+[24]  D. Dicheva, C. Dichev, G. Agre, G. Angelova, "Gamification in Education: A Systematic Mapping Study", Educational Technology & Society, vol. 18, no. 3, pp. 75–88, 2015.
+
+[25]  UNESCO, "Mobile Learning and Policies: Key Issues to Consider", UNESCO Working Paper Series on Mobile Learning, ISBN 978-9231001093, 2013.
+
+[26]  H. D. Brown, "Principles of Language Learning and Teaching", 6th edition, Pearson Education, ISBN 978-0133041842, 2014.
+
+[27]  M. H. Long, "Second Language Acquisition and Task-Based Language Teaching", Wiley-Blackwell, ISBN 978-1405176569, 2015.
+
+[28]  N. Schmitt, "Vocabulary in Language Teaching", Cambridge University Press, ISBN 978-0521006743, 2000.
+
+[29]  Hamari J., Koivisto J., Sarsa H., "Does Gamification Work? – A Literature Review of Empirical Studies on Gamification", Proceedings of the 47th Hawaii International Conference on System Sciences (HICSS), IEEE, pp. 3025–3034, 2014.
+
+[30]  S. Paivio, "Mental Representations: A Dual Coding Approach", Oxford University Press, ISBN 978-0195064193, 1990. (Lý thuyết Dual Coding – cơ sở khoa học của việc học từ vựng qua hình ảnh kết hợp âm thanh)
+
+
+──────────────────────────────────────────────────────────────────────
+GỢI Ý VỊ TRÍ TRÍCH DẪN TRONG CÁC CHƯƠNG
+(Dùng để chèn số tham chiếu [X] vào nội dung báo cáo)
+──────────────────────────────────────────────────────────────────────
+
+Chương 1 – Tổng quan:
+    → Nêu vấn đề học từ vựng tiếng Anh:             trích dẫn [19], [26], [28]
+    → Giới thiệu phương pháp Flashcard / Spaced Rep: trích dẫn [20], [21], [22], [23]
+    → Giới thiệu m-learning và ứng dụng di động:     trích dẫn [25]
+    → Giới thiệu gamification trong giáo dục:        trích dẫn [24], [29]
+
+Chương 2 – Cơ sở lý thuyết:
+    → Giải thích chuẩn CEFR (A1–C2):                 trích dẫn [18]
+    → Giải thích Spaced Repetition / Ebbinghaus:     trích dẫn [20], [21], [22]
+    → Giải thích hiệu quả flashcard:                 trích dẫn [23], [30]
+    → Giải thích Dual Coding (hình ảnh + âm thanh):  trích dẫn [30]
+    → Gamification và điểm số:                       trích dẫn [24], [29]
+
+Chương 3 – Phân tích và thiết kế:
+    → Giới thiệu kiến trúc Clean Architecture:       trích dẫn [11]
+    → Giới thiệu Flutter framework:                  trích dẫn [1], [2]
+    → Giới thiệu Firebase BaaS:                      trích dẫn [3], [4], [5]
+    → Giới thiệu Riverpod:                           trích dẫn [6]
+    → Giới thiệu GoRouter:                           trích dẫn [7]
+    → Giới thiệu Material Design 3:                  trích dẫn [9]
+
+Chương 4 – Cài đặt và triển khai:
+    → Môi trường Flutter/Dart:                       trích dẫn [1], [2], [16]
+    → Firebase Auth và Firestore:                    trích dẫn [3], [4], [5]
+    → Riverpod state management:                     trích dẫn [6]
+    → GoRouter navigation:                           trích dẫn [7]
+    → Flame game engine:                             trích dẫn [8]
+    → SharedPreferences:                             trích dẫn [10]
+    → Lottie animation:                              trích dẫn [12]
+    → Null Safety:                                   trích dẫn [16]
+    → Android API levels:                            trích dẫn [17]
+
+
+──────────────────────────────────────────────────────────────────────
+VÍ DỤ CÁCH VIẾT TRÍCH DẪN TRONG TỪNG CHƯƠNG
+──────────────────────────────────────────────────────────────────────
+
+Ví dụ – Chương 1:
+"Theo nghiên cứu của Nation [19], một người học cần tiếp xúc với một từ mới ít nhất 10 đến 15 lần trong các ngữ cảnh khác nhau để có thể ghi nhớ lâu dài. Đây là cơ sở lý luận chính cho việc ứng dụng phương pháp lặp lại ngắt quãng (Spaced Repetition) [20][21] trong thiết kế hệ thống Lizquet."
+
+Ví dụ – Chương 2:
+"Chuẩn CEFR (Common European Framework of Reference for Languages) được Hội đồng Châu Âu xây dựng và công bố lần đầu năm 2001, cập nhật năm 2020 [18], phân chia năng lực ngôn ngữ thành 6 cấp độ từ A1 (sơ cấp) đến C2 (thành thạo). Đây là khung tham chiếu được sử dụng rộng rãi nhất trên thế giới trong việc đánh giá và phân loại trình độ tiếng Anh."
+
+Ví dụ – Chương 3:
+"Ứng dụng được xây dựng theo kiến trúc Clean Architecture do Robert C. Martin đề xuất [11], tổ chức mã nguồn theo nguyên tắc phân tầng rõ ràng giữa tầng giao diện, tầng nghiệp vụ và tầng dữ liệu. Framework Flutter [1] được lựa chọn vì khả năng phát triển đa nền tảng từ một codebase duy nhất, đảm bảo hiệu năng 60fps thông qua Skia/Impeller rendering engine."
+
+Ví dụ – Chương 4:
+"Hệ thống sử dụng Cloud Firestore [4] – cơ sở dữ liệu NoSQL thời gian thực của Google – để lưu trữ toàn bộ dữ liệu nghiệp vụ. Firestore transactions được khai thác để cập nhật hệ thống streak một cách nguyên tử, đảm bảo tính nhất quán dữ liệu trong mọi tình huống đồng thời. Quản lý trạng thái ứng dụng được thực hiện thông qua Riverpod [6], thư viện thế hệ mới với kiến trúc compile-safe và hỗ trợ code generation tự động qua riverpod_generator."

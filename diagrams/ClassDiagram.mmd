@@ -1,0 +1,185 @@
+classDiagram
+    direction TB
+
+    %% ═══════════════════════════════════════
+    %% NOTIFIERS
+    %% ═══════════════════════════════════════
+
+    class AuthNotifier {
+        +registerWithEmail() Future~bool~
+        +signInWithEmail() Future~bool~
+        +signOut() Future~void~
+        +updateDisplayName() Future~bool~
+    }
+
+    class DeckNotifier {
+        +createDeck() Future~bool~
+        +updateDeck() Future~bool~
+        +deleteDeck() Future~bool~
+    }
+
+    class CardNotifier {
+        +addCard() Future~bool~
+        +updateCard() Future~bool~
+        +deleteCard() Future~bool~
+    }
+
+    class FolderNotifier {
+        +createFolder() Future~bool~
+        +addDeckToFolder() Future~bool~
+        +deleteFolder() Future~bool~
+    }
+
+    class GroupNotifier {
+        +createGroup() Future~GroupModel~
+        +joinGroup() Future~String~
+        +deleteGroup() Future~void~
+    }
+
+    class AppSettingsNotifier {
+        +toggleTheme() Future~void~
+        +toggleSound() Future~void~
+    }
+
+    %% ═══════════════════════════════════════
+    %% REPOSITORIES
+    %% ═══════════════════════════════════════
+
+    class AuthRepository {
+        +authStateChanges Stream~User~
+        +currentUser User?
+        +registerWithEmail() Future~UserModel~
+        +signInWithEmail() Future~UserModel~
+        +signOut() Future~void~
+    }
+
+    class DeckRepository {
+        +watchUserDecks() Stream~List~DeckModel~~
+        +createDeck() Future~DeckModel~
+        +updateDeck() Future~void~
+        +deleteDeck() Future~void~
+    }
+
+    class CardRepository {
+        +watchCards() Stream~List~CardModel~~
+        +addCard() Future~CardModel~
+        +updateCard() Future~void~
+        +deleteCard() Future~void~
+    }
+
+    class FolderRepository {
+        +watchUserFolders() Stream~List~FolderModel~~
+        +createFolder() Future~FolderModel~
+        +addDeckToFolder() Future~void~
+        +deleteFolder() Future~void~
+    }
+
+    class GroupRepository {
+        +watchUserGroups() Stream~List~GroupModel~~
+        +createGroup() Future~GroupModel~
+        +joinGroup() Future~String~
+        +deleteGroup() Future~void~
+    }
+
+    class StreakRepository {
+        +watchStreak() Stream~StreakModel~
+        +recordStudyDay() Future~void~
+    }
+
+    %% ═══════════════════════════════════════
+    %% MODELS
+    %% ═══════════════════════════════════════
+
+    class UserModel {
+        +String uid
+        +String email
+        +String displayName
+        +DateTime createdAt
+    }
+
+    class DeckModel {
+        +String id
+        +String title
+        +String ownerId
+        +bool isPublic
+        +int cardCount
+    }
+
+    class CardModel {
+        +String id
+        +String deckId
+        +String term
+        +String definition
+        +String? imageUrl
+    }
+
+    class FolderModel {
+        +String id
+        +String title
+        +String ownerId
+        +List~String~ deckIds
+    }
+
+    class GroupModel {
+        +String id
+        +String name
+        +String ownerId
+        +List~String~ memberIds
+        +String inviteCode
+    }
+
+    class ProgressModel {
+        +String deckId
+        +String userId
+        +int learnedCount
+        +double percent
+        +bool isCompleted
+    }
+
+    class StreakModel {
+        +int currentStreak
+        +int longestStreak
+        +List~String~ studiedDates
+        +studiedOn(DateTime) bool
+    }
+
+    class AppSettings {
+        +ThemeMode themeMode
+        +bool soundEnabled
+    }
+
+    %% ═══════════════════════════════════════
+    %% NOTIFIER → REPOSITORY
+    %% ═══════════════════════════════════════
+
+    AuthNotifier      --> AuthRepository   : sử dụng
+    DeckNotifier      --> DeckRepository   : sử dụng
+    CardNotifier      --> CardRepository   : sử dụng
+    FolderNotifier    --> FolderRepository : sử dụng
+    GroupNotifier     --> GroupRepository  : sử dụng
+    AppSettingsNotifier --> AppSettings    : quản lý
+
+    %% ═══════════════════════════════════════
+    %% REPOSITORY → MODEL
+    %% ═══════════════════════════════════════
+
+    AuthRepository   ..> UserModel   : trả về
+    DeckRepository   ..> DeckModel   : trả về
+    CardRepository   ..> CardModel   : trả về
+    FolderRepository ..> FolderModel : trả về
+    GroupRepository  ..> GroupModel  : trả về
+    StreakRepository ..> StreakModel  : trả về
+
+    %% ═══════════════════════════════════════
+    %% QUAN HỆ GIỮA MODELS
+    %% ═══════════════════════════════════════
+
+    UserModel "1" --> "n" DeckModel      : sở hữu
+    UserModel "1" --> "n" FolderModel    : sở hữu
+    UserModel "1" --> "n" GroupModel     : tham gia
+    UserModel "1" --> "1" StreakModel    : theo dõi
+    UserModel "1" --> "n" ProgressModel  : có tiến độ
+    DeckModel "1" --> "n" CardModel      : chứa
+    FolderModel   --> DeckModel          : tham chiếu
+    GroupModel    --> DeckModel          : chia sẻ
+    ProgressModel --> DeckModel          : thuộc về
